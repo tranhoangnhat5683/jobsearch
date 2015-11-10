@@ -46,3 +46,4 @@ Temporary Items
 /vendor
 /config
 /nbproject
+.env

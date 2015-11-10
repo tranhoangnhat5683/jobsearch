@@ -21,7 +21,7 @@ Route::controllers([
 ]);
 Route::resource('jokes', 'JokesController');
 Route::group(['prefix' => 'api/v1'], function(){
-	Route::resource('jokes', 'JokesController');
+	Route::resource('jokes', 'API\V1\JokesController');
 });
 Route::group(['prefix' => 'api/v1'], function()
 {
