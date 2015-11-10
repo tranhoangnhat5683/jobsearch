@@ -23,12 +23,14 @@ class AppServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register()
-	{
-		$this->app->bind(
-			'Illuminate\Contracts\Auth\Registrar',
-			'App\Services\Registrar'
-		);
-	}
+	public function register() {
+        if ($this->app->environment() == 'local') {
+            $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
+        }
+
+        $this->app->bind(
+                'Illuminate\Contracts\Auth\Registrar', 'App\Services\Registrar'
+        );
+    }
 
 }
