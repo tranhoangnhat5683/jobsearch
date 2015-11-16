@@ -14,7 +14,8 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
-Route:get('angular','TestController@angular');
+Route::get('angular','TestController@angular');
+Route::get('neo','TestController@neo');
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',

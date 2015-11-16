@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use App\User;
 use App\Joke;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Neo;
 
 class TestController extends Controller {
 
@@ -20,6 +20,10 @@ class TestController extends Controller {
 
     public function angular() {
         return view('angular');
+    }
+
+    public function neo() {
+        $user = Neo::create(['name' => 'Some Name', 'email' => 'some@email.com']);
     }
 
 }
