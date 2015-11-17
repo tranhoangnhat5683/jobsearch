@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Page;
+use App\Character;
+use App\Skill;
 
 class TestController extends Controller {
 
@@ -20,10 +22,11 @@ class TestController extends Controller {
     public function neo() {
         $this->createPage();
         $this->createUser();
+        $this->createCharacter();
+        $this->createSkill();
     }
     
     private function createPage() {
-        Page::unique('id_social');
         Page::create(["id_social" => "100048249004", "name" => "Câu lạc bộ những người thích đánh rắm"]);
         Page::create(["id_social" => "100100686804995", "name" => "Ngắm Gái Là Một Sở Thích :X"]);
         Page::create(["id_social" => "100100876814281", "name" => "Điện thoại HongKong"]);
@@ -77,7 +80,6 @@ class TestController extends Controller {
     }
 
     private function createUser() {
-        User::unique('identity');
         User::create(["identity" => "100005965563483", "username" => "ck.mua.3", "fullname" => "Pi's Pôlyme's", "gender" => "MALE", "current_city" => "Tây Ninh", "hometown" => "Tây Ninh"]);
         User::create(["identity" => "100001034249186", "username" => "xnohat", "fullname" => "Hong Phuc Nguyen", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
         User::create(["identity" => "100000001339582", "username" => "Singer.VanMaiHuong", "fullname" => "Văn Mai Hương", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Hanoi, Vietnam"]);
@@ -130,4 +132,15 @@ class TestController extends Controller {
 //        User::create(["identity" => "100006312420097", "username" => "giangphongdan87", "fullname" => "Nguyen Thi Nhan", "gender" => "FEMALE", "birthday" => "1987", "hometown" => "Nam Dinâ?, Ha Nam Ninh, Vietnam"]);
     }
 
+    private function createCharacter() {
+        Character::create(["name" => "Positive"]);
+        Character::create(["name" => "Teamwork"]);
+        Character::create(["name" => "Open"]);
+    }
+
+    private function createSkill() {
+        Skill::create(["name" => "PHP"]);
+        Skill::create(["name" => "Javascript"]);
+        Skill::create(["name" => "MySQL"]);
+    }
 }
