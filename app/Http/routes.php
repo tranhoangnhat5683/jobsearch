@@ -19,8 +19,9 @@ Route::get('neo','TestController@neo');
 Route::get('cypher','TestController@cypher');
 Route::controllers([
     'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
+    'password' => 'Auth\PasswordController'
 ]);
+Route::controller('api', 'ApiController');
 Route::resource('jokes', 'JokesController');
 Route::group(['prefix' => 'api/v1'], function(){
     Route::resource('jokes', 'API\V1\JokesController');
