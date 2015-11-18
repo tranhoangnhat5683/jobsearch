@@ -43,7 +43,4 @@ Temporary Items
 .apdisk
 
 # 
-/vendor
-/config
 /nbproject
-.env
