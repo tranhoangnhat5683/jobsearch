@@ -55,8 +55,11 @@ class Curl extends BaseTransport
 			CURLOPT_POST => false,
 			CURLOPT_POSTFIELDS => null,
 			CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+<<<<<<< HEAD
 			CURLOPT_SSL_VERIFYHOST => 0,
 			CURLOPT_SSL_VERIFYPEER => 0
+=======
+>>>>>>> Add vendor and config
 		);
 
 		if ($this->username && $this->password) {

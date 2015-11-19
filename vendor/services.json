@@ -129,6 +129,7 @@
         "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider"
     },
     "when": {
+<<<<<<< HEAD
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
         "Illuminate\\Bus\\BusServiceProvider": [],
         "Illuminate\\Cache\\CacheServiceProvider": [],
@@ -140,5 +141,40 @@
         "Illuminate\\Redis\\RedisServiceProvider": [],
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
         "Illuminate\\Translation\\TranslationServiceProvider": []
+=======
+        "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [
+
+        ],
+        "Illuminate\\Bus\\BusServiceProvider": [
+
+        ],
+        "Illuminate\\Cache\\CacheServiceProvider": [
+
+        ],
+        "Illuminate\\Foundation\\Providers\\ConsoleSupportServiceProvider": [
+
+        ],
+        "Illuminate\\Hashing\\HashServiceProvider": [
+
+        ],
+        "Illuminate\\Mail\\MailServiceProvider": [
+
+        ],
+        "Illuminate\\Pipeline\\PipelineServiceProvider": [
+
+        ],
+        "Illuminate\\Queue\\QueueServiceProvider": [
+
+        ],
+        "Illuminate\\Redis\\RedisServiceProvider": [
+
+        ],
+        "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [
+
+        ],
+        "Illuminate\\Translation\\TranslationServiceProvider": [
+
+        ]
+>>>>>>> Add vendor and config
     }
 }
