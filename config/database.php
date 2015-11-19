@@ -87,7 +87,7 @@ return [
                     'driver' => 'neo4j',
                     'host'   => 'neo4j.cff',
 //                    'host'   => 'localhost',
-                    'port'   => '7474',
+                    'port'   => '443',
                     'username' => 'neo4j',
                     'password' => 'CFF!123@456PTNC',
 //                    'password' => '123456',

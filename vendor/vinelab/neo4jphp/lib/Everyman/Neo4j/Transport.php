@@ -11,7 +11,7 @@ abstract class Transport
 	const PUT    = 'PUT';
 	const DELETE = 'DELETE';
 
-	protected $scheme = 'https';
+	protected $scheme = 'http';
 	protected $host = 'localhost';
 	protected $port = 7474;
 	protected $path = '/db/data';
