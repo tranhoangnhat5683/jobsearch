@@ -84,16 +84,21 @@ return [
 			'prefix'   => '',
 		],
 
-        'neo4j' => [
-            'driver' => 'neo4j',
-            'host'   => 'neo4j.cff',
-//                    'host'   => 'localhost',
-            'port'   => '443',
-            'username' => 'neo4j',
-            'password' => 'CFF!123@456PTNC',
-//                    'password' => '123456',
-        ]
+//                'neo4j' => [
+//                    'driver' => 'neo4j',
+//                    'host'   => 'neo4j.cff',
+//                    'port'   => '443',
+//                    'username' => 'neo4j',
+//                    'password' => 'CFF!123@456PTNC',
+//                ],
 
+                'neo4j' => [
+                    'driver' => 'neo4j',
+                    'host'   => 'localhost',
+                    'port'   => '7474',
+                    'username' => 'neo4j',
+                    'password' => '123456',
+                ]
 
 	],
 

@@ -17,18 +17,11 @@ Route::get('home', 'HomeController@index');
 Route::get('angular','TestController@angular');
 Route::get('neo','TestController@neo');
 Route::get('cypher','TestController@cypher');
+Route::get('api/user/search','Api\UserController@search');
+Route::get('api/skill/search','Api\SkillController@search');
+Route::get('api/character/search','Api\CharacterController@search');
+Route::get('api/page/search','Api\pageController@search');
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
 ]);
-Route::controller('api', 'ApiController');
-Route::resource('jokes', 'JokesController');
-Route::group(['prefix' => 'api/v1'], function(){
-    Route::resource('jokes', 'API\V1\JokesController');
-});
-Route::group(['prefix' => 'api/v1'], function()
-{
-    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
-    Route::post('authenticate', 'AuthenticateController@authenticate');
-    Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
-});

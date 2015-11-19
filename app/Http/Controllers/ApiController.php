@@ -34,24 +34,16 @@ class ApiController extends Controller {
 
     }
 
-    public function skill()
+    public function searchSkill()
     {
-
+        return Skill::search();
     }
 
     public function getProfile(Request $request)
     {
         $identity = $request->input('identity', '100005965563483');
         $skill = $request->input('skill', 'Javascript');
-        // $rowset = DB::select("MATCH (profile:User) WHERE profile.identity = '{$identity}' return profile LIMIT 1");
-        $rowset = DB::select("MATCH (profile:User)-[h:Own]->(s:Skill{name:'$skill'})  return profile,s");
-        $result = [];
-        foreach($rowset as $row)
-        {
-            $data = $row['profile']->getProperties();
-            $data['skill'] = $row['s']->getProperties();
-            $result[] = $data;
-        }
-        return $result;
+        
+        return User::search($identity, $skill);
     }
 }
