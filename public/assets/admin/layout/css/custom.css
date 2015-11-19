@@ -1,0 +1,38 @@
+.page-content-wrapper {
+    
+}
+.page-content-wrapper .page-content-hack {
+    margin-left: 0 !important;
+    /*background: blue url("../../../../images/teambuilding3.jpg") no-repeat fixed center; */
+    background-size: cover;
+    background-color: #00b9f2;
+}
+.job-finder-content {
+    padding-bottom: 35px;
+    animation: fadeIn 1s;
+    background: rgba(255,255,255,.85);
+    margin: 65px auto;
+    padding: 40px 50px 25px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,.1);
+    -o-box-shadow: 0 0 10px rgba(0,0,0,.1);
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    width: 80%;
+}
+.form-md-line-input {
+  margin-right: 0 !important;
+}
+.page-sidebar-closed .page-content-wrapper .page-content {
+    margin-left: 0 !important;
+}
+/*cusstom*/
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #fff !important;
+    border: none !important;
+}
+.list-item {
+    border: 1px solid red;
+    background-color: #fff;
+    padding: 10px;
+}
