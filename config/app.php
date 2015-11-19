@@ -13,12 +13,7 @@ return [
 	|
 	*/
 
-<<<<<<< HEAD
 	'debug' => env('APP_DEBUG'),
-=======
-	//'debug' => env('APP_DEBUG'),
-	'debug' => true,
->>>>>>> Add vendor and config
 
 	/*
 	|--------------------------------------------------------------------------
@@ -141,11 +136,8 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Vinelab\NeoEloquent\NeoEloquentServiceProvider',
-<<<<<<< HEAD
-                Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-=======
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
->>>>>>> Add vendor and config
+         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+
 
 		/*
 		 * Application Service Providers...
@@ -203,14 +195,9 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-<<<<<<< HEAD
-                'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
-                'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-
-=======
         'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory'=> Tymon\JWTAuth\Facades\JWTFactory::class,
->>>>>>> Add vendor and config
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+
 	],
 
 ];

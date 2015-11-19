@@ -4,8 +4,4 @@
 
 require_once __DIR__ . '/composer' . '/autoload_real.php';
 
-<<<<<<< HEAD
 return ComposerAutoloaderInit492cb62e4fbfaed598e705aa1ea37f43::getLoader();
-=======
-return ComposerAutoloaderInitba29e1633e6a1562e1ac623d899de6a2::getLoader();
->>>>>>> Add vendor and config

@@ -83,25 +83,17 @@ return [
 			'password' => env('DB_PASSWORD', ''),
 			'prefix'   => '',
 		],
-<<<<<<< HEAD
-                'neo4j' => [
-                    'driver' => 'neo4j',
-                    'host'   => 'neo4j.cff',
-//                    'host'   => 'localhost',
-                    'port'   => '443',
-                    'username' => 'neo4j',
-                    'password' => 'CFF!123@456PTNC',
-//                    'password' => '123456',
-                ]
-=======
+
         'neo4j' => [
             'driver' => 'neo4j',
             'host'   => 'neo4j.cff',
+//                    'host'   => 'localhost',
             'port'   => '443',
             'username' => 'neo4j',
-            'password' => 'CFF!123@456PTNC'
+            'password' => 'CFF!123@456PTNC',
+//                    'password' => '123456',
         ]
->>>>>>> Add vendor and config
+
 
 	],
 

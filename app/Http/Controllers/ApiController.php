@@ -42,11 +42,15 @@ class ApiController extends Controller {
     public function getProfile(Request $request)
     {
         $identity = $request->input('identity', '100005965563483');
-        $rowset = DB::select("MATCH (profile:User) WHERE profile.identity = '{$identity}' return profile LIMIT 1");
+        $skill = $request->input('skill', 'Javascript');
+        // $rowset = DB::select("MATCH (profile:User) WHERE profile.identity = '{$identity}' return profile LIMIT 1");
+        $rowset = DB::select("MATCH (profile:User)-[h:Own]->(s:Skill{name:'$skill'})  return profile,s");
         $result = [];
         foreach($rowset as $row)
         {
-            $result[] = $row['profile']->getProperties();
+            $data = $row['profile']->getProperties();
+            $data['skill'] = $row['s']->getProperties();
+            $result[] = $data;
         }
         return $result;
     }
