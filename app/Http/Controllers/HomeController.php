@@ -20,7 +20,7 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth');
+		$this->middleware('guest');
 	}
 
 	/**
@@ -30,7 +30,26 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		return view('jobsearch/index');
 	}
 
+	/**
+	 * Show the application dashboard to the user.
+	 *
+	 * @return Response
+	 */
+	public function search()
+	{
+		return view('jobsearch/list');
+	}
+
+	/**
+	 * Show the application dashboard to the user.
+	 *
+	 * @return Response
+	 */
+	public function profile()
+	{
+		return view('jobsearch/profile');
+	}
 }

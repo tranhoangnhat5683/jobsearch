@@ -44,6 +44,7 @@ Temporary Items
 
 # 
 /nbproject
+.project
 .env
 composer.lock
 

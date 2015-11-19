@@ -10,10 +10,13 @@
   | and give it the controller to call when that URI is requested.
   |
  */
-
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
+//Danh sach cac Router chinh ve UI
+Route::get('/', 'HomeController@index');
+Route::get('/list', 'HomeController@search');
+Route::get('/profile', 'HomeController@profile');
+//Danh sach ve API o day
+Route::controller('api', 'ApiController');
+//Test va thu nghiem nen dc remove
 Route::get('angular','TestController@angular');
 Route::get('neo','TestController@neo');
 Route::get('cypher','TestController@cypher');
@@ -21,7 +24,6 @@ Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
 ]);
-Route::controller('api', 'ApiController');
 Route::resource('jokes', 'JokesController');
 Route::group(['prefix' => 'api/v1'], function(){
     Route::resource('jokes', 'API\V1\JokesController');
