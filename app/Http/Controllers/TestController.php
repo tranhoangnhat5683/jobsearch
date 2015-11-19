@@ -21,15 +21,15 @@ class TestController extends Controller {
 
     
     public function neo() {
-        $this->emptyData();
-        $this->createPage();
-        $this->createUser();
-        $this->createCharacter();
-        $this->createSkill();
-        $this->createUserPage();
-        $this->createUserSkill();
-        $this->createUserCharacter();
-        return 'Success';
+//        $this->emptyData();
+//        $this->createPage();
+//        $this->createUser();
+//        $this->createCharacter();
+//        $this->createSkill();
+//        $this->createUserPage();
+//        $this->createUserSkill();
+//        $this->createUserCharacter();
+//        return 'Success';
     }
 
     public function cypher()
