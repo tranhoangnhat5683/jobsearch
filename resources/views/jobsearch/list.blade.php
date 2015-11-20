@@ -49,7 +49,7 @@
                                                 <div class="profile-desc-text">Location: <span class="profile-usertitle-job">{{ $item['current_city'] }}</span></div>
                                                 <div class="profile-desc-text">Skill: <span class="profile-usertitle-job">{{ isset($item['skill_list']) ? $item['skill_list'] : '' }}</span></div>
                                                 <div class="cff-button">
-                                                    <a href="<?php echo route('profile', array('identity' => $item['identity'])); ?>" class="btn btn-xs green">
+                                                    <a href="<?php echo action('HomeController@profile', array('identity' => $item['identity'])); ?>" class="btn btn-xs green">
                                                         View <i class="fa fa-eye"></i>
                                                     </a>
                                                     <a href="mailto:{{ isset($item['email']) ? $item['email'] : '' }}" class="btn btn-xs green">Send Email <i class="fa fa-envelope"></i>
