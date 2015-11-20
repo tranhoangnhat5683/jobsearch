@@ -145,17 +145,17 @@
                                 <!-- END STAT -->
                                 <h4 class="profile-desc-title">Skills</h4>
                                 <div class="primary-link">
-                                    <?php echo isset($skills) ? $skills : 'HTML/CSS, HTML5/CSS3, JAVASCRIPTS, PHP, NODEJS'; ?>
+                                    <?php echo isset($skill_list) ? $skill_list : '' ; ?>
                                 </div>
                                 <!-- END STAT -->
                                 <h4 class="profile-desc-title">Hobbies</h4>
                                 <div class="primary-link">
-                                    <?php echo isset($skills) ? $skills : "Swimming, Reading Book, Football" ?>
+                                    <?php echo isset($hobbies) ? $hobbies : "" ?>
                                 </div>
                                 <!-- END STAT -->
                                 <h4 class="profile-desc-title">Page/Groups</h4>
                                 <div class="primary-link">
-                                    <?php echo isset($skills) ? $skills : "Lap Trinh PHP" ?>
+                                    <?php echo isset($groups) ? $groups : "" ?>
                                 </div>
                             </div>
                             <!-- END PORTLET MAIN -->
@@ -328,8 +328,10 @@
             $.ajax({
                 method      : "POST",
                 url         : "<?php echo url('/api/characteristic') ?>",
-                _token      : "{{ csrf_token() }}",
-                view_mode   : $(e.target).val()
+                data        : {
+                    _token      : "{{ csrf_token() }}",
+                    view_mode   : $(e.target).val()
+                }
             })
             .done(function( response ) {
                 alert( "Data Saved: " + response );

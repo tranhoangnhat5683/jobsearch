@@ -73,6 +73,11 @@ class HomeController extends Controller {
         if (!empty($arrResult)) {
         	$arrResult = array_values($arrResult);
         	$data = $arrResult[0];
+
+        	if (!empty($data['skill'])) {
+        		$skill_list = array_column($data['skill'], 'name');
+        		$data['skill_list'] = implode(' , ', $skill_list);
+        	}
         }
 		return view('jobsearch/profile', $data);
 	}
