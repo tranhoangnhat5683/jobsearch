@@ -227,10 +227,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div>
                                             <div class="form-group">
 												<div class="col-md-3">
-													<select id="activity-view-mode" class="form-control">
-														<option value="0">Last Activity</option>
-														<option value="1">Most related mentions</option>
-													</select>
+                                                    <form method="post" action="#">
+                                                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+    													<select id="activity-view-mode" class="form-control">
+    														<option value="0">Last Activity</option>
+    														<option value="1">Most related mentions</option>
+    													</select>
+                                                    </form>
 												</div>
 											</div>
                                         </div>
@@ -348,11 +351,12 @@ License: You must have a valid license purchased only from themeforest(the above
         $("#activity-view-mode").on("change", function(e) {
             console.log(e.target);
             var params = {
-                view_mode : $(e.target).val()
+                view_mode : $(e.target).val(),
+                _token : "{{ csrf_token() }}"
             }
             $.ajax({
                 method: "POST",
-                url: "<?php echo url('/api/page/search') ?>",
+                url: "<?php echo url('/api/characteristic') ?>",
                 data: params
             })
             .done(function( response ) {
