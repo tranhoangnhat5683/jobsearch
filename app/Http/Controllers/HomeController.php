@@ -1,4 +1,8 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller {
 
@@ -48,8 +52,28 @@ class HomeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function profile()
+	public function profile(Request $request)
 	{
-		return view('jobsearch/profile');
+		$identity = $request->input('identity');
+        $skill_name = $request->input('skill');
+
+        $user = [];
+        if ($identity)
+        {
+            $user['identity'] = $identity;
+        }
+        $skill = [];
+        if ($skill_name)
+        {
+            $skill['name'] = $skill_name;
+        }
+
+        $data = array();
+        $arrResult = User::search($user, $skill);
+        if (!empty($arrResult)) {
+        	$arrResult = array_values($arrResult);
+        	$data = $arrResult[0];
+        }
+		return view('jobsearch/profile', $data);
 	}
 }

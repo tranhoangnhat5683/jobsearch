@@ -40,6 +40,7 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<a href="index.html">
+			<?php echo $page_title; ?>
 			<img src="assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
 			</a>
 			<div class="menu-toggler sidebar-toggler hide">
@@ -101,7 +102,7 @@
 											<option>Manager</option>
 										</select>
 									</div>
-									
+
 								</div>
 								<div class="row">
 									<div class="form-group col-md-6">
@@ -191,10 +192,10 @@
 <script src="assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script>
-      jQuery(document).ready(function() {    
+   	jQuery(document).ready(function() {
         Metronic.init(); // init metronic core components
 		Layout.init(); // init current layout
-      });
+    });
 </script>
 <script>
 	$("#input-location").select2({

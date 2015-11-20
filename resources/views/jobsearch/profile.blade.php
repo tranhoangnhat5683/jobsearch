@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- 
+<!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
 Version: 4.1.0
 Author: KeenThemes
@@ -19,7 +19,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <head>
     <meta charset="utf-8" />
-    <title>Metronic | Pages - New User Profile</title>
+    <title><?php echo $page_title; ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -50,8 +50,32 @@ License: You must have a valid license purchased only from themeforest(the above
 </head>
 
 <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed page-sidebar-closed-hide-logo page-container-bg-solid">
+    <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner">
+
+            <a href="">
+                <?php echo $page_title; ?>
+            </a>
+            <div class="menu-toggler sidebar-toggler hide">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
     <!-- END HEADER -->
     <div class="clearfix">
+
     </div>
     <!-- BEGIN CONTAINER -->
     <div class="page-container">
@@ -95,30 +119,30 @@ License: You must have a valid license purchased only from themeforest(the above
                         		</div>
                         		<div class="col-md-7">
                         			<div class="col-profile-basic-info profile-usertitle">
-                                		<div class="profile-usertitle-name">Duong Thai Cuong</div>
+                                		<div class="profile-usertitle-name"><?php echo $fullname ?></div>
                                 		<div class="profile-desc-text">
                                 			<div class="col-md-6 text-left">Mobile</div>
-                                			<div class="col-md-6 text-left">0902969271</div>
+                                			<div class="col-md-6 text-left"><?php echo isset($mobile) ? $mobile : '123456789'; ?></div>
                                 		</div>
                                 		<div class="profile-desc-text">
                                 			<div class="col-md-6 text-left">Gender</div>
-                                			<div class="col-md-6 text-left">Male</div>
+                                			<div class="col-md-6 text-left"><?php echo isset($gender) ? $gender : 'Male'; ?></div>
                                 		</div>
                                 		<div class="profile-desc-text">
                                 			<div class="col-md-6 text-left">Year of Birth</div>
-                                			<div class="col-md-6 text-left">25/07/1992</div>
+                                			<div class="col-md-6 text-left"><?php echo isset($birthday) ? $birthday : '1992/07/25'; ?></div>
                                 		</div>
                                 		<div class="profile-desc-text">
                                 			<div class="col-md-6 text-left">Degree</div>
-                                			<div class="col-md-6 text-left">Bachelor</div>
+                                			<div class="col-md-6 text-left"><?php echo isset($degree) ? $degree : 'Bachelor'; ?></div>
                                 		</div>
                                 		<div class="profile-desc-text">
-                                			<div class="col-md-6 text-left">Loacation</div>
-                                			<div class="col-md-6 text-left">Ho Chi Minh</div>
+                                			<div class="col-md-6 text-left">Location</div>
+                                			<div class="col-md-6 text-left"><?php echo isset($current_city) ? $current_city : 'Ho Chi Minh'; ?></div>
                                 		</div>
                                 		<div class="profile-desc-text">
                                 			<div class="col-md-6 text-left">Level</div>
-                                			<div class="col-md-6 text-left profile-usertitle-job">Sennior</div>
+                                			<div class="col-md-6 text-left profile-usertitle-job"><?php echo isset($level) ? $level : 'Sennior'; ?></div>
                                 		</div>
                                 	</div>
                         		</div>
@@ -127,6 +151,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="portlet light col-sm-12">
                             	<h4 class="profile-desc-title">Current Job</h4>
                                 <div class="primary-link">
+                                    <?php echo isset($current_job) ? htmlentities($current_job) : ''; ?>
                                 	Front-end developer at Younetmedia
                                 	<br>
                                 	From 2014 to now
@@ -134,17 +159,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <!-- END STAT -->
                                 <h4 class="profile-desc-title">Skills</h4>
                                 <div class="primary-link">
-                                    HTML/CSS, HTML5/CSS3, JAVASCRIPTS, PHP, NODEJS
+                                    <?php echo isset($skills) ? $skills : 'HTML/CSS, HTML5/CSS3, JAVASCRIPTS, PHP, NODEJS'; ?>
                                 </div>
                                 <!-- END STAT -->
                                 <h4 class="profile-desc-title">Hobbies</h4>
                                 <div class="primary-link">
-                                    Swimming, Reading Book, Football
+                                    <?php echo isset($skills) ? $skills : "Swimming, Reading Book, Football" ?>
                                 </div>
                                 <!-- END STAT -->
                                 <h4 class="profile-desc-title">Page/Groups</h4>
                                 <div class="primary-link">
-                                    <a class="primary-link" href="#">Lap Trinh PHP</a>
+                                    <?php echo isset($skills) ? $skills : "Lap Trinh PHP" ?>
                                 </div>
                             </div>
                             <!-- END PORTLET MAIN -->
@@ -162,18 +187,22 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <span class="caption-subject font-blue-madison bold uppercase">Characteristics</span>
                                             </div>
                                         </div>
-                                        <div class="row">
-	                                        <div class="col-sm-2 caption-subject font-blue-madison bold">Positi</div>
-	                                        <div class="portlet-body col-sm-8">
-	                                    		<progress max="100" value="80" class="html5">
-													<div class="progress-bar"></div>
-												</progress>
-											</div>
-	                                        <div class="col-sm-2 text-right">
-	                                        	<span class="font-red-intense bold" id='abc'>777</span>/<span class="bold" id='xyz'>1000</span>
-	                                        </div>
-	                                    </div>
-	                                    <div class="row">
+                                        <?php if (!empty($characteristics)): ?>
+                                            <?php foreach ($characteristics as $key => $item) : ?>
+                                                <div class="row">
+        	                                        <div class="col-sm-2 caption-subject font-blue-madison bold"><?php echo $item["name"]; ?></div>
+        	                                        <div class="portlet-body col-sm-8">
+        	                                    		<progress max="<?php echo $item["max"]; ?>" value="<?php echo $item["current"]; ?>" class="html5">
+        													<div class="progress-bar"></div>
+        												</progress>
+        											</div>
+        	                                        <div class="col-sm-2 text-right">
+        	                                        	<span class="font-red-intense bold" id='abc'><?php echo $item["current"]; ?></span>/<span class="bold"><?php echo $item["max"]; ?></span>
+        	                                        </div>
+        	                                    </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+	                                    <!-- <div class="row">
 	                                        <div class="col-sm-2 caption-subject font-blue-madison bold">Teamwork</div>
 	                                        <div class="portlet-body col-sm-8">
 	                                    		<progress max="100" value="0" class="html5">
@@ -183,18 +212,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	                                        <div class="col-sm-2 text-right">
 	                                        	<span class="font-red-intense bold" id='abc'>0</span>/<span class="bold" id='xyz'>1000</span>
 	                                        </div>
-	                                    </div>
-	                                    <div class="row">
-	                                        <div class="col-sm-2 caption-subject font-blue-madison bold">Open</div>
-	                                        <div class="portlet-body col-sm-8">
-	                                    		<progress max="100" value="20" class="html5">
-													<div class="progress-bar"></div>
-												</progress>
-											</div>
-	                                        <div class="col-sm-2 text-right">
-	                                        	<span class="font-red-intense bold" id='abc'>79</span>/<span class="bold" id='xyz'>1000</span>
-	                                        </div>
-	                                    </div>
+	                                    </div> -->
                                     </div>
                                     <!-- END PORTLET -->
                                 </div>
@@ -209,9 +227,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div>
                                             <div class="form-group">
 												<div class="col-md-3">
-													<select class="form-control">
-														<option>Last Activity</option>
-														<option>Most related mentions</option>
+													<select id="activity-view-mode" class="form-control">
+														<option value="0">Last Activity</option>
+														<option value="1">Most related mentions</option>
 													</select>
 												</div>
 											</div>
@@ -219,23 +237,48 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="portlet-body">
                                             <div class="scroller" style="height: 305px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                                                 <div class="general-item-list">
-                                                    <div class="item">
-                                                        <div class="item-head">
-                                                            <div class="item-details">
-                                                                <img class="item-pic" src="assets/admin/layout/img/avatar4.jpg">
-                                                                <a href="" class="item-name primary-link">Nick Larson</a>
-                                                                <span class="item-label">3 hrs ago</span>
+                                                    <?php if (!empty($activities)): ?>
+                                                        <?php foreach ($activities as $key => $item) : ?>
+                                                            <div class="item">
+                                                                <div class="item-head">
+                                                                    <div class="item-details">
+                                                                        <img class="item-pic" src="{{ $item['avatar'] }}">
+                                                                        <a href="" class="item-name primary-link">{{ $item['fullname'] }}</a>
+                                                                        <span class="item-label">{{ $item['created_at'] }}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="item-body">
+                                                                    {{ $item['content'] }}
+                                                                </div>
+                                                                <?php if (!empty($item['characteristics'])): ?>
+                                                                    <div class="item-footer btn-group-xs">
+                                                                        <?php foreach ($item['characteristics'] as $tag) : ?>
+                                                                            <button type="button" class="btn green">{{ $tag }}</button>
+                                                                        <?php endforeach; ?>
+                                                                        <button type="button" class="btn green">Teamwork</button>
+                                                                        <button type="button" class="btn green">etc</button>
+                                                                    </div>
+                                                                <?php endif; ?>
                                                             </div>
-                                                        </div>
-                                                        <div class="item-body">
-                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                                        </div>
-                                                        <div class="item-footer btn-group-xs">
-                                                            <button type="button" class="btn red">Open</button>
-                                                            <button type="button" class="btn green">Teamwork</button>
-                                                            <button type="button" class="btn green">etc</button>
-                                                        </div>
-                                                    </div>
+                                                            <!-- <div class="item">
+                                                                <div class="item-head">
+                                                                    <div class="item-details">
+                                                                        <img class="item-pic" src="assets/admin/layout/img/avatar4.jpg">
+                                                                        <a href="" class="item-name primary-link">Nick Larson</a>
+                                                                        <span class="item-label">3 hrs ago</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="item-body">
+                                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                                </div>
+                                                                <div class="item-footer btn-group-xs">
+                                                                    <button type="button" class="btn red">Open</button>
+                                                                    <button type="button" class="btn green">Teamwork</button>
+                                                                    <button type="button" class="btn green">etc</button>
+                                                                </div>
+                                                            </div> -->
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -268,7 +311,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN CORE PLUGINS -->
     <!--[if lt IE 9]>
 <script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
+<script src="assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
     <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
@@ -294,13 +337,32 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="assets/admin/pages/scripts/profile.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
     <script>
-    jQuery(document).ready(function() {
+    $(document).ready(function() {
         // initiate layout and plugins
         Metronic.init(); // init metronic core components
         Layout.init(); // init current layout
         QuickSidebar.init(); // init quick sidebar
         Demo.init(); // init demo features
         Profile.init(); // init page demo
+
+        $("#activity-view-mode").on("change", function(e) {
+            console.log(e.target);
+            var params = {
+                view_mode : $(e.target).val()
+            }
+            $.ajax({
+                method: "POST",
+                url: "/api/page/search",
+                data: params
+            })
+            .done(function( response ) {
+                alert( "Data Saved: " + response );
+            })
+            .fail(function( jqXHR, textStatus ) {
+                alert( "Request failed: " + textStatus );
+            });
+        });
+
     });
     </script>
     <!-- END JAVASCRIPTS -->

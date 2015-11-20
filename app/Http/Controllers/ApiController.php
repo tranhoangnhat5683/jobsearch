@@ -16,7 +16,7 @@ class ApiController extends Controller {
     }
 
     /**
-     * params: profile, skill, eq 
+     * params: profile, skill, eq
      * @return [type] [description]
      */
     public function search() {
@@ -43,7 +43,7 @@ class ApiController extends Controller {
     {
         $identity = $request->input('identity', '100005965563483');
         $skill = $request->input('skill', 'Javascript');
-        
+
         return User::search($identity, $skill);
     }
 }
