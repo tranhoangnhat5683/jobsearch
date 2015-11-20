@@ -8,6 +8,7 @@
 @endsection
 
 @section('content')
+<!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <div class="page-content">
         <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
@@ -39,65 +40,65 @@
             <div class="col-md-12">
                 <!-- BEGIN PROFILE SIDEBAR -->
                 <div class="col-md-5">
-                	<div class="portlet light col-sm-12">
-                		<div class="col-md-5">
-                			<div class="profile-picture">
-                				<img src="assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
-                			</div>
-                		</div>
-                		<div class="col-md-7">
-                			<div class="col-profile-basic-info profile-usertitle">
-                        		<div class="profile-usertitle-name"><?php echo $fullname ?></div>
-                        		<div class="profile-desc-text">
-                        			<div class="col-md-6 text-left">Mobile</div>
-                        			<div class="col-md-6 text-left"><?php echo isset($mobile) ? $mobile : '123456789'; ?></div>
-                        		</div>
-                        		<div class="profile-desc-text">
-                        			<div class="col-md-6 text-left">Gender</div>
-                        			<div class="col-md-6 text-left"><?php echo isset($gender) ? $gender : 'Male'; ?></div>
-                        		</div>
-                        		<div class="profile-desc-text">
-                        			<div class="col-md-6 text-left">Year of Birth</div>
-                        			<div class="col-md-6 text-left"><?php echo isset($birthday) ? $birthday : '1992/07/25'; ?></div>
-                        		</div>
-                        		<div class="profile-desc-text">
-                        			<div class="col-md-6 text-left">Degree</div>
-                        			<div class="col-md-6 text-left"><?php echo isset($degree) ? $degree : 'Bachelor'; ?></div>
-                        		</div>
-                        		<div class="profile-desc-text">
-                        			<div class="col-md-6 text-left">Location</div>
-                        			<div class="col-md-6 text-left"><?php echo isset($current_city) ? $current_city : 'Ho Chi Minh'; ?></div>
-                        		</div>
-                        		<div class="profile-desc-text">
-                        			<div class="col-md-6 text-left">Level</div>
-                        			<div class="col-md-6 text-left profile-usertitle-job"><?php echo isset($level) ? $level : 'Sennior'; ?></div>
-                        		</div>
-                        	</div>
-                		</div>
-                	</div>
+                    <div class="portlet light col-sm-12">
+                        <div class="col-md-5">
+                            <div class="profile-picture">
+                                <img src="assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="col-profile-basic-info profile-usertitle">
+                                <div class="profile-usertitle-name"><?php echo $fullname ?></div>
+                                <div class="profile-desc-text">
+                                    <div class="col-md-6 text-left">Mobile</div>
+                                    <div class="col-md-6 text-left"><?php echo isset($mobile) ? $mobile : '123456789'; ?></div>
+                                </div>
+                                <div class="profile-desc-text">
+                                    <div class="col-md-6 text-left">Gender</div>
+                                    <div class="col-md-6 text-left"><?php echo isset($gender) ? $gender : 'Male'; ?></div>
+                                </div>
+                                <div class="profile-desc-text">
+                                    <div class="col-md-6 text-left">Year of Birth</div>
+                                    <div class="col-md-6 text-left"><?php echo isset($birthday) ? $birthday : '1992/07/25'; ?></div>
+                                </div>
+                                <div class="profile-desc-text">
+                                    <div class="col-md-6 text-left">Degree</div>
+                                    <div class="col-md-6 text-left"><?php echo isset($degree) ? $degree : 'Bachelor'; ?></div>
+                                </div>
+                                <div class="profile-desc-text">
+                                    <div class="col-md-6 text-left">Location</div>
+                                    <div class="col-md-6 text-left"><?php echo isset($current_city) ? $current_city : 'Ho Chi Minh'; ?></div>
+                                </div>
+                                <div class="profile-desc-text">
+                                    <div class="col-md-6 text-left">Level</div>
+                                    <div class="col-md-6 text-left profile-usertitle-job"><?php echo isset($level) ? $level : 'Sennior'; ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- PORTLET MAIN -->
                     <div class="portlet light col-sm-12">
-                    	<h4 class="profile-desc-title">Current Job</h4>
+                        <h4 class="profile-desc-title">Current Job</h4>
                         <div class="primary-link">
                             <?php echo isset($current_job) ? htmlentities($current_job) : ''; ?>
-                        	Front-end developer at Younetmedia
-                        	<br>
-                        	From 2014 to now
+                            Front-end developer at Younetmedia
+                            <br>
+                            From 2014 to now
                         </div>
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Skills</h4>
                         <div class="primary-link">
-                            <?php echo isset($skills) ? $skills : 'HTML/CSS, HTML5/CSS3, JAVASCRIPTS, PHP, NODEJS'; ?>
+                            <?php echo isset($skill_list) ? $skill_list : '' ; ?>
                         </div>
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Hobbies</h4>
                         <div class="primary-link">
-                            <?php echo isset($skills) ? $skills : "Swimming, Reading Book, Football" ?>
+                            <?php echo isset($hobbies) ? $hobbies : "" ?>
                         </div>
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Page/Groups</h4>
                         <div class="primary-link">
-                            <?php echo isset($skills) ? $skills : "Lap Trinh PHP" ?>
+                            <?php echo isset($groups) ? $groups : "" ?>
                         </div>
                     </div>
                     <!-- END PORTLET MAIN -->
@@ -118,27 +119,27 @@
                                 <?php if (!empty($characteristics)): ?>
                                     <?php foreach ($characteristics as $key => $item) : ?>
                                         <div class="row">
-	                                        <div class="col-sm-2 caption-subject font-blue-madison bold"><?php echo $item["name"]; ?></div>
-	                                        <div class="portlet-body col-sm-8">
-	                                    		<progress max="<?php echo $item["max"]; ?>" value="<?php echo $item["current"]; ?>" class="html5">
-													<div class="progress-bar"></div>
-												</progress>
-											</div>
-	                                        <div class="col-sm-2 text-right">
-	                                        	<span class="font-red-intense bold" id='abc'><?php echo $item["current"]; ?></span>/<span class="bold"><?php echo $item["max"]; ?></span>
-	                                        </div>
-	                                    </div>
+                                            <div class="col-sm-2 caption-subject font-blue-madison bold"><?php echo $item["name"]; ?></div>
+                                            <div class="portlet-body col-sm-8">
+                                                <progress max="<?php echo $item["max"]; ?>" value="<?php echo $item["current"]; ?>" class="html5">
+                                                    <div class="progress-bar"></div>
+                                                </progress>
+                                            </div>
+                                            <div class="col-sm-2 text-right">
+                                                <span class="font-red-intense bold" id='abc'><?php echo $item["current"]; ?></span>/<span class="bold"><?php echo $item["max"]; ?></span>
+                                            </div>
+                                        </div>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                                 <!-- <div class="row">
                                     <div class="col-sm-2 caption-subject font-blue-madison bold">Teamwork</div>
                                     <div class="portlet-body col-sm-8">
-                                		<progress max="100" value="0" class="html5">
-											<div class="progress-bar"></div>
-										</progress>
-									</div>
+                                        <progress max="100" value="0" class="html5">
+                                            <div class="progress-bar"></div>
+                                        </progress>
+                                    </div>
                                     <div class="col-sm-2 text-right">
-                                    	<span class="font-red-intense bold" id='abc'>0</span>/<span class="bold" id='xyz'>1000</span>
+                                        <span class="font-red-intense bold" id='abc'>0</span>/<span class="bold" id='xyz'>1000</span>
                                     </div>
                                 </div> -->
                             </div>
@@ -154,13 +155,16 @@
                                         <span class="caption-subject font-blue-madison bold uppercase">Active Stream</span>
                                     </div>
                                     <div class="form-group">
-										<div class="col-md-3">
-											<select id="activity-view-mode" class="form-control">
-												<option value="0">Last Activity</option>
-												<option value="1">Most related mentions</option>
-											</select>
-										</div>
-									</div>
+                                        <div class="col-md-3">
+                                            <form method="post" action="#">
+                                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                                <select id="activity-view-mode" class="form-control">
+                                                    <option value="0">Last Activity</option>
+                                                    <option value="1">Most related mentions</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="portlet-body">
                                     <div class="scroller" style="height: 305px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
@@ -221,6 +225,7 @@
         <!-- END PAGE CONTENT-->
     </div>
 </div>
+<!-- END CONTENT -->
 @endsection
 
 @section('script')
@@ -232,16 +237,14 @@ $(document).ready(function() {
     QuickSidebar.init(); // init quick sidebar
     Demo.init(); // init demo features
     Profile.init(); // init page demo
-
     $("#activity-view-mode").on("change", function(e) {
-        console.log(e.target);
-        var params = {
-            _token      : "{{ csrf_token() }}",
-            view_mode   : $(e.target).val()
-        }
         $.ajax({
-            url: "{{ url('/api/page/search') }}",
-            data: params
+            method      : "POST",
+            url         : "<?php echo url('/api/characteristic') ?>",
+            data        : {
+                _token      : "{{ csrf_token() }}",
+                view_mode   : $(e.target).val()
+            }
         })
         .done(function( response ) {
             alert( "Data Saved: " + response );
@@ -250,7 +253,6 @@ $(document).ready(function() {
             alert( "Request failed: " + textStatus );
         });
     });
-
 });
 </script>
 @endsection

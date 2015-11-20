@@ -31,7 +31,9 @@ class ApiController extends Controller {
 
     public function characteristic()
     {
-
+        return json_encode(array(
+            array('name' => 'abc'),
+        ));
     }
 
     public function searchSkill()
