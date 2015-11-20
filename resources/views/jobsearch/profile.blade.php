@@ -352,7 +352,7 @@ License: You must have a valid license purchased only from themeforest(the above
             }
             $.ajax({
                 method: "POST",
-                url: "/api/page/search",
+                url: "<?php echo url('/api/page/search') ?>",
                 data: params
             })
             .done(function( response ) {
