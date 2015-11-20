@@ -348,11 +348,11 @@ License: You must have a valid license purchased only from themeforest(the above
         $("#activity-view-mode").on("change", function(e) {
             console.log(e.target);
             var params = {
-                view_mode : $(e.target).val()
+                _token      : "{{ csrf_token() }}",
+                view_mode   : $(e.target).val()
             }
             $.ajax({
-                method: "POST",
-                url: "<?php echo url('/api/page/search') ?>",
+                url: "{{ url('/api/page/search') }}",
                 data: params
             })
             .done(function( response ) {
