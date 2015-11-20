@@ -11,6 +11,7 @@
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <div class="page-content page-content-hack">
+        <!-- BEGIN PAGE CONTENT-->
         <div class="job-conntent container">
             <div id="list-profile" class="dataTables_wrapper no-footer">
                 <div class="row">
@@ -777,9 +778,11 @@
                 </div>
             </div>
         </div>
+        <!-- END PAGE CONTENT-->
     </div>
 </div>
-<!-- END PAGE CONTENT-->
+<!-- END CONTENT -->
+@endsection
 @endsection
     
 @section('script')
