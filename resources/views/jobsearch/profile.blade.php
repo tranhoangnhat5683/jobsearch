@@ -349,15 +349,11 @@ License: You must have a valid license purchased only from themeforest(the above
         Profile.init(); // init page demo
 
         $("#activity-view-mode").on("change", function(e) {
-            console.log(e.target);
-            var params = {
-                view_mode : $(e.target).val(),
-                _token : "{{ csrf_token() }}"
-            }
             $.ajax({
-                method: "POST",
-                url: "<?php echo url('/api/characteristic') ?>",
-                data: params
+                method      : "POST",
+                url         : "<?php echo url('/api/characteristic') ?>",
+                _token      : "{{ csrf_token() }}",
+                view_mode   : $(e.target).val()
             })
             .done(function( response ) {
                 alert( "Data Saved: " + response );
