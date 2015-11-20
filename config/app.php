@@ -136,7 +136,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Vinelab\NeoEloquent\NeoEloquentServiceProvider',
-         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+     Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
 
 		/*

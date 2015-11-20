@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<!-- 
+<!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
 Version: 4.1.0
 Author: KeenThemes
@@ -19,7 +19,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
-<title>Metronic | Page Layouts - Blank Page</title>
+<title>EQ Job Search</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -127,7 +127,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<option>Manager</option>
 										</select>
 									</div>
-									
+
 								</div>
 								<div class="row">
 									<div class="form-group col-md-6">
@@ -214,7 +214,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
+<script src="assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
@@ -233,7 +233,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script>
-      jQuery(document).ready(function() {    
+      jQuery(document).ready(function() {
         Metronic.init(); // init metronic core components
 		Layout.init(); // init current layout
 		ComponentsjQueryUISliders.init();
