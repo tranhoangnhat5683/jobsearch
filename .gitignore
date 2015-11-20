@@ -42,9 +42,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# 
+#
 /nbproject
 .project
 .env
 composer.lock
+*sublime*
 
