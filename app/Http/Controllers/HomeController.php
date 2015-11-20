@@ -43,9 +43,26 @@ class HomeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function search()
+	public function search(Request $request)
 	{
-		return view('jobsearch/list');
+		$identity = $request->input('identity');
+        $skill_name = $request->input('skill');
+
+		$user = [];
+        if ($identity)
+        {
+            $user['identity'] = $identity;
+        }
+        $skill = [];
+        if ($skill_name)
+        {
+            $skill['name'] = $skill_name;
+        }
+
+        $arrResult = User::search($user, $skill);
+        $data = array('profiles' => array_values($arrResult));
+
+		return view('jobsearch/list', $data);
 	}
 
 	/**
