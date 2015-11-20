@@ -35,15 +35,7 @@ var ChartsAmcharts = function() {
                 "bullet": "round",
                 "valueField": "litres"
             }],
-            "categoryField": "country",
-            "exportConfig": {
-                "menuTop": "10px",
-                "menuRight": "10px",
-                "menuItems": [{
-                    "icon": '/lib/3/images/export.png',
-                    "format": 'png'
-                }]
-            }
+            "categoryField": "country"
         });
 
         $('#chart_9').closest('.portlet').find('.fullscreen').click(function() {

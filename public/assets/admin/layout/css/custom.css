@@ -5,7 +5,7 @@
     margin-left: 0 !important;
     /*background: blue url("../../../../images/teambuilding3.jpg") no-repeat fixed center; */
     background-size: cover;
-    background-color: #00b9f2;
+    background-color: #b2cecf;
 }
 .job-finder-content {
     padding-bottom: 35px;
@@ -32,7 +32,38 @@
     border: none !important;
 }
 .list-item {
-    border: 1px solid red;
     background-color: #fff;
     padding: 10px;
+    -webkit-box-shadow: 0 0px 2px #777;
+    -moz-box-shadow: 0 0px 2px #777;
+    box-shadow: 0 0px 2px #777;
+    margin-top: 5px;
+}
+.list-item:hover {
+
+}
+.item-content {
+    padding: 0 30px;
+}
+img.cff-avatar {
+    max-width: 100%;
+    width: 150px !important;
+    height: auto;
+}
+#list-profile progress[value]{
+    height: 7px;
+    margin-bottom: 0.3em;
+}
+.profile-userpic {
+    /*margin-right: 10px;*/
+}
+.cff-character-col {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+.item-content .row .portlet-body {
+    padding: 2px 0;
+}
+.cff-button {
+    margin-top: 10px;
 }
