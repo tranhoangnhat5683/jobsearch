@@ -21,13 +21,14 @@ class User extends NeoEloquent {
         $location_query = static::buildSearchLocation($options);
         $skill_query = static::buildSearchSkill($options);
         $character_query = static::buildSearchCharacter($options);
+        $paginator = static::buildSearchPaginator($options);
 
         $rowset = DB::select(implode(' ', [
                     $user_query,
                     $location_query,
                     $skill_query,
                     $character_query,
-                    "return user.identity as identity"
+                    "return user.identity as identity $paginator"
         ]));
         $identities = [];
         foreach ($rowset as $row) {
@@ -81,6 +82,13 @@ class User extends NeoEloquent {
         return '';
     }
 
+    private static function buildSearchPaginator($options) {
+        $skip = (isset($options['offset']) && $options['offset']) ? $options['offset'] : 0;
+        $limit = (isset($options['limit']) && $options['limit']) ? $options['limit'] : 5;
+
+        return "SKIP $skip LIMIT $limit";
+    }
+
     public static function get($identities = []) {
         $rowset = DB::select(implode(' ', [
                     "MATCH (user:User) WHERE user.identity in " . json_encode($identities),
@@ -130,10 +138,8 @@ class User extends NeoEloquent {
         foreach ($result as $user) {
             $final[] = $user;
         }
+
         return $final;
     }
 
-    private static function buildUser($row){
-
-    }
 }
