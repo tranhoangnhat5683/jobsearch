@@ -17,7 +17,8 @@ Route::get('/profile', 'HomeController@profile');
 Route::get('/api/user/search', 'Api\UserController@search');
 //Route::get('/api/page/search', 'Api\PageController@search');
 Route::get('/api/skill/search', 'Api\SkillController@search');
-Route::get('/api/Character/search', 'Api\CharacterController@search');
+Route::get('/api/character/search', 'Api\CharacterController@search');
+Route::get('/api/location/search', 'Api\LocationController@search');
 //Danh sach ve API o day
 //Route::controller('api', 'ApiController');
 //Test va thu nghiem nen dc remove
