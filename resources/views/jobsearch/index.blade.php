@@ -90,6 +90,14 @@
 									<div class="">
 										<div class="md-radio-inline">
 											<div class="md-radio">
+												<input type="radio" id="radio59" name="level" class="md-radiobtn">
+												<label for="radio59">
+												<span></span>
+												<span class="check"></span>
+												<span class="box"></span>
+												All </label>
+											</div>
+											<div class="md-radio">
 												<input type="radio" id="radio56" name="level" class="md-radiobtn" checked="">
 												<label for="radio56">
 												<span class="inc"></span>
