@@ -36,7 +36,7 @@
                                             <div class="profile-usertitle-name"><% profile['fullname'] %></div>
                                             <div class="profile-desc-text">Level: <span class="profile-usertitle-job"><% profile['level'] || 'Senior' %></span></div>
                                             <div class="profile-desc-text">Location: <span class="profile-usertitle-job"><% profile['location']['name'] || 'HCM' %></span></div>
-                                            <div class="profile-desc-text">Skill: <span class="profile-usertitle-job"><% profile['skill_list'] || '' %></span></div>
+                                            <div class="profile-desc-text">Skill: <span class="profile-usertitle-job"><% getSkills(profile) %></span></div>
                                             <div class="cff-button">
                                                 <a href="<?php echo action('HomeController@profile', array('identity' => $item['identity'])); ?>" target="_blank" class="btn btn-xs green">
                                                     View <i class="fa fa-eye"></i>
@@ -50,21 +50,17 @@
                                         <!-- Characteristics -->
                                     </div>
                                     <div class="col-sm-4 cff-character-col">
-                                        <?php if (!empty($item['characters'])): ?>
-                                            <?php foreach ($item['characters'] as $character) : ?>
-                                                <div class="row">
-                                                    <div class="col-sm-3 caption-subject font-blue-madison bold">{{ $character['name'] }}</div>
-                                                    <div class="portlet-body col-sm-6">
-                                                        <progress max="{{ $character['max'] }}" value="{{ $character['current'] }}" class="html5">
-                                                            <div class="progress-bar"></div>
-                                                        </progress>
-                                                    </div>
-                                                    <div class="col-sm-3 text-right">
-                                                        <span class="font-red-intense bold" id='abc'>{{ $character['current'] }}</span>/<span class="bold" id='xyz'>{{ $character['max'] }}</span>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
+                                        <div class="row" ng-repeat="character in getCharacters(profile)">
+                                            <div class="col-sm-3 caption-subject font-blue-madison bold"><% character.name %></div>
+                                            <div class="portlet-body col-sm-6">
+                                                <progress max="<% character.max %>" value="<% character.current %>" class="html5">
+                                                    <div class="progress-bar"></div>
+                                                </progress>
+                                            </div>
+                                            <div class="col-sm-3 text-right">
+                                                <span class="font-red-intense bold" id='abc'><% character.current %></span>/<span class="bold" id='xyz'><% character.max %></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +117,6 @@ jQuery(document).ready(function() {
     });
 
     itemApp.controller('itemsController', function($scope, $http) {
-
         $scope.items = [];
         $scope.lastpage=0;
 
@@ -146,6 +141,29 @@ jQuery(document).ready(function() {
                     console.log($scope.items);
                 });
             };
+        $scope.getSkills = function(user){
+            var text = [];
+            for (var i = 0; i < user.skills.length; i++)
+            {
+                text.push(user.skills[i].name);
+            }
+            return text.join(', ');
+        };
+        $scope.getCharacters = function(user){
+            var characters = [];
+            var character = null;
+            for (var i = 0; i < user.characters.length; i++)
+            {
+                character = user.characters[i];
+                if (!character.current)
+                {
+                    continue;
+                }
+                characters.push(character);
+            }
+            return characters;
+        };
+
         $scope.init();
     });
 
