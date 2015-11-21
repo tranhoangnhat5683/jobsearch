@@ -8,12 +8,12 @@
 		<div class="job-finder-box container" id="job-finder-box">
 			<div class="job-finder-content">
 				<div class="job-finder-form">
-					<h1 class="text-center">Find Employee <strong>Human Up!</strong></h1>
+					<h1 class="text-center">FIND HIGH <strong>EQ TALENT!</strong></h1>
 					<div class="form-content">
 						<form class="" action="" method="get" accept-charset="utf-8">
 							<div class="row">
 								<div class="form-group col-md-12">
-									<label>Characteristics</label>
+									<!-- <label>Characteristics</label> -->
 									<input type="text" class="form-control input-lg" placeholder="..." autofocus>
 								</div> 
 								
@@ -35,8 +35,8 @@
 								</div>
 
 							</div>
-							<div class="text-right">
-								<a href="javascript:;" class="btn btn-lg blue text-right">
+							<div class="text-center">
+								<a href="/list" class="btn btn-lg blue text-right">
 									Search <i class="fa fa-search"></i>
 								</a>
 							</div>

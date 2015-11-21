@@ -28,7 +28,6 @@
     border-color: #50d07d !important;
 }
 .job-finder-content h1
->>>>>>> origin/master
 {
     margin: 10px auto;
 }
@@ -90,7 +89,16 @@ img.cff-avatar {
     /*margin: 0 auto;*/
     /*float: none;*/
     z-index: 999;
+    position: relative;
 }
+.page-header.navbar .page-logo a {
+    height: 100%;
+}
+
+.page-header.navbar .page-logo .logo-default {
+    height: 100%;
+}
+
 .page-header.navbar .page-logo img{
     max-width: 100%
 }
