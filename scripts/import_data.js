@@ -152,8 +152,8 @@ Script.prototype.onLoadData = function(solrErr, solrRes)
 		if( doc.id_table === 2 || doc.id_table === 12 ){
 			try {
 				attachment 	= JSON.parse(doc.attachment);
-				id_parent	= attachment.parent_info.id_social;
-				if( id_parent.search('_') !== -1 ){
+				id_parent	= attachment.parent_info.id;
+				if( id_parent && (id_parent.search('_') !== -1) ){
 					id_parent = id_parent.split('_')[1];
 				}
 			} catch ( e ) {
