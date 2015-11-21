@@ -5,7 +5,8 @@ module.exports = function() {
         port: '8983',
         path: '/solr/jobsearch'
     };
-
     config.neo4j = 'http://neo4j:CFF!123@456PTNC@neo4j.cff:7474';
+    config.shards = [100];
+
     return config;
-};
+}();

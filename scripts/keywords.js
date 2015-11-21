@@ -3,13 +3,13 @@ module.exports = function() {
 
     // optimism
     keywords['77'] = [
-        'yêu đời', 'lạc quan', 'vui vẻ'
+        'yêu đời', 'lạc quan', 'vui'
     ];
 
     // active
     keywords['78'] = [
-        'năng động', 'thể thao', 'bóng rổ', 'bóng đá', 'lễ hội', 'sự kiện',
-        'event', 'tổ chức', 'hoạt động', 'tình nguyện'
+        'thể thao', 'bóng rổ', 'bóng đá', 'lễ hội', 'sự kiện',
+        'event', 'tổ chức', 'hoạt động', 'tình nguyện', 'tham gia'
     ];
 
     // confidence
@@ -24,7 +24,7 @@ module.exports = function() {
 
     // funny
     keywords['81'] = [
-        'vui vẻ', 'ha ha', 'được đó', 'vãi', 'troll', ':D', ':v', '^_^', 'lol'
+        'vui', 'ha ha', 'được đó', 'vãi', 'troll', ':D', ':v', '^_^', 'lol'
     ];
 
     return keywords;

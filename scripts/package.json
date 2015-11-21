@@ -10,6 +10,7 @@
         "forever-monitor": "git+https://github.com/tpphu/forever-monitor.git",
         "fetch": "git+https://github.com/tpphu/fetch.git",
         "youtube-api": "git+https://github.com/nhatth/youtube-api",
-        "node-neo4j": "latest"
+        "node-neo4j": "latest",
+        "async": "latest"
     }
 }
