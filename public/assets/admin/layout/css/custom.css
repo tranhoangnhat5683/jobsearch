@@ -78,3 +78,7 @@ img.cff-avatar {
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     padding: 6px 5px;
 }
+.page-header.navbar .page-logo {
+    margin: 0 auto;
+    float: none;
+}
