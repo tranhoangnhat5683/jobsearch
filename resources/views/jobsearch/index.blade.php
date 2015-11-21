@@ -36,7 +36,7 @@
 
 							</div>
 							<div class="text-right">
-								<a href="javascript:;" class="btn btn-lg blue text-right">
+								<a href="/list" class="btn btn-lg blue text-right">
 									Search <i class="fa fa-search"></i>
 								</a>
 							</div>
