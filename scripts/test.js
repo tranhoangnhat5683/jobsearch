@@ -39,7 +39,7 @@ client.search(query, function(err, res){
 		upDocs.push({
 			'id' 				: doc.id,
 			'characteristics'	: {
-				set : [80]
+				set : [79]
 			}
 		})
 	}

@@ -52,7 +52,9 @@ app.get('/stream', function(req, res) {
 			characteristics 	= {};
 			for(var i = 0; doc.characteristics && i < doc.characteristics.length; i++)
 			{
-				characteristics[doc.characteristics[i]] = CHARACTERISTICS[doc.characteristics[i]];
+				if( CHARACTERISTICS[doc.characteristics[i]] ) {
+					characteristics[doc.characteristics[i]] = CHARACTERISTICS[doc.characteristics[i]];
+				}
 			}
 			doc.characteristics = characteristics;
 		}
