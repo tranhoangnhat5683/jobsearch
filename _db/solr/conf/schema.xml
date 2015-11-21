@@ -23,8 +23,14 @@
    <field name="with_name"        type="string"     indexed="false" stored="true" required="false" multiValued="true" />
    <field name="type"             type="int"        indexed="false" stored="true" required="false" multiValued="true" />
    <!-- version -->
+   <field name="text"           type="text_vi"    indexed="true"  stored="false" required="false" multiValued="true" />
+   <copyField source="message" dest="text" />
+   <copyField source="description" dest="text" />
    <field name="_version_" type="long" indexed="true" stored="true"/>
- <uniqueKey>id</uniqueKey>
+
+   <uniqueKey>id</uniqueKey>
+   <defaultSearchField>text</defaultSearchField>
+
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
     <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>

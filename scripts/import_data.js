@@ -65,6 +65,7 @@ Script.prototype.canLoadData = function()
 
 Script.prototype.loadData = function()
 {
+	return;
 	if( !this.canLoadData() )
 	{
 		setTimeout(this.loadData.bind(this), 1000);
@@ -73,11 +74,31 @@ Script.prototype.loadData = function()
 
 	var query = this.clientData.createQuery();
 		query.q('*:*')
-		.matchFilter('updated_at', ['* TO '+this.startAt.toISOString()+']')	
-	this.clientData.search(query, function(){
-		
-	});
+		.matchFilter('updated_at', '[* TO ' + this.startAt.toISOString()+']');
+
+	this.loadDataReq++;
+	this.clientData.search(query, this.onLoadData.bind(this));
 	setTimeout(this.loadData.bind(this), 1000);
+};
+
+Script.prototype.onLoadData = function(solrErr, solrRes)
+{
+	this.loadDataRes++;
+	if( solrErr ) {
+		this.loadDataErr++;
+		console.log('onLoadData | err: ', solrErr);
+		return;
+	};
+	if ( !(docs instanceof Array) || !docs.length )
+	{
+		return;
+	}
+	var docs 	= solrRes.response.docs;
+	var doc	 	= null;
+	for(var i = 0; i < docs.length; i++)
+	{
+		doc = docs[i];
+	}
 };
 
 Script.prototype.canImportData = function()
