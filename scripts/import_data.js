@@ -79,6 +79,11 @@ Script.prototype.canLoadData = function()
 	{
 		return false;
 	}
+	if( this.loadDataStop )
+	{
+		console.log('onLoadData | Khong con du lieu nua!');
+		return false;
+	}
 	return true;
 };
 
@@ -117,6 +122,7 @@ Script.prototype.onLoadData = function(solrErr, solrRes)
 	this.cursorMark = solrRes.nextCursorMark;
 	if ( !(docs instanceof Array) || !docs.length )
 	{
+		this.loadDataStop = true;
 		console.log('onLoadData | Khong con du lieu nua!');
 		return;
 	}
