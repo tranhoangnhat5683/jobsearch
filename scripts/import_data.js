@@ -2,8 +2,13 @@ var solr = require('solr-client');
 
 var Script = function()
 {
-	this.client = solr.createClient({
+	this.client 	= solr.createClient({
 		host : 'solr.cff',
+		port : '8983',
+		path : '/solr/jobsearch',
+	});
+	this.clientData = solr.createClient({
+		host : 'import.local',
 		port : '8983',
 		path : '/solr/jobsearch',
 	});
@@ -43,6 +48,7 @@ Script.prototype.showInfo = function()
 
 Script.prototype.start = function()
 {
+	this.startAt = new Date();
 	this.initTestData();
 	this.loadData();
 	this.importData();
@@ -65,6 +71,12 @@ Script.prototype.loadData = function()
 		return;
 	}
 
+	var query = this.clientData.createQuery();
+		query.q('*:*')
+		.matchFilter('updated_at', ['* TO '+this.startAt.toISOString()+']')	
+	this.clientData.search(query, function(){
+		
+	});
 	setTimeout(this.loadData.bind(this), 1000);
 };
 
