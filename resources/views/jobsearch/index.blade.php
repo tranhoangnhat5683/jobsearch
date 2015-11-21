@@ -34,9 +34,15 @@
 									</select>
 								</div>
 
+<<<<<<< HEAD
 							</div> -->
 							<div class="text-center">
 								<a href="javascript:;" class="btn btn-lg blue text-right">
+=======
+							</div>
+							<div class="text-right">
+								<a href="/list" class="btn btn-lg blue text-right">
+>>>>>>> origin/master
 									Search <i class="fa fa-search"></i>
 								</a>
 							</div>

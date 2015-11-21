@@ -81,10 +81,10 @@ class HomeController extends Controller {
 		$arrResult = User::get(array($identity));
 
         if (!empty($arrResult)) {
+        	// return response()->json($arrResult);
         	$arrResult = $this->buildProfileInfo($arrResult);
         	$data = $arrResult[0];
 
-        	// return response()->json($data);
         }
 		return view('jobsearch/profile', $data);
 	}
@@ -98,6 +98,10 @@ class HomeController extends Controller {
         	}
         	if (!empty($profile['hobbies'])) {
         		$profile['hobby_list'] = implode(' , ', $profile['hobbies']);
+        	}
+        	if (!empty($profile['pages'])) {
+        		$page_list = array_column($profile['pages'], 'name');
+        		$profile['page_list'] = implode(' , ', $page_list);
         	}
     		$profile['avatar'] = "http://graph.facebook.com/{$profile['identity']}/picture?height=150&width=150";
 		}
