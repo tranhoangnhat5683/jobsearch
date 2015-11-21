@@ -2,6 +2,7 @@
 
 <schema name="example" version="1.5">
    <field name="id"               type="string"     indexed="true" stored="true" required="true" multiValued="false" />
+   <field name="id_parent"        type="string"     indexed="true" stored="true" required="false" multiValued="false" />
    <field name="identity"         type="string"     indexed="true" stored="true" required="true" multiValued="false" /> 
    <field name="id_source"        type="string"     indexed="true" stored="true" required="true" multiValued="false" />
    <field name="message"          type="text_vi"    indexed="true" stored="true" required="false" multiValued="false" />
