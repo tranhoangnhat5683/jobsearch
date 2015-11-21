@@ -48,4 +48,4 @@ Temporary Items
 .env
 composer.lock
 *sublime*
-
+/scripts/node_modules
