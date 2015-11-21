@@ -2,10 +2,10 @@ var solr = require('solr-client');
 
 var Script = function()
 {
-	this.client 		= solr.createClient({
-		host		: '74.50.117.80',
-		port		: '8983',
-		path		: '/solr/jobsearch',
+	this.client = solr.createClient({
+		host : 'solr.cff',
+		port : '8983',
+		path : '/solr/jobsearch',
 	});
 	//this.client.autoCommit = true;
 
@@ -130,6 +130,25 @@ Script.prototype.initTestData = function()
 	   "type": null
 	},{
 	   "id": "fb$1235",
+	   "identity": "123",
+	   "id_source": "123",
+	   "message": "test message",
+	   "description": "test description",
+	   "attachment": "{}",
+	   "created_at": new Date().toISOString(),
+	   "updated_at": new Date().toISOString(),
+	   "skills": [1, 2, 3],
+	   "characteristics": [1, 2, 3],
+	   "location": "Ho Chi Minh",
+	   "id_location": 1,
+	   "likes": 1,
+	   "comments": 1,
+	   "shares": 1,
+	   "with_identity": null,
+	   "with_name": null,
+	   "type": null
+	},{
+	   "id": "fb$1236",
 	   "identity": "123",
 	   "id_source": "123",
 	   "message": "test message",
