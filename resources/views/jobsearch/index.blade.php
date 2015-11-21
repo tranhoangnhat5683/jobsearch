@@ -34,7 +34,7 @@
 							<div class="row">
 								<div class="form-group col-md-6">
 									<label>Categories</label>
-									<select class="form-control js-example-basic-multiple" id="input-category" multiple="multiple">
+									<select class="form-control js-example-basic-multiple" id="input-category">
 										<option>Công Nghệ Thông tin</option>
 										<option>Accounting</option>
 										<option>Arts/Design</option>
@@ -43,7 +43,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label>Location</label>
-									<select class="form-control js-example-basic-multiple" multiple="multiple" id="input-location">
+									<select class="form-control js-example-basic-multiple" id="input-location">
 										<option>Hồ Chí Minh</option>
 										<option>Hà Nội</option>
 										<option>Phú Yên</option>
@@ -51,7 +51,6 @@
 										<option>Mỹ Tho</option>
 									</select>
 								</div>
-								
 
 							</div>
 							<div class="row">
