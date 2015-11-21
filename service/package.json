@@ -1,0 +1,16 @@
+{
+  "name": "EQJobSearch",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "async": "latest",
+    "express": "^4.13.3",
+    "fbgraph": "git+https://github.com/tpphu/fbgraph.git",
+    "fetch": "git+https://github.com/tpphu/fetch.git",
+    "forever-monitor": "git+https://github.com/tpphu/forever-monitor.git",
+    "node-neo4j": "latest",
+    "optimist": "latest",
+    "solr-client": "git+https://github.com/tpphu/solr-node-client.git",
+    "youtube-api": "git+https://github.com/nhatth/youtube-api"
+  }
+}
