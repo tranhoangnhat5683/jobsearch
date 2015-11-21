@@ -29,11 +29,15 @@
                             <div ng-repeat="profile in items" class="list-item col-sm-12">
                                 <div class="item-content">
                                     <div class="col-sm-2 profile-userpic">
-                                        <img src="http://graph.facebook.com/<% profile['identity'] %>/picture?height=150&width=150" || "assets/admin/pages/media/profile/profile_user.jpg" alt="" class="cff-avatar">
+                                        <a class="cff-fullname" href="/profile?identity=<% profile['identity'] %>" target="_blank">
+                                            <img src="http://graph.facebook.com/<% profile['identity'] %>/picture?height=150&width=150" || "assets/admin/pages/media/profile/profile_user.jpg" alt="" class="cff-avatar">
+                                        </a>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="row">
-                                            <div class="profile-usertitle-name"><% profile['fullname'] %></div>
+                                            <div class="profile-usertitle-name">
+                                                <a class="cff-fullname" target="_blank" href="/profile?identity=<% profile['identity'] %>"><% profile['fullname'] %></a>
+                                            </div>
                                             <div class="profile-desc-text">Level: <span class="profile-usertitle-job"><% profile['level'] || 'Senior' %></span></div>
                                             <div class="profile-desc-text">Location: <span class="profile-usertitle-job"><% profile['location']['name'] || 'HCM' %></span></div>
                                             <div class="profile-desc-text">Skill: <span class="profile-usertitle-job"><% getSkills(profile) %></span></div>
@@ -66,24 +70,6 @@
                             </div>
                 </div>
 
-                <!-- Pagination -->
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="text-center" id="cff-pagination">
-                            <ul class="pagination" style="visibility: visible;">
-                                <li class="prev disabled"><a href="#" title="First"><i class="fa fa-angle-double-left"></i></a></li>
-                                <li class="prev disabled"><a href="#" title="Prev"><i class="fa fa-angle-left"></i></a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li class="next"><a href="#" title="Next"><i class="fa fa-angle-right"></i></a></li>
-                                <li class="next"><a href="#" title="Last"><i class="fa fa-angle-double-right"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 <button class="btn btn-success" ng-click="loadMore()">Load More</button>
                 <!-- End Pagination -->
             </div>
