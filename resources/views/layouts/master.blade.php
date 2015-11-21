@@ -6,12 +6,9 @@
 @include('includes.css')
 </head>
 
+@yield('stylesheet')
 <body class="page-md page-header-fixed page-quick-sidebar-over-content">
 @include('layouts.header')
-@yield('stylesheet')
-
-<div class="clearfix">
-</div>
 
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
