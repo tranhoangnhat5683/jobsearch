@@ -27,14 +27,14 @@ class User extends NeoEloquent {
                     $location_query,
                     $skill_query,
                     $character_query,
-                    "return ID(user) as id"
+                    "return user.identity as identity"
         ]));
-        $ids = [];
+        $identities = [];
         foreach ($rowset as $row) {
-            $ids[] = $row['id'];
+            $identities[] = $row['identity'];
         }
 
-        return static::get($ids);
+        return static::get($identities);
     }
 
     private static function buildSearchUser($options) {
@@ -81,9 +81,9 @@ class User extends NeoEloquent {
         return '';
     }
 
-    public static function get($ids = []) {
+    public static function get($identities = []) {
         $rowset = DB::select(implode(' ', [
-                    "MATCH (user:User) WHERE ID(user) in [" . implode(',', $ids) . "]",
+                    "MATCH (user:User) WHERE user.identity in [" . implode(',', $identities) . "]",
                     "OPTIONAL MATCH (user)-[:At]->(location:Location)",
                     "OPTIONAL MATCH (user)-[:Own]->(skill:Skill)",
                     "OPTIONAL MATCH (user)-[has:Has]->(character:Character)",
