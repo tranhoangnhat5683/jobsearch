@@ -17,7 +17,7 @@ var Script = function()
 		path : '/solr/documents',
 	});
 
-	this.cursorMark		= 0;
+	this.cursorMark		= '*';
 	this.shards			= [100];
 	this.keywords		= "python";
 	this.arrDocs 	 	= [];
