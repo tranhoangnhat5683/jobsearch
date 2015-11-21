@@ -21,20 +21,21 @@ class User extends NeoEloquent {
         $location_query = static::buildSearchLocation($options);
         $skill_query = static::buildSearchSkill($options);
         $character_query = static::buildSearchCharacter($options);
+        $paginator = static::buildSearchPaginator($options);
 
         $rowset = DB::select(implode(' ', [
                     $user_query,
                     $location_query,
                     $skill_query,
                     $character_query,
-                    "return ID(user) as id"
+                    "return user.identity as identity $paginator"
         ]));
-        $ids = [];
+        $identities = [];
         foreach ($rowset as $row) {
-            $ids[] = $row['id'];
+            $identities[] = $row['identity'];
         }
 
-        return static::get($ids);
+        return static::get($identities);
     }
 
     private static function buildSearchUser($options) {
@@ -81,15 +82,23 @@ class User extends NeoEloquent {
         return '';
     }
 
-    public static function get($ids = []) {
+    private static function buildSearchPaginator($options) {
+        $skip = (isset($options['offset']) && $options['offset']) ? $options['offset'] : 0;
+        $limit = (isset($options['limit']) && $options['limit']) ? $options['limit'] : 5;
+
+        return "SKIP $skip LIMIT $limit";
+    }
+
+    public static function get($identities = []) {
         $rowset = DB::select(implode(' ', [
-                    "MATCH (user:User) WHERE ID(user) in [" . implode(',', $ids) . "]",
+                    "MATCH (user:User) WHERE user.identity in " . json_encode($identities),
                     "OPTIONAL MATCH (user)-[:At]->(location:Location)",
                     "OPTIONAL MATCH (user)-[:Own]->(skill:Skill)",
                     "OPTIONAL MATCH (user)-[has:Has]->(character:Character)",
                     "return user,skill,character,location,has"
         ]));
-        $result = null;
+
+        $result = [];
         $unique = [];
         foreach ($rowset as $row) {
             $id = $row['user']->getId();
@@ -124,10 +133,13 @@ class User extends NeoEloquent {
                 $result[$id]['location'] = $location;
             }
         }
-        return $result;
+
+        $final = [];
+        foreach ($result as $user) {
+            $final[] = $user;
+        }
+
+        return $final;
     }
 
-    private static function buildUser($row){
-
-    }
 }
