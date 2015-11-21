@@ -62,8 +62,8 @@
                                             Characteristics
                                         </div>
                                         <div class="col-sm-4 cff-character-col">
-                                            <?php if (!empty($characteristics)): ?>
-                                                <?php foreach ($characteristics as $item) : ?>
+                                            <?php if (!empty($characters)): ?>
+                                                <?php foreach ($characters as $item) : ?>
                                                     <div class="row">
                                                         <div class="col-sm-3 caption-subject font-blue-madison bold">{{ $item['name'] }}</div>
                                                         <div class="portlet-body col-sm-6">

@@ -43,7 +43,7 @@
                     <div class="portlet light col-sm-12">
                         <div class="col-md-5">
                             <div class="profile-picture">
-                                <img src="assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+                                <img src="{{ isset($avatar) ? $avatar : 'assets/admin/pages/media/profile/profile_user.jpg' }}" class="img-responsive" alt="">
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -116,8 +116,8 @@
                                         <span class="caption-subject font-blue-madison bold uppercase">Characteristics</span>
                                     </div>
                                 </div>
-                                <?php if (!empty($characteristics)): ?>
-                                    <?php foreach ($characteristics as $key => $item) : ?>
+                                <?php if (!empty($characters)): ?>
+                                    <?php foreach ($characters as $key => $item) : ?>
                                         <div class="row">
                                             <div class="col-sm-2 caption-subject font-blue-madison bold"><?php echo $item["name"]; ?></div>
                                             <div class="portlet-body col-sm-8">
@@ -174,7 +174,7 @@
                                                     <div class="item">
                                                         <div class="item-head">
                                                             <div class="item-details">
-                                                                <img class="item-pic" src="{{ $item['avatar'] }}">
+                                                                <img class="item-pic" src="{{ isset($item['avatar']) ? $item['avatar'] : 'assets/admin/pages/media/profile/profile_user.jpg' }}">
                                                                 <a href="" class="item-name primary-link">{{ $item['fullname'] }}</a>
                                                                 <span class="item-label">{{ $item['created_at'] }}</span>
                                                             </div>
