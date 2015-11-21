@@ -3321,5 +3321,57 @@
             "neo4j",
             "neoeloquent"
         ]
+    },
+    {
+        "name": "vinelab/http",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Vinelab/http.git",
+            "reference": "620e8cbb7144d24cac3556d81a1cc2311c550880"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Vinelab/http/zipball/620e8cbb7144d24cac3556d81a1cc2311c550880",
+            "reference": "620e8cbb7144d24cac3556d81a1cc2311c550880",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "*",
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "mockery/mockery": "0.9.*",
+            "phpunit/phpunit": "4.3.*"
+        },
+        "time": "2015-07-23 15:17:52",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Vinelab\\Http": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Abed Halawi",
+                "email": "abed.halawi@vinelab.com"
+            }
+        ],
+        "description": "An http library developed for the laravel framework. aliases itself as HttpClient",
+        "keywords": [
+            "api",
+            "client",
+            "curl",
+            "http",
+            "json",
+            "laravel",
+            "xml"
+        ]
     }
 ]

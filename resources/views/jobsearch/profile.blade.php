@@ -178,7 +178,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="item-body">
-                                                            {{ $item['content'] }}
+                                                            {{ $item['message'] }}
                                                         </div>
                                                         <?php if (!empty($item['characteristics'])): ?>
                                                             <div class="item-footer btn-group-xs">
@@ -190,23 +190,6 @@
                                                             </div>
                                                         <?php endif; ?>
                                                     </div>
-                                                    <!-- <div class="item">
-                                                        <div class="item-head">
-                                                            <div class="item-details">
-                                                                <img class="item-pic" src="assets/admin/layout/img/avatar4.jpg">
-                                                                <a href="" class="item-name primary-link">Nick Larson</a>
-                                                                <span class="item-label">3 hrs ago</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item-body">
-                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                                        </div>
-                                                        <div class="item-footer btn-group-xs">
-                                                            <button type="button" class="btn red">Open</button>
-                                                            <button type="button" class="btn green">Teamwork</button>
-                                                            <button type="button" class="btn green">etc</button>
-                                                        </div>
-                                                    </div> -->
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </div>

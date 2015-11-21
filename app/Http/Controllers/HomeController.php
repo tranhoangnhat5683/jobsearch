@@ -7,6 +7,7 @@ use App\Utils\Common;
 use App\Skill;
 use App\Location;
 use App\Character;
+use Vinelab\Http\Client as HttpClient;
 
 class HomeController extends Controller {
 
@@ -100,6 +101,11 @@ class HomeController extends Controller {
         	$data = $arrResult[0];
 
         }
+
+		$client 			= new HttpClient;
+		$response 			= $client->get('http://localhost:3000/stream?identity=1791212982');
+		$data['activities'] = $response->json(true);
+
 		return view('jobsearch/profile', $data);
 	}
 

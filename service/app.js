@@ -2,7 +2,9 @@ var express = require('express');
 var app 	= express();
 var solr 	= require('solr-client');
 var qs 		= require('querystring');
+var cors 	= require('cors');
 
+app.use(cors());
 
 var client 	= solr.createClient({
 	host : 'solr.cff',
@@ -32,7 +34,13 @@ app.get('/stream', function(req, res) {
 			});
 			return;
 		}
-		var docs = solrRes.response.docs;
+		var docs 	= solrRes.response.docs;
+		var doc 	= null;
+		for(var i = 0; i < docs.length; i++)
+		{
+			doc		= docs[i];
+			doc.avatar = '//graph.facebook.com/'+doc.identity+'/picture?height=150&amp;width=150';
+		}
 		res.json(docs);
 	});
 });

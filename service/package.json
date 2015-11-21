@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "async": "latest",
+    "cors": "^2.7.1",
     "express": "^4.13.3",
     "fbgraph": "git+https://github.com/tpphu/fbgraph.git",
     "fetch": "git+https://github.com/tpphu/fetch.git",
