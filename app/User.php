@@ -114,8 +114,6 @@ class User extends NeoEloquent {
             if ($row['skill'] && !isset($unique[$id]['skills'][$row['skill']->getId()])) {
                 $skill = $row['skill']->getProperties();
                 $skill['id'] = $row['skill']->getId();
-                $skill['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
-                $skill['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
                 $result[$id]['skills'][] = $skill;
                 $unique[$id]['skills'][$skill['id']] = true;
             }
@@ -123,6 +121,8 @@ class User extends NeoEloquent {
             if ($row['character'] && !isset($unique[$id]['characters'][$row['character']->getId()])) {
                 $character = $row['character']->getProperties();
                 $character['id'] = $row['character']->getId();
+                $character['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
+                $character['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
                 $result[$id]['characters'][] = $character;
                 $unique[$id]['characters'][$character['id']] = true;
             }
