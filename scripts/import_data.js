@@ -128,6 +128,14 @@ Script.prototype.onLoadData = function(solrErr, solrRes)
 		if( !doc.search_text ){
 			doc.search_text = [];
 		}
+		if( [1, 2, 6, 12].indexOf(doc.id_table) === -1 )
+		{
+			continue;
+		}
+		if( !doc.identity || !doc.id_social  )
+		{
+			continue;
+		}
 		this.arrDocs.push({
 			"id"				: doc.id_social,
 			"identity"			: doc.identity,
