@@ -1,5 +1,5 @@
 .page-content-wrapper {
-    
+    margin-left: 0;
 }
 .page-content-wrapper .page-content-hack {
     margin-left: 0 !important;
@@ -81,4 +81,11 @@ img.cff-avatar {
 .page-header.navbar .page-logo {
     margin: 0 auto;
     float: none;
+    z-index: 999;
+}
+.page-header.navbar .page-logo img{
+    max-width: 100%
+}
+.page-header.navbar .page-logo .logo-default {
+    margin: 0;
 }
