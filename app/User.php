@@ -38,7 +38,7 @@ class User extends NeoEloquent {
     }
 
     private static function buildSearchUser($options) {
-        if (isset($options['gender'])) {
+        if (isset($options['gender']) && $options['gender']) {
             return "MATCH (user:User) WHERE user.gender = '" . $options['gender'] . "'";
         }
 
@@ -46,7 +46,7 @@ class User extends NeoEloquent {
     }
 
     private static function buildSearchLocation($options) {
-        if (isset($options['location'])) {
+        if (isset($options['location']) && $options['location']) {
             return "MATCH (user)-[:At]->(location:Location) WHERE ID(location) = " . $options['location'];
         }
 
@@ -54,7 +54,7 @@ class User extends NeoEloquent {
     }
 
     private static function buildSearchSkill($options) {
-        if (isset($options['skill'])) {
+        if (isset($options['skill']) && $options['skill']) {
             $skill_ids = $options['skill'];
             $skill_queries = [];
             for ($i = 0; $i < count($skill_ids); $i++) {
@@ -68,7 +68,7 @@ class User extends NeoEloquent {
     }
 
     private static function buildSearchCharacter($options) {
-        if (isset($options['character'])) {
+        if (isset($options['character']) && $options['character']) {
             $character_ids = $options['character'];
             $character_queries = [];
             for ($i = 0; $i < count($character_ids); $i++) {
