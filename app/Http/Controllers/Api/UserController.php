@@ -14,7 +14,11 @@ class UserController extends Controller {
         $character_ids = array_filter(explode(',', $request->input('character', '')));
         $gender = $request->input('gender', '');
 
-        return User::search(['location' => $location, 'skill' => $skill_ids, 'character' => $character_ids, 'gender' => $gender]);
+        return User::search([
+            'location' => $location, 'skill' => $skill_ids,
+            'character' => $character_ids, 'gender' => $gender,
+            'limit' => $request->input('limit', ''), 'offset' => $request->input('offset', 0)
+        ]);
     }
     public function get(Request $request) {
         $ids = $request->input('id');
