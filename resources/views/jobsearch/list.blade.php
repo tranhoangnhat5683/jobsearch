@@ -3,6 +3,7 @@
 @section('stylesheet')
 <link href="assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css" />
 <link href="assets/global/css/progress-bar.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
 @endsection
 
 @section('content')
@@ -12,51 +13,41 @@
 <div class="page-content-wrapper">
     <div class="page-content page-content-hack">
         <div class="job-conntent container">
-            <div id="list-profile" class="dataTables_wrapper no-footer">
+            <div id="list-profile" class="dataTables_wrapper no-footer" ng-app="itemApp" ng-controller='itemsController'>
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="col-md-5 col-sm-5">
                             <div class="dataTables_info" id="sample_1_info" role="status" aria-live="polite">Showing 1 to 5 of 25 records</div>
                         </div>
-                        <div class="pull-right" id="sample_1_length">
-                            <label>Show
-                                <select name="sample_1_length" aria-controls="sample_1" class="form-control input-xsmall input-inline">
-                                    <option value="5">5</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="-1">All</option>
-                                </select> records
-                            </label>
-                        </div>
                     </div>
                 </div>
                 <div class="list-profile">
-                    <?php if (empty($profiles)): ?>
+                    <?php //if (empty($profiles)): ?>
                         <!-- Show empty data -->
-                    <?php else: ?>
-                        <?php foreach ($profiles as $item) : ?>
-                            <div class="list-item col-sm-12">
+                    <?php //else: ?>
+                        <?php $item = $profiles[0]; ?>
+                            <div ng-repeat="profile in items" class="list-item col-sm-12">
                                 <div class="item-content">
                                     <div class="col-sm-2 profile-userpic">
-                                        <img src="{{ isset($item['avatar']) ? $item['avatar'] : 'assets/admin/pages/media/profile/profile_user.jpg' }}" alt="" class="cff-avatar">
+                                        <img src="http://graph.facebook.com/<% profile['identity'] %>/picture?height=150&width=150" || "assets/admin/pages/media/profile/profile_user.jpg" alt="" class="cff-avatar">
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="row">
-                                            <div class="profile-usertitle-name">{{ $item['fullname'] }}</div>
-                                            <div class="profile-desc-text">Level: <span class="profile-usertitle-job">{{ isset($item['level']) ? $item['level'] : 'Senior' }}</span></div>
-                                            <div class="profile-desc-text">Location: <span class="profile-usertitle-job">{{ isset($item['location']['name']) ? $item['location']['name'] : 'HCM' }}</span></div>
-                                            <div class="profile-desc-text">Skill: <span class="profile-usertitle-job">{{ isset($item['skill_list']) ? $item['skill_list'] : '' }}</span></div>
+                                            <div class="profile-usertitle-name"><% profile['fullname'] %></div>
+                                            <div class="profile-desc-text">Level: <span class="profile-usertitle-job"><% profile['level'] || 'Senior' %></span></div>
+                                            <div class="profile-desc-text">Location: <span class="profile-usertitle-job"><% profile['location']['name'] || 'HCM' %></span></div>
+                                            <div class="profile-desc-text">Skill: <span class="profile-usertitle-job"><% profile['skill_list'] || '' %></span></div>
                                             <div class="cff-button">
                                                 <a href="<?php echo action('HomeController@profile', array('identity' => $item['identity'])); ?>" target="_blank" class="btn btn-xs green">
                                                     View <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="mailto:{{ isset($item['email']) ? $item['email'] : '' }}" class="btn btn-xs green">Send Email <i class="fa fa-envelope"></i>
+                                                <a href="mailto:<% profile['email'] || '' %>" class="btn btn-xs green">Send Email <i class="fa fa-envelope"></i>
                                                     </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
-                                        Characteristics
+                                        <!-- Characteristics -->
                                     </div>
                                     <div class="col-sm-4 cff-character-col">
                                         <?php if (!empty($item['characters'])): ?>
@@ -74,24 +65,9 @@
                                                 </div>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
-                                        <!-- Demo data -->
-                                        <!-- <div class="row">
-                                            <div class="col-sm-3 caption-subject font-blue-madison bold">Positi</div>
-                                            <div class="portlet-body col-sm-6">
-                                                <progress max="100" value="80" class="html5">
-                                                    <div class="progress-bar"></div>
-                                                </progress>
-                                            </div>
-                                            <div class="col-sm-3 text-right">
-                                                <span class="font-red-intense bold" id='abc'>777</span>/<span class="bold" id='xyz'>1000</span>
-                                            </div>
-                                        </div> -->
-                                        <!-- End Demo data -->
                                     </div>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
                 </div>
 
                 <!-- Pagination -->
@@ -112,6 +88,7 @@
                         </div>
                     </div>
                 </div>
+                <button class="btn btn-success" ng-click="loadMore()">Load More</button>
                 <!-- End Pagination -->
             </div>
         </div>
@@ -129,5 +106,48 @@ jQuery(document).ready(function() {
     Metronic.init(); // init metronic core components
     Layout.init(); // init current layout
 });
+</script>
+<script>
+    $(window).scroll(function() {
+       if($(window).scrollTop() + $(window).height() == $(document).height()) {
+           console.log('bottom');
+       }
+    });
+</script>
+<script>
+    var itemApp = angular.module('itemApp', [], function($interpolateProvider) {
+        $interpolateProvider.startSymbol('<%');
+        $interpolateProvider.endSymbol('%>');
+    });
+
+    itemApp.controller('itemsController', function($scope, $http) {
+
+        $scope.items = [];
+        $scope.lastpage=0;
+
+        $scope.init = function() {
+            $scope.lastpage=1;
+            $http({
+                url: '/api/user/search',
+                method: "GET",
+                params: {limit:  4, offset: 0}
+            }).success(function(data, status, headers, config) {
+                $scope.items = data;
+            });
+        };
+        $scope.loadMore = function() {
+            $scope.lastpage +=1;
+            $http({
+                url: '/api/user/search',
+                method: "GET",
+                params: {limit:  4, offset: $scope.lastpage*4}
+            }).success(function(data, status, headers, config) {
+                    Array.prototype.push.apply($scope.items, data);
+                    console.log($scope.items);
+                });
+            };
+        $scope.init();
+    });
+
 </script>
 @endsection
