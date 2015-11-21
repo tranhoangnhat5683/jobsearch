@@ -126,7 +126,11 @@ class User extends NeoEloquent {
             }
         }
 
-        return $result;
+        $final = [];
+        foreach ($result as $user) {
+            $final[] = $user;
+        }
+        return $final;
     }
 
     private static function buildUser($row){
