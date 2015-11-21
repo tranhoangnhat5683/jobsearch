@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Utils\Common;
 use App\Skill;
+use App\Location;
 
 class HomeController extends Controller {
 
@@ -51,6 +52,9 @@ class HomeController extends Controller {
 
 		$skills = Skill::search();
 		$data['skills'] = array_column($skills, 'name', 'id');
+
+        $locations = Location::search();
+        $data['locations'] = array_column($locations, 'name', 'id');
 
 		return view('jobsearch/index', $data);
 	}
