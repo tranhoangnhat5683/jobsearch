@@ -11,8 +11,8 @@ class UserController extends Controller {
     public function search(Request $request) {
         $location = $request->input('location');
         $skill_ids = array_filter(explode(',', $request->input('skill', '')));
-        $character_ids = array_filter(explode(',', $request->input('character`', '')));
-        $gender = array_filter(explode(',', $request->input('gender`', '')));
+        $character_ids = array_filter(explode(',', $request->input('character', '')));
+        $gender = $request->input('gender', '');
 
         return User::search(['location' => $location, 'skill' => $skill_ids, 'character' => $character_ids, 'gender' => $gender]);
     }

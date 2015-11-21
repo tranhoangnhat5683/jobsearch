@@ -17,15 +17,16 @@ class User extends NeoEloquent {
     }
 
     public static function search($options) {
+        $user_query = static::buildSearchUser($options);
         $location_query = static::buildSearchLocation($options);
-        $skill_queries = static::buildSearchSkill($options);
-        $character_queries = static::buildSearchCharacter($options);
+        $skill_query = static::buildSearchSkill($options);
+        $character_query = static::buildSearchCharacter($options);
 
         $rowset = DB::select(implode(' ', [
-                    "MATCH (user:User)",
+                    $user_query,
                     $location_query,
-                    $skill_queries,
-                    $character_queries,
+                    $skill_query,
+                    $character_query,
                     "return ID(user) as id"
         ]));
         $ids = [];
@@ -34,6 +35,14 @@ class User extends NeoEloquent {
         }
 
         return static::get($ids);
+    }
+
+    private static function buildSearchUser($options) {
+        if (isset($options['gender'])) {
+            return "MATCH (user:User) WHERE user.gender = '" . $options['gender'] . "'";
+        }
+
+        return 'MATCH (user:User)';
     }
 
     private static function buildSearchLocation($options) {
