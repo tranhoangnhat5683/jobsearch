@@ -32,7 +32,7 @@ class TestController extends Controller {
 //        $this->createUserSkill();
 //        $this->createUserCharacter();
 //        $this->createUserLocation();
-//        return 'Success';
+        return 'Success';
     }
 
     public function cypher()
@@ -53,56 +53,56 @@ class TestController extends Controller {
     private function createUser() {
 //        DB::select('DROP CONSTRAINT ON (user:User) ASSERT user.identity IS UNIQUE');
         DB::select('CREATE CONSTRAINT ON (user:User) ASSERT user.identity IS UNIQUE');
-        User::create(["identity" => "100005965563483", "username" => "ck.mua.3", "fullname" => "Pi's Pôlyme's", "gender" => "MALE", "current_city" => "Tây Ninh", "hometown" => "Tây Ninh"]);
-        User::create(["identity" => "100001034249186", "username" => "xnohat", "fullname" => "Hong Phuc Nguyen", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-        User::create(["identity" => "100000001339582", "username" => "Singer.VanMaiHuong", "fullname" => "Văn Mai Hương", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Hanoi, Vietnam"]);
-        User::create(["identity" => "1140177709", "username" => "1140177709", "fullname" => "Duy Nguyễn", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-        User::create(["identity" => "100001349889094", "username" => "kimdungdao85", "fullname" => "Đào Kim Dung", "gender" => "FEMALE", "current_city" => "Hanoi, Vietnam", "hometown" => "Ha-Nam, Hà Nam, Vietnam"]);
-        User::create(["identity" => "709234645", "username" => "traanf", "fullname" => "Tran Tuan Anh", "gender" => "MALE", "current_city" => "Hanoi, Vietnam"]);
-        User::create(["identity" => "100004744954014", "username" => "chi1bro", "fullname" => "Huyen Chip", "gender" => "FEMALE", "birthday" => "1990", "current_city" => "Hanoi, Vietnam", "hometown" => "Hai Hau"]);
-        User::create(["identity" => "100004227851982", "username" => "kenbihoang.vtv", "fullname" => "Hoàng Trung Hiếu", "gender" => "MALE"]);
-        User::create(["identity" => "728839386", "username" => "long.huynh.16144", "fullname" => "Long Huynh", "gender" => "MALE", "current_city" => "Thành phố Hồ Chí Minh", "hometown" => "Ho Chi Minh City, Vietnam"]);
-        User::create(["identity" => "100000315701660", "username" => "daudatchaybangpin", "fullname" => "Tan Nguyen Van", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100000024527037", "username" => "giaplee", "fullname" => "Giap Le Van", "gender" => "MALE", "current_city" => "Hanoi, Vietnam", "Hobbies" => ["Swimming", "Reading Book", "Football"], "Job" => ["Front-end developer at Younetmedia From 2014 to now"], "email"=>"giaplee@gmail.com"]);
-//        User::create(["identity" => "100000366174004", "username" => "aaron.phucdang", "fullname" => "Phuc Dang", "gender" => "MALE", "birthday" => "1990", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100000271946723", "username" => "thunga.nguyen.75", "fullname" => "Thu Nga Nguyen", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100003268127535", "username" => "Tom.va.rerry", "fullname" => "Đinh Hà", "gender" => "FEMALE", "current_city" => "Hanoi, Vietnam", "hometown" => "Hanoi, Vietnam"]);
-//        User::create(["identity" => "1318750198", "username" => "rayvo", "fullname" => "Quoc Duy Vo", "gender" => "MALE", "current_city" => "Incheon, South Korea"]);
-//        User::create(["identity" => "1243468108", "username" => "nguyen.n.duy.14", "fullname" => "Nguyen Ngoc Duy", "gender" => "MALE", "birthday" => "1984", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Phan Thiet"]);
-//        User::create(["identity" => "1580406014", "username" => "sonoko.truong", "fullname" => "Sonoko Trương", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Da Lat"]);
-//        User::create(["identity" => "100005098691694", "username" => "yumi0185", "fullname" => "Yumi Vu", "gender" => "FEMALE", "birthday" => "1984", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Binh Dinh, Nghia Binh, Vietnam"]);
-//        User::create(["identity" => "100004237386927", "username" => "katie.kieu.3", "fullname" => "Lê Thị Thuý Kiều", "gender" => "FEMALE", "birthday" => "1986", "current_city" => "Thành phố Hồ Chí Minh, Hồ Chí Minh, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100000001126549", "username" => "hien.do.9022", "fullname" => "Hien Do", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Thái Bình"]);
-//        User::create(["identity" => "1810181763", "username" => "mthuy232", "fullname" => "Minh Thúy Nguyễn", "gender" => "FEMALE", "birthday" => "1989", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100004507470778", "username" => "lucy.nguyen.5680", "fullname" => "Hien Nguyen Ngoc", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Phu Nhuan, Hồ Chí Minh, Vietnam"]);
-//        User::create(["identity" => "100001528376207", "username" => "trang.vole", "fullname" => "Trang Vo Le", "gender" => "FEMALE", "birthday" => "1977", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Nha Trang, Vietnam"]);
-//        User::create(["identity" => "1015572957", "username" => "sieutraubo", "fullname" => "Nguyễn Phương Thảo", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Athens, Greece"]);
-//        User::create(["identity" => "737522356", "username" => "pham.duong", "fullname" => "Pham An Duong", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100003242027429", "username" => "vienha.nguyenthuy", "fullname" => "Nguyễn Thụy Viễn Hạ", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Lái Thiêu"]);
-//        User::create(["identity" => "100005474493537", "username" => "nguyenphuong.thuy.798", "fullname" => "Thúy Nguyễn", "gender" => "FEMALE", "current_city" => "Ninh Bình", "hometown" => "Ninh Bình"]);
-//        User::create(["identity" => "100002328571138", "username" => "thaimeo0705", "fullname" => "Thái Mèo", "gender" => "MALE", "current_city" => "Thanh Hóa", "hometown" => "Thanh Hóa"]);
-//        User::create(["identity" => "100004699361218", "username" => "99c100880", "fullname" => "Đình Khôi", "gender" => "MALE", "birthday" => "1991", "current_city" => "Bac Ninh"]);
-//        User::create(["identity" => "100004943444187", "username" => "thangpro.xeroxy92", "fullname" => "Huỳnh Quang Thắng", "gender" => "MALE", "birthday" => "1992", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Binh Dinh, Nghia Binh, Vietnam"]);
-//        User::create(["identity" => "1205312178", "username" => "Willie.be.nho", "fullname" => "Phung Dan Truong", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "1589070142", "username" => "Ms.Phuong", "fullname" => "Thùy Phương", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Tuy Hòa"]);
-//        User::create(["identity" => "100001735773766", "username" => "thuongthuong.iuiu", "fullname" => "Nguyễn Hoài Thương", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Bak Nin, Bắc Ninh, Vietnam"]);
-//        User::create(["identity" => "100002076653869", "username" => "jason.redfield.902", "fullname" => "Đỗ Ngân Sơn", "gender" => "MALE"]);
-//        User::create(["identity" => "100004087537304", "username" => "ngoclam.tran.79", "fullname" => "Ngoc Lam Tran", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Quang Ngai"]);
-//        User::create(["identity" => "100004510534129", "username" => "trang.vo.3705157", "fullname" => "Trang Võ", "gender" => "FEMALE", "birthday" => "1984", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100000106878122", "username" => "lehongvan9183", "fullname" => "Vân Lê Hồng", "gender" => "FEMALE", "birthday" => "1983", "current_city" => "Kim Mã, Ha Noi, Vietnam", "hometown" => "Hoài Nhon, Bình Ðịnh, Vietnam"]);
-//        User::create(["identity" => "100000786663511", "username" => "anh.vy.9", "fullname" => "Anh Vy", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100001222503493", "username" => "hai.duong.37", "fullname" => "Hai Duong", "gender" => "MALE", "hometown" => "Da Nang, Vietnam"]);
-//        User::create(["identity" => "100000339207179", "username" => "vy.le.96995", "fullname" => "Vy Vy Le", "gender" => "FEMALE", "birthday" => "1982", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100000334878230", "username" => "vu.huyen.1614", "fullname" => "Vũ Huyền", "gender" => "FEMALE", "current_city" => "Hanoi, Vietnam", "hometown" => "Bac Ninh"]);
-//        User::create(["identity" => "1017051403", "username" => "moon.hang.351", "fullname" => "Giang Khánh Hằng", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100004348592942", "username" => "100004348592942", "fullname" => "Đỗ Quyên Trắng", "gender" => "FEMALE", "current_city" => "Hanoi, Vietnam", "hometown" => "Hanoi, Vietnam"]);
-//        User::create(["identity" => "100001639971665", "username" => "100001639971665", "fullname" => "Lien Tran", "gender" => "FEMALE", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "725112966", "username" => "725112966", "fullname" => "Đoàn Tiến Đạt", "gender" => "MALE", "current_city" => "Thành phố Hồ Chí Minh, Hồ Chí Minh, Vietnam", "hometown" => "Nam Dinâ?, Ha Nam Ninh, Vietnam"]);
-//        User::create(["identity" => "1131143118", "username" => "oc.thanhvan", "fullname" => "Phạm Thị Thanh Vân", "gender" => "FEMALE", "birthday" => "1984", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Hai Phong, Vietnam"]);
-//        User::create(["identity" => "746050202", "username" => "X.Nicky", "fullname" => "Vu Le Quoc", "gender" => "MALE", "birthday" => "1985", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100003382890020", "username" => "perla.thai", "fullname" => "Ngoc Thai", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "717678376", "username" => "thanhthaomc", "fullname" => "Nguyễn Ngọc Thanh Thảo", "gender" => "FEMALE", "birthday" => "1981", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100006312420097", "username" => "giangphongdan87", "fullname" => "Nguyen Thi Nhan", "gender" => "FEMALE", "birthday" => "1987", "hometown" => "Nam Dinâ?, Ha Nam Ninh, Vietnam"]);
+        User::create(["identity" => "100005965563483", "username" => "ck.mua.3", "fullname" => "Pi's Pôlyme's", "gender" => "MALE", "current_city" => "Tây Ninh", "hometown" => "Tây Ninh", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs(), 'email' => 'ck.mua.3@gmail.com']);
+        User::create(["identity" => "100001034249186", "username" => "xnohat", "fullname" => "Hong Phuc Nguyen", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+        User::create(["identity" => "100000001339582", "username" => "Singer.VanMaiHuong", "fullname" => "Văn Mai Hương", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Hanoi, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+        User::create(["identity" => "1140177709", "username" => "1140177709", "fullname" => "Duy Nguyễn", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+        User::create(["identity" => "100001349889094", "username" => "kimdungdao85", "fullname" => "Đào Kim Dung", "gender" => "FEMALE", "current_city" => "Hanoi, Vietnam", "hometown" => "Ha-Nam, Hà Nam, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs(), 'kimdungdao85@gmail.com']);
+        User::create(["identity" => "709234645", "username" => "traanf", "fullname" => "Tran Tuan Anh", "gender" => "MALE", "current_city" => "Hanoi, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+        User::create(["identity" => "100004744954014", "username" => "chi1bro", "fullname" => "Huyen Chip", "gender" => "FEMALE", "birthday" => "1990", "current_city" => "Hanoi, Vietnam", "hometown" => "Hai Hau", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+        User::create(["identity" => "100004227851982", "username" => "kenbihoang.vtv", "fullname" => "Hoàng Trung Hiếu", "gender" => "MALE", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+        User::create(["identity" => "728839386", "username" => "long.huynh.16144", "fullname" => "Long Huynh", "gender" => "MALE", "current_city" => "Thành phố Hồ Chí Minh", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+        User::create(["identity" => "100000315701660", "username" => "daudatchaybangpin", "fullname" => "Tan Nguyen Van", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100000024527037", "username" => "giaplee", "fullname" => "Giap Le Van", "gender" => "MALE", "current_city" => "Hanoi, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100000366174004", "username" => "aaron.phucdang", "fullname" => "Phuc Dang", "gender" => "MALE", "birthday" => "1990", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100000271946723", "username" => "thunga.nguyen.75", "fullname" => "Thu Nga Nguyen", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100003268127535", "username" => "Tom.va.rerry", "fullname" => "Đinh Hà", "gender" => "FEMALE", "current_city" => "Hanoi, Vietnam", "hometown" => "Hanoi, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "1318750198", "username" => "rayvo", "fullname" => "Quoc Duy Vo", "gender" => "MALE", "current_city" => "Incheon, South Korea", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "1243468108", "username" => "nguyen.n.duy.14", "fullname" => "Nguyen Ngoc Duy", "gender" => "MALE", "birthday" => "1984", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Phan Thiet", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "1580406014", "username" => "sonoko.truong", "fullname" => "Sonoko Trương", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Da Lat", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100005098691694", "username" => "yumi0185", "fullname" => "Yumi Vu", "gender" => "FEMALE", "birthday" => "1984", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Binh Dinh, Nghia Binh, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100004237386927", "username" => "katie.kieu.3", "fullname" => "Lê Thị Thuý Kiều", "gender" => "FEMALE", "birthday" => "1986", "current_city" => "Thành phố Hồ Chí Minh, Hồ Chí Minh, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100000001126549", "username" => "hien.do.9022", "fullname" => "Hien Do", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Thái Bình", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "1810181763", "username" => "mthuy232", "fullname" => "Minh Thúy Nguyễn", "gender" => "FEMALE", "birthday" => "1989", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100004507470778", "username" => "lucy.nguyen.5680", "fullname" => "Hien Nguyen Ngoc", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Phu Nhuan, Hồ Chí Minh, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100001528376207", "username" => "trang.vole", "fullname" => "Trang Vo Le", "gender" => "FEMALE", "birthday" => "1977", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Nha Trang, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "1015572957", "username" => "sieutraubo", "fullname" => "Nguyễn Phương Thảo", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Athens, Greece", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "737522356", "username" => "pham.duong", "fullname" => "Pham An Duong", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100003242027429", "username" => "vienha.nguyenthuy", "fullname" => "Nguyễn Thụy Viễn Hạ", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Lái Thiêu", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100005474493537", "username" => "nguyenphuong.thuy.798", "fullname" => "Thúy Nguyễn", "gender" => "FEMALE", "current_city" => "Ninh Bình", "hometown" => "Ninh Bình", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100002328571138", "username" => "thaimeo0705", "fullname" => "Thái Mèo", "gender" => "MALE", "current_city" => "Thanh Hóa", "hometown" => "Thanh Hóa", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100004699361218", "username" => "99c100880", "fullname" => "Đình Khôi", "gender" => "MALE", "birthday" => "1991", "current_city" => "Bac Ninh", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100004943444187", "username" => "thangpro.xeroxy92", "fullname" => "Huỳnh Quang Thắng", "gender" => "MALE", "birthday" => "1992", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Binh Dinh, Nghia Binh, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "1205312178", "username" => "Willie.be.nho", "fullname" => "Phung Dan Truong", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "1589070142", "username" => "Ms.Phuong", "fullname" => "Thùy Phương", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Tuy Hòa", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100001735773766", "username" => "thuongthuong.iuiu", "fullname" => "Nguyễn Hoài Thương", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Bak Nin, Bắc Ninh, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100002076653869", "username" => "jason.redfield.902", "fullname" => "Đỗ Ngân Sơn", "gender" => "MALE", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100004087537304", "username" => "ngoclam.tran.79", "fullname" => "Ngoc Lam Tran", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Quang Ngai", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100004510534129", "username" => "trang.vo.3705157", "fullname" => "Trang Võ", "gender" => "FEMALE", "birthday" => "1984", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100000106878122", "username" => "lehongvan9183", "fullname" => "Vân Lê Hồng", "gender" => "FEMALE", "birthday" => "1983", "current_city" => "Kim Mã, Ha Noi, Vietnam", "hometown" => "Hoài Nhon, Bình Ðịnh, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100000786663511", "username" => "anh.vy.9", "fullname" => "Anh Vy", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100001222503493", "username" => "hai.duong.37", "fullname" => "Hai Duong", "gender" => "MALE", "hometown" => "Da Nang, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100000339207179", "username" => "vy.le.96995", "fullname" => "Vy Vy Le", "gender" => "FEMALE", "birthday" => "1982", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100000334878230", "username" => "vu.huyen.1614", "fullname" => "Vũ Huyền", "gender" => "FEMALE", "current_city" => "Hanoi, Vietnam", "hometown" => "Bac Ninh", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "1017051403", "username" => "moon.hang.351", "fullname" => "Giang Khánh Hằng", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100004348592942", "username" => "100004348592942", "fullname" => "Đỗ Quyên Trắng", "gender" => "FEMALE", "current_city" => "Hanoi, Vietnam", "hometown" => "Hanoi, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100001639971665", "username" => "100001639971665", "fullname" => "Lien Tran", "gender" => "FEMALE", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "725112966", "username" => "725112966", "fullname" => "Đoàn Tiến Đạt", "gender" => "MALE", "current_city" => "Thành phố Hồ Chí Minh, Hồ Chí Minh, Vietnam", "hometown" => "Nam Dinâ?, Ha Nam Ninh, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "1131143118", "username" => "oc.thanhvan", "fullname" => "Phạm Thị Thanh Vân", "gender" => "FEMALE", "birthday" => "1984", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Hai Phong, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "746050202", "username" => "X.Nicky", "fullname" => "Vu Le Quoc", "gender" => "MALE", "birthday" => "1985", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100003382890020", "username" => "perla.thai", "fullname" => "Ngoc Thai", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "717678376", "username" => "thanhthaomc", "fullname" => "Nguyễn Ngọc Thanh Thảo", "gender" => "FEMALE", "birthday" => "1981", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
+//        User::create(["identity" => "100006312420097", "username" => "giangphongdan87", "fullname" => "Nguyen Thi Nhan", "gender" => "FEMALE", "birthday" => "1987", "hometown" => "Nam Dinâ?, Ha Nam Ninh, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
     }
 
     private function createPage() {
@@ -309,5 +309,46 @@ class TestController extends Controller {
         }
         return $result;
     }
-    
+
+    private function getHobbies() {
+        $n = rand(0, 4);
+        if (!$n) {
+            return null;
+        }
+
+        $hobbies = ['Acting', 'Dance', 'Cooking', 'Chess', 'Bowling', 'Tennis', "Swimming", "Reading Book", "Football"];
+        if ($n === 1) {
+            return [$hobbies[$n]];
+        }
+
+        $rand = array_rand($hobbies, $n);
+        $result = [];
+        for ($i = 0; $i < $n; $i++) {
+            $result[] = $hobbies[$rand[$i]];
+        }
+        return $result;
+    }
+
+    private function getJobs() {
+        $n = rand(0, 2);
+        if (!$n) {
+            return null;
+        }
+
+        $jobs = ['Front-end developer at Younetmedia From 2014 to now', 'Works at Pleiku Gia Lai',
+            'Manager at Tổng Đài Đặt Vé', 'Admin at Xinh là để ngắm', 'Học viên at Học viện âm nhạc quốc gia Hà Nội',
+            'Cựu học sinh at THPT Số 1 Bát Xát', 'Hot Girl at Hội Trai đẹp-Gái xinh 9x Lào Cai> :x',
+            'Chief Executive Officer at Công ty TNHH Tester Việt', 'Lớp trưởng THPT Nông Cống 2 - Thanh Hóa'];
+        if ($n === 1) {
+            return [$jobs[$n]];
+        }
+
+        $rand = array_rand($jobs, $n);
+        $result = [];
+        for ($i = 0; $i < $n; $i++) {
+            $result[] = $jobs[$rand[$i]];
+        }
+        return $result;
+    }
+
 }

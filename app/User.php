@@ -10,7 +10,7 @@ use DB;
 class User extends NeoEloquent {
 
     protected $label = 'User'; // or array('User', 'Fan')
-    protected $fillable = ['identity', 'username', 'fullname', 'gender', 'birthday', 'location', 'hometown', 'Hobbies'];
+    protected $fillable = ['identity', 'username', 'fullname', 'email', 'gender', 'birthday', 'location', 'hometown', 'hobbies', 'jobs'];
 
     public function page() {
         return $this->hasOne('Page');
