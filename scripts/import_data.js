@@ -18,7 +18,7 @@ var Script = function(argv)
 	});
 
 	this.cursorMark		= '*';
-	this.shards			= [100];
+	this.shards			= !argv.keywords?[100]:argv.keywords.split(',');
 	this.keywords		= argv.keywords || "python";
 	this.arrDocs 	 	= [];
 
@@ -263,6 +263,7 @@ Script.prototype.initTestData = function()
 
 var argv        = require('optimist')        
     .alias('k', 'keywords')
+    .alias('s', 'shards')
     .argv;
 
 var script = new Script(argv);
