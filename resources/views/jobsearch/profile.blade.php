@@ -98,7 +98,7 @@
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Page/Groups</h4>
                         <div class="primary-link">
-                            <?php echo isset($groups) ? $groups : "" ?>
+                            <?php echo isset($page_list) ? $page_list : "" ?>
                         </div>
                     </div>
                     <!-- END PORTLET MAIN -->
