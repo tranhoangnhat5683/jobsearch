@@ -149,7 +149,7 @@ Script.prototype.onLoadData = function(solrErr, solrRes)
 			"message"			: doc.search_text[0] || '',
 			"description"		: doc.search_text[1] || '',
 			"attachment"		: doc.attachment,
-			"created_at"		: doc.crated_date,
+			"created_at"		: doc.created_date,
 			"updated_at"		: new Date().toISOString(),
 			"skills"			: [],
 			"characteristics"	: [],
