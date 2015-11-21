@@ -21,6 +21,7 @@ class User extends NeoEloquent {
         $location_query = static::buildSearchLocation($options);
         $skill_query = static::buildSearchSkill($options);
         $character_query = static::buildSearchCharacter($options);
+        $order = static::buildSearchOrder($options);
         $paginator = static::buildSearchPaginator($options);
 
         $rowset = DB::select(implode(' ', [
@@ -28,7 +29,9 @@ class User extends NeoEloquent {
                     $location_query,
                     $skill_query,
                     $character_query,
-                    "return user.identity as identity $paginator"
+                    "return user.identity as identity",
+                    $order,
+                    $paginator,
         ]));
         $identities = [];
         foreach ($rowset as $row) {
@@ -68,13 +71,29 @@ class User extends NeoEloquent {
             $character_ids = $options['character'];
             $character_queries = [];
             for ($i = 0; $i < count($character_ids); $i++) {
-                $character_queries[] = "MATCH (user)-[:Has]->(c$i:Character) WHERE ID(c$i)={$character_ids[$i]}";
+                $character_queries[] = "MATCH (user)-[h$i:Has]->(c$i:Character) WHERE ID(c$i)={$character_ids[$i]}";
             }
 
             return implode(' ', $character_queries);
         }
 
         return '';
+    }
+
+    private static function buildSearchOrder($options) {
+        if (isset($options['character']) && $options['character']) {
+            $character_ids = $options['character'];
+            $character_queries = [];
+            for ($i = 0; $i < count($character_ids); $i++) {
+                $character_queries[] = "h$i.score DESC";
+            }
+
+            if (count($character_queries)) {
+                return "ORDER BY " . implode(',', $character_queries);
+            }
+        }
+
+        return "";
     }
 
     private static function buildSearchPaginator($options) {
@@ -97,50 +116,53 @@ class User extends NeoEloquent {
         $result = [];
         $unique = [];
         foreach ($rowset as $row) {
-            $id = $row['user']->getId();
-            if (!isset($result[$id])) {
+            $identity = $row['user']->getProperties()['identity'];
+            if (!isset($unique[$identity])) {
                 $user = $row['user']->getProperties();
-                $user['id'] = $id;
+                $user['id'] = $row['user']->getId();
                 $user['skills'] = [];
                 $user['characters'] = [];
                 $user['pages'] = [];
-                $result[$id] = $user;
-                $unique[$id] = ['skills' => [], 'characters' => [], 'pages' => []];
+                $result[$identity] = $user;
+                $unique[$identity] = ['skills' => [], 'characters' => [], 'pages' => []];
             }
 
-            if ($row['skill'] && !isset($unique[$id]['skills'][$row['skill']->getId()])) {
+            if ($row['skill'] && !isset($unique[$identity]['skills'][$row['skill']->getId()])) {
                 $skill = $row['skill']->getProperties();
                 $skill['id'] = $row['skill']->getId();
-                $result[$id]['skills'][] = $skill;
-                $unique[$id]['skills'][$skill['id']] = true;
+                $result[$identity]['skills'][] = $skill;
+                $unique[$identity]['skills'][$skill['id']] = true;
             }
 
-            if ($row['character'] && !isset($unique[$id]['characters'][$row['character']->getId()])) {
+            if ($row['character'] && !isset($unique[$identity]['characters'][$row['character']->getId()])) {
                 $character = $row['character']->getProperties();
                 $character['id'] = $row['character']->getId();
                 $character['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
                 $character['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
-                $result[$id]['characters'][] = $character;
-                $unique[$id]['characters'][$character['id']] = true;
+                $result[$identity]['characters'][] = $character;
+                $unique[$identity]['characters'][$character['id']] = true;
             }
 
-            if ($row['page'] && !isset($unique[$id]['pages'][$row['page']->getId()])) {
+            if ($row['page'] && !isset($unique[$identity]['pages'][$row['page']->getId()])) {
                 $page = $row['page']->getProperties();
                 $page['id'] = $row['page']->getId();
-                $result[$id]['pages'][] = $page;
-                $unique[$id]['pages'][$page['id']] = true;
+                $result[$identity]['pages'][] = $page;
+                $unique[$identity]['pages'][$page['id']] = true;
             }
 
             if ($row['location']) {
                 $location = $row['location']->getProperties();
                 $location['id'] = $row['location']->getId();
-                $result[$id]['location'] = $location;
+                $result[$identity]['location'] = $location;
             }
         }
 
         $final = [];
-        foreach ($result as $user) {
-            $final[] = $user;
+        for ($i = 0; $i < count($identities); $i++) {
+            if (isset($result[$identities[$i]]))
+            {
+                $final[] = $result[$identities[$i]];
+            }
         }
 
         return $final;
