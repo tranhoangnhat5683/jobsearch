@@ -79,21 +79,27 @@ class HomeController extends Controller {
 		$data      = array();
 		$identity  = $request->input('identity');
 		$arrResult = User::get(array($identity));
+
         if (!empty($arrResult)) {
-        	//$arrResult = $this->buildProfileInfo(array_values($arrResult));
+        	$arrResult = $this->buildProfileInfo($arrResult);
         	$data = $arrResult[0];
+
+        	// return response()->json($data);
         }
-        return response()->json($arrResult);
 		return view('jobsearch/profile', $data);
 	}
 
 	private function buildProfileInfo($list){
 		$result = empty($list) ? array() : $list;
 		foreach ($result as &$profile) {
-			if (!empty($profile['skill'])) {
-        		$skill_list = array_column($profile['skill'], 'name');
+			if (!empty($profile['skills'])) {
+        		$skill_list = array_column($profile['skills'], 'name');
         		$profile['skill_list'] = implode(' , ', $skill_list);
         	}
+        	if (!empty($profile['hobbies'])) {
+        		$profile['hobby_list'] = implode(' , ', $profile['hobbies']);
+        	}
+    		$profile['avatar'] = "http://graph.facebook.com/{$profile['identity']}/picture?height=150&width=150";
 		}
 		return $result;
 	}

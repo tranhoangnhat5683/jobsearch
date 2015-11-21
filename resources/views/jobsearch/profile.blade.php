@@ -43,12 +43,12 @@
                     <div class="portlet light col-sm-12">
                         <div class="col-md-5">
                             <div class="profile-picture">
-                                <img src="assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+                                <img src="{{ isset($avatar) ? $avatar : 'assets/admin/pages/media/profile/profile_user.jpg' }}" class="img-responsive" alt="">
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="col-profile-basic-info profile-usertitle">
-                                <div class="profile-usertitle-name"><?php echo $fullname ?></div>
+                                <div class="profile-usertitle-name">{{ isset($item['fullname']) ? $item['fullname'] : '' }}</div>
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">Mobile</div>
                                     <div class="col-md-6 text-left"><?php echo isset($mobile) ? $mobile : '123456789'; ?></div>
@@ -93,7 +93,7 @@
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Hobbies</h4>
                         <div class="primary-link">
-                            <?php echo isset($hobbies) ? $hobbies : "" ?>
+                            <?php echo isset($hobby_list) ? $hobby_list : "" ?>
                         </div>
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Page/Groups</h4>
@@ -116,8 +116,8 @@
                                         <span class="caption-subject font-blue-madison bold uppercase">Characteristics</span>
                                     </div>
                                 </div>
-                                <?php if (!empty($characteristics)): ?>
-                                    <?php foreach ($characteristics as $key => $item) : ?>
+                                <?php if (!empty($characters)): ?>
+                                    <?php foreach ($characters as $key => $item) : ?>
                                         <div class="row">
                                             <div class="col-sm-2 caption-subject font-blue-madison bold"><?php echo $item["name"]; ?></div>
                                             <div class="portlet-body col-sm-8">
@@ -174,8 +174,8 @@
                                                     <div class="item">
                                                         <div class="item-head">
                                                             <div class="item-details">
-                                                                <img class="item-pic" src="{{ $item['avatar'] }}">
-                                                                <a href="" class="item-name primary-link">{{ $item['fullname'] }}</a>
+                                                                <img class="item-pic" src="{{ isset($item['avatar']) ? $item['avatar'] : 'assets/admin/pages/media/profile/profile_user.jpg' }}">
+                                                                <a href="" class="item-name primary-link">{{ isset($item['fullname']) ? $item['fullname'] : '' }}</a>
                                                                 <span class="item-label">{{ $item['created_at'] }}</span>
                                                             </div>
                                                         </div>

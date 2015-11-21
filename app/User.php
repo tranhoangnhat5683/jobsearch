@@ -10,7 +10,7 @@ use DB;
 class User extends NeoEloquent {
 
     protected $label = 'User'; // or array('User', 'Fan')
-    protected $fillable = ['identity', 'username', 'fullname', 'gender', 'birthday', 'location', 'hometown', 'Hobbies'];
+    protected $fillable = ['identity', 'username', 'fullname', 'email', 'gender', 'birthday', 'location', 'hometown', 'hobbies', 'jobs'];
 
     public function page() {
         return $this->hasOne('Page');
@@ -95,7 +95,8 @@ class User extends NeoEloquent {
                     "OPTIONAL MATCH (user)-[:At]->(location:Location)",
                     "OPTIONAL MATCH (user)-[:Own]->(skill:Skill)",
                     "OPTIONAL MATCH (user)-[has:Has]->(character:Character)",
-                    "return user,skill,character,location,has"
+                    "OPTIONAL MATCH (user)-[:Join]->(page:Page)",
+                    "return user,skill,character,page,location,has"
         ]));
 
         $result = [];
@@ -107,15 +108,14 @@ class User extends NeoEloquent {
                 $user['id'] = $id;
                 $user['skills'] = [];
                 $user['characters'] = [];
+                $user['pages'] = [];
                 $result[$id] = $user;
-                $unique[$id] = ['skills' => [], 'characters' => []];
+                $unique[$id] = ['skills' => [], 'characters' => [], 'pages' => []];
             }
 
             if ($row['skill'] && !isset($unique[$id]['skills'][$row['skill']->getId()])) {
                 $skill = $row['skill']->getProperties();
                 $skill['id'] = $row['skill']->getId();
-                $skill['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
-                $skill['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
                 $result[$id]['skills'][] = $skill;
                 $unique[$id]['skills'][$skill['id']] = true;
             }
@@ -123,8 +123,17 @@ class User extends NeoEloquent {
             if ($row['character'] && !isset($unique[$id]['characters'][$row['character']->getId()])) {
                 $character = $row['character']->getProperties();
                 $character['id'] = $row['character']->getId();
+                $character['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
+                $character['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
                 $result[$id]['characters'][] = $character;
                 $unique[$id]['characters'][$character['id']] = true;
+            }
+
+            if ($row['page'] && !isset($unique[$id]['pages'][$row['page']->getId()])) {
+                $page = $row['page']->getProperties();
+                $page['id'] = $row['page']->getId();
+                $result[$id]['pages'][] = $page;
+                $unique[$id]['pages'][$page['id']] = true;
             }
 
             if ($row['location']) {
