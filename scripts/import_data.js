@@ -1,31 +1,43 @@
-var solr = require('solr-client');
+var solr 	= require('solr-client');
+var qs 		= require('querystring');
 
-var Script = function()
+var Script = function(argv)
 {
 	this.client 	= solr.createClient({
 		host : 'solr.cff',
 		port : '8983',
 		path : '/solr/jobsearch',
 	});
+	//this.client.autoCommit = true;
+	
+	//
 	this.clientData = solr.createClient({
 		host : 'import.local',
-		port : '8983',
-		path : '/solr/jobsearch',
+		port : '8080',
+		path : '/solr/documents',
 	});
-	//this.client.autoCommit = true;
 
+	this.cursorMark		= '*';
+	this.shards			= !argv.shards?[100]:argv.shards.split(',');
+	this.keywords		= argv.keywords || "python";
 	this.arrDocs 	 	= [];
 
+	if( !this.keywords )
+	{
+		throw new Error('Keyword khong ton tai');
+	}
 
 
 
 	this.loadDataReq 	= 0;
 	this.loadDataRes 	= 0;
 	this.loadDataErr 	= 0;
+	this.loadDataRecv	= 0;
 
 	this.importDataReq	= 0;
 	this.importDataRes	= 0;
 	this.importDataErr	= 0;
+	this.importDataRecv	= 0;
 
 	this.showInfo();
 };
@@ -33,15 +45,22 @@ var Script = function()
 Script.prototype.showInfo = function()
 {
 	console.log('---------------------------------------');
-	console.log('[Solr] Load req/res/err                :',[
+	console.log('[Buffer] shard/keywords/cursorMark     :',[
+		this.shards.join(','),
+		this.keywords,
+		this.cursorMark
+	]);
+	console.log('[Solr] Load req/res/err/recv           :',[
 		this.loadDataReq,
 		this.loadDataRes,
-		this.loadDataErr
+		this.loadDataErr,
+		this.loadDataRecv
 	]);
-	console.log('[Solr] Import req/res/err              :',[
+	console.log('[Solr] Import req/res/err/recv         :',[
 		this.importDataReq,
 		this.importDataRes,
-		this.importDataErr
+		this.importDataErr,
+		this.importDataRecv,
 	]);
 	setTimeout(this.showInfo.bind(this), 3000);
 };
@@ -49,7 +68,7 @@ Script.prototype.showInfo = function()
 Script.prototype.start = function()
 {
 	this.startAt = new Date();
-	this.initTestData();
+	//this.initTestData();
 	this.loadData();
 	this.importData();
 };
@@ -72,11 +91,72 @@ Script.prototype.loadData = function()
 	}
 
 	var query = this.clientData.createQuery();
-		query.q('*:*').matchFilter('updated_at', '[* TO '+this.startAt.toISOString()+']');	
-	this.clientData.search(query, function(){
-		
-	});
+		query.q(this.keywords)
+		.sort({
+			'id' : 'ASC'
+		})
+		.set(qs.stringify({
+			'shards' 		: this.shards.join(','),
+			'cursorMark'	: this.cursorMark
+		}));
+
+	this.loadDataReq++;
+	this.clientData.search(query, this.onLoadData.bind(this));
 	setTimeout(this.loadData.bind(this), 1000);
+};
+
+Script.prototype.onLoadData = function(solrErr, solrRes)
+{
+	this.loadDataRes++;
+	if( solrErr ) {
+		this.loadDataErr++;
+		console.log('onLoadData | err: ', solrErr);
+		return;
+	};
+	var docs 		= solrRes.response.docs;
+	this.cursorMark = solrRes.nextCursorMark;
+	if ( !(docs instanceof Array) || !docs.length )
+	{
+		console.log('onLoadData | Khong con du lieu nua!');
+		return;
+	}
+	this.loadDataRecv += docs.length;
+	var doc	  = null;
+	for(var i = 0, n = docs.length; i < n; i++)
+	{
+		doc = docs[i];
+		if( !doc.search_text ){
+			doc.search_text = [];
+		}
+		if( [1, 2, 6, 12].indexOf(doc.id_table) === -1 )
+		{
+			continue;
+		}
+		if( !doc.identity || !doc.id_social  )
+		{
+			continue;
+		}
+		this.arrDocs.push({
+			"id"				: doc.id_social,
+			"identity"			: doc.identity,
+			"id_source"			: doc.id_source,
+			"message"			: doc.search_text[0] || '',
+			"description"		: doc.search_text[1] || '',
+			"attachment"		: doc.attachment,
+			"created_at"		: doc.crated_date,
+			"updated_at"		: new Date().toISOString(),
+			"skills"			: [],
+			"characteristics"	: [],
+			"location"			: "",
+			"id_location"		: 1,
+			"likes"				: doc.likes || 0,
+			"comments"			: doc.comments || 0,
+			"shares"			: doc.shares || 0,
+			"with_identity"		: null,
+			"with_name"			: null,
+			"type"				: null
+		});
+	}
 };
 
 Script.prototype.canImportData = function()
@@ -102,12 +182,12 @@ Script.prototype.importData = function()
 	var docs = this.arrDocs.splice(0, 100);
 
 	this.importDataReq++;
-	this.client.add(docs, this.onImportData.bind(this));
+	this.client.add(docs, this.onImportData.bind(this, docs));
 
 	setTimeout(this.importData.bind(this), 1000);
 };
 
-Script.prototype.onImportData = function(solrErr, solrRes)
+Script.prototype.onImportData = function(docs, solrErr, solrRes)
 {
 	this.importDataRes++;
 	if( solrErr )
@@ -116,6 +196,7 @@ Script.prototype.onImportData = function(solrErr, solrRes)
 		console.log('onImportData | error: ', solrErr);
 		return;
 	}
+	this.importDataRecv += docs.length;
 };
 
 Script.prototype.initTestData = function()
@@ -180,7 +261,11 @@ Script.prototype.initTestData = function()
 	}];
 };
 
+var argv        = require('optimist')        
+    .alias('k', 'keywords')
+    .alias('s', 'shards')
+    .argv;
 
-var script = new Script();
+var script = new Script(argv);
 script.start();
 

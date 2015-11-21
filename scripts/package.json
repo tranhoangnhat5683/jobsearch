@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "async": "latest",
+        "optimist" : "latest",
         "fbgraph": "git+https://github.com/tpphu/fbgraph.git",
         "solr-client": "git+https://github.com/tpphu/solr-node-client.git",
         "forever-monitor": "git+https://github.com/tpphu/forever-monitor.git",
