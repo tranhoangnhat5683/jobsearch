@@ -72,8 +72,7 @@ Script.prototype.loadData = function()
 	}
 
 	var query = this.clientData.createQuery();
-		query.q('*:*')
-		.matchFilter('updated_at', ['* TO '+this.startAt.toISOString()+']')	
+		query.q('*:*').matchFilter('updated_at', '[* TO '+this.startAt.toISOString()+']');	
 	this.clientData.search(query, function(){
 		
 	});

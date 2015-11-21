@@ -17,7 +17,7 @@ class TestController extends Controller {
     }
 
     public function angular() {
-        return view('angular');
+        return view('angularjs');
     }
 
     
