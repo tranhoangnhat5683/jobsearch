@@ -6,6 +6,7 @@ use App\User;
 use App\Utils\Common;
 use App\Skill;
 use App\Location;
+use App\Character;
 
 class HomeController extends Controller {
 
@@ -34,9 +35,9 @@ class HomeController extends Controller {
 
 	private function _buildParams(Request $request) {
 		return [
-			'location'  => $request->input('location'),
-			'skill'     => array_filter($request->input('skill', array())),
-			'character' => array_filter($request->input('character', array())),
+			'location'  => $request->input('location', array()),
+			'skill'     => $request->input('skill', array()),
+			'character' => $request->input('character', array()),
 			'gender'    => $request->input('gender', ''),
         ];
 	}
@@ -56,6 +57,9 @@ class HomeController extends Controller {
         $locations = Location::search();
         $data['locations'] = array_column($locations, 'name', 'id');
 
+        $characters = Character::search();
+        $data['characters'] = array_column($characters, 'name', 'id');
+
 		return view('jobsearch/index', $data);
 	}
 
@@ -66,8 +70,8 @@ class HomeController extends Controller {
 	 */
 	public function search(Request $request)
 	{
-        $parms = $this->_buildParams($request);
-        $arrResult = User::search($parms);
+        $params = $this->_buildParams($request);
+        $arrResult = User::search($params);
 
         $data = [];
         if (!empty($arrResult)) {

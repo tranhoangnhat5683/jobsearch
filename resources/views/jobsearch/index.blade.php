@@ -14,12 +14,17 @@
 							<div class="row">
 								<div class="form-group col-md-12">
 									<!-- <label>Characteristics</label> -->
-									<input type="text" class="form-control input-lg" id="input-character" placeholder="..." autofocus>
+									<!-- <input type="text" class="form-control input-lg" id="input-character" placeholder="..." autofocus> -->
+									<select class="form-control js-example-basic-multiple" id="input-character" multiple="multiple">
+										@foreach ($characters as $key => $character)
+											<option value="{{ $key }}">{{ $character }}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label>Skill</label>
+									<!-- <label>Skill</label> -->
 									<!-- <input type="text" class="form-control input-lg" id="input-skill" multiple="multiple" placeholder="Nhập tính cách cần tìm..."> -->
 									<select class="form-control js-example-basic-multiple" id="input-skill" multiple="multiple">
 										@foreach ($skills as $key => $skill)
@@ -28,7 +33,7 @@
 									</select>
 								</div>
 								<div class="form-group col-md-6">
-									<label>Location</label>
+									<!-- <label>Location</label> -->
 									<select class="form-control js-example-basic-multiple" id="input-location" multiple="multiple">
 										@foreach ($locations as $key => $location)
 											<option value="{{ $key }}">{{ $location }}</option>
@@ -38,7 +43,7 @@
 
 							</div>
 							<div class="text-center">
-								<a href="javascript:void()" id="btn-search" class="btn btn-lg blue text-right">
+								<a href="javascript:void(0)" id="btn-search" class="btn btn-lg blue text-right">
 									Search <i class="fa fa-search"></i>
 								</a>
 							</div>
@@ -60,36 +65,55 @@
 		Layout.init(); // init current layout
     });
 	$("#input-location").select2({
-		placeholder: "Select a location",
+		placeholder: "All locations",
 		allowClear: true,
 		maximumSelectionLength: 4
 	});
 	$("#input-category").select2({
-		placeholder: "All category",
+		placeholder: "All categories",
 		allowClear: true,
 		maximumSelectionLength: 3
 	});
 	$("#input-skill").select2({
-		placeholder: "Select a skill",
+		placeholder: "All skills",
 		allowClear: true,
 		maximumSelectionLength: 4
 	});
 
+	$("#input-character").select2({
+		placeholder: "Enter characters",
+		allowClear: true,
+		maximumSelectionLength: 5
+	});
+	$("#input-character").select2("open");
+
 	$("#btn-search").on("click", function(e) {
-        $.ajax({
+		var params = {
+			_token    : "{{ csrf_token() }}",
+			character : $("#input-character").val(),
+			skill     : $("#input-skill").val(),
+			location  : $("#input-location").val()
+		};
+		var url = "{{ url('/list') }}?" + $.param(params);
+		location.href = url;
+		// console.log(url);
+        /*$.ajax({
             method      : "POST",
-            url         : "<?php echo url('/api/characteristic') ?>",
+            url         : "<?php echo url('/list') ?>",
             data        : {
-                _token      : "{{ csrf_token() }}",
-                view_mode   : $(e.target).val()
+				_token    : "{{ csrf_token() }}",
+				character : $("#input-character").val(),
+				skill     : $("#input-skill").val(),
+				location  : $("#input-location").val(),
             }
         })
         .done(function( response ) {
-            alert( "Data Saved: " + response );
+        	console.log(response);
+            //alert( "Data Saved: " + response );
         })
         .fail(function( jqXHR, textStatus ) {
             alert( "Request failed: " + textStatus );
-        });
+        });*/
     });
 
 </script>
