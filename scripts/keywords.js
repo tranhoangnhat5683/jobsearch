@@ -1,6 +1,21 @@
 module.exports = function() {
     var keywords = {};
 
+    // Positive
+    keywords['62'] = [];
+
+    // Teamwork
+    keywords['63'] = [];
+
+    // Open
+    keywords['64'] = [];
+
+    // Confident
+    keywords['65'] = [];
+
+    // Sincere
+    keywords['66'] = [];
+
     // optimism
     keywords['77'] = [
         'yêu đời', 'lạc quan', 'vui'
