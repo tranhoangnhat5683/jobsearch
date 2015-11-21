@@ -7,13 +7,18 @@ var Script = function()
 		port : '8983',
 		path : '/solr/jobsearch',
 	});
+	//this.client.autoCommit = true;
+	
+	//
 	this.clientData = solr.createClient({
 		host : 'import.local',
-		port : '8983',
-		path : '/solr/jobsearch',
+		port : '8080',
+		path : '/solr/documents',
 	});
-	//this.client.autoCommit = true;
 
+	this.cursorMark		= 0;
+	this.shards			= [100];
+	this.keywords		= "python";
 	this.arrDocs 	 	= [];
 
 
@@ -22,10 +27,12 @@ var Script = function()
 	this.loadDataReq 	= 0;
 	this.loadDataRes 	= 0;
 	this.loadDataErr 	= 0;
+	this.loadDataRecv	= 0;
 
 	this.importDataReq	= 0;
 	this.importDataRes	= 0;
 	this.importDataErr	= 0;
+	this.importDataRecv	= 0;
 
 	this.showInfo();
 };
@@ -33,15 +40,22 @@ var Script = function()
 Script.prototype.showInfo = function()
 {
 	console.log('---------------------------------------');
-	console.log('[Solr] Load req/res/err                :',[
+	console.log('[Buffer] shard/keywords/cursorMark     :',[
+		this.shards.join(','),
+		this.keywords,
+		this.cursorMark
+	]);
+	console.log('[Solr] Load req/res/err/recv           :',[
 		this.loadDataReq,
 		this.loadDataRes,
-		this.loadDataErr
+		this.loadDataErr,
+		this.loadDataRecv
 	]);
-	console.log('[Solr] Import req/res/err              :',[
+	console.log('[Solr] Import req/res/err/recv         :',[
 		this.importDataReq,
 		this.importDataRes,
-		this.importDataErr
+		this.importDataErr,
+		this.importDataRecv,
 	]);
 	setTimeout(this.showInfo.bind(this), 3000);
 };
@@ -49,7 +63,7 @@ Script.prototype.showInfo = function()
 Script.prototype.start = function()
 {
 	this.startAt = new Date();
-	this.initTestData();
+	//this.initTestData();
 	this.loadData();
 	this.importData();
 };
@@ -72,12 +86,64 @@ Script.prototype.loadData = function()
 	}
 
 	var query = this.clientData.createQuery();
-		query.q('*:*')
-		.matchFilter('updated_at', ['* TO '+this.startAt.toISOString()+']')	
-	this.clientData.search(query, function(){
-		
-	});
+		query.q(this.keywords)
+		.sort({
+			'id' : 'ASC'
+		})
+		.set(qs.querystring({
+			'shards' 		: this.shards.join(','),
+			'cursorMark'	: this.cursorMark
+		}));
+
+	this.loadDataReq++;
+	this.clientData.search(query, this.onLoadData.bind(this));
 	setTimeout(this.loadData.bind(this), 1000);
+};
+
+Script.prototype.onLoadData = function(solrErr, solrRes)
+{
+	this.loadDataRes++;
+	if( solrErr ) {
+		this.loadDataErr++;
+		console.log('onLoadData | err: ', solrErr);
+		return;
+	};
+	var docs 		= solrRes.response.docs;
+	this.cursorMark = solrRes.nextCursorMark;
+	if ( !(docs instanceof Array) || !docs.length )
+	{
+		console.log('onLoadData | Khong con du lieu nua!');
+		return;
+	}
+	this.loadDataRecv += docs.length;
+	var doc	  = null;
+	for(var i = 0, n = docs.length; i < n; i++)
+	{
+		doc = docs[i];
+		if( !doc.seach_text ){
+			doc.seach_text = [];
+		}
+		this.arrDocs.push({
+			"id"				: doc.id_social,
+			"identity"			: doc.identity,
+			"id_source"			: doc.id_source,
+			"message"			: doc.seach_text[0] || '',
+			"description"		: doc.seach_text[1] || '',
+			"attachment"		: doc.attachment,
+			"created_at"		: doc.crated_date,
+			"updated_at"		: new Date().toISOString(),
+			"skills"			: [],
+			"characteristics"	: [],
+			"location"			: "",
+			"id_location"		: 1,
+			"likes"				: doc.likes || 0,
+			"comments"			: doc.comments || 0,
+			"shares"			: doc.shares || 0,
+			"with_identity"		: null,
+			"with_name"			: null,
+			"type"				: null
+		});
+	}
 };
 
 Script.prototype.canImportData = function()
@@ -103,12 +169,12 @@ Script.prototype.importData = function()
 	var docs = this.arrDocs.splice(0, 100);
 
 	this.importDataReq++;
-	this.client.add(docs, this.onImportData.bind(this));
+	this.client.add(docs, this.onImportData.bind(this, docs));
 
 	setTimeout(this.importData.bind(this), 1000);
 };
 
-Script.prototype.onImportData = function(solrErr, solrRes)
+Script.prototype.onImportData = function(docs, solrErr, solrRes)
 {
 	this.importDataRes++;
 	if( solrErr )
@@ -117,6 +183,7 @@ Script.prototype.onImportData = function(solrErr, solrRes)
 		console.log('onImportData | error: ', solrErr);
 		return;
 	}
+	this.importDataRecv += docs.length;
 };
 
 Script.prototype.initTestData = function()
