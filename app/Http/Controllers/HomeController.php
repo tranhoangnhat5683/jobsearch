@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Utils\Common;
+use App\Skill;
 
 class HomeController extends Controller {
 
@@ -44,9 +45,14 @@ class HomeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		return view('jobsearch/index');
+		$data = [];
+
+		$skills = Skill::search();
+		$data['skills'] = array_column($skills, 'name', 'id');
+
+		return view('jobsearch/index', $data);
 	}
 
 	/**
@@ -62,10 +68,10 @@ class HomeController extends Controller {
         $data = [];
         if (!empty($arrResult)) {
         	$arrResult = $this->buildProfileInfo($arrResult);
-        	$data = array('profiles' => array_values($arrResult));
+        	$data = array('profiles' => $arrResult);
         }
-
 		// return response()->json($data);
+
 		return view('jobsearch/list', $data);
 	}
 
@@ -80,11 +86,11 @@ class HomeController extends Controller {
 		$identity  = $request->input('identity');
 		$arrResult = User::get(array($identity));
 
+        //return response()->json($arrResult);
         if (!empty($arrResult)) {
         	$arrResult = $this->buildProfileInfo($arrResult);
         	$data = $arrResult[0];
 
-        	// return response()->json($data);
         }
 		return view('jobsearch/profile', $data);
 	}
@@ -98,6 +104,10 @@ class HomeController extends Controller {
         	}
         	if (!empty($profile['hobbies'])) {
         		$profile['hobby_list'] = implode(' , ', $profile['hobbies']);
+        	}
+        	if (!empty($profile['pages'])) {
+        		$page_list = array_column($profile['pages'], 'name');
+        		$profile['page_list'] = implode(' , ', $page_list);
         	}
     		$profile['avatar'] = "http://graph.facebook.com/{$profile['identity']}/picture?height=150&width=150";
 		}

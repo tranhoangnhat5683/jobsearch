@@ -1,9 +1,7 @@
 @extends('layouts.master')
 
 @section('stylesheet')
-<link href="assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
 <link href="assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css" />
-<link href="assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css" />
 <link href="assets/global/css/progress-bar.css" rel="stylesheet" type="text/css" />
 @endsection
 
@@ -98,7 +96,7 @@
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Page/Groups</h4>
                         <div class="primary-link">
-                            <?php echo isset($groups) ? $groups : "" ?>
+                            <?php echo isset($page_list) ? $page_list : "" ?>
                         </div>
                     </div>
                     <!-- END PORTLET MAIN -->
@@ -117,7 +115,7 @@
                                     </div>
                                 </div>
                                 <?php if (!empty($characters)): ?>
-                                    <?php foreach ($characters as $key => $item) : ?>
+                                    <?php foreach ($characters as $item) : ?>
                                         <div class="row">
                                             <div class="col-sm-2 caption-subject font-blue-madison bold"><?php echo $item["name"]; ?></div>
                                             <div class="portlet-body col-sm-8">
@@ -234,8 +232,6 @@ $(document).ready(function() {
     // initiate layout and plugins
     Metronic.init(); // init metronic core components
     Layout.init(); // init current layout
-    QuickSidebar.init(); // init quick sidebar
-    Demo.init(); // init demo features
     Profile.init(); // init page demo
     $("#activity-view-mode").on("change", function(e) {
         $.ajax({
