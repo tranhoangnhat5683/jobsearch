@@ -18,7 +18,7 @@ var Script = function(argv)
 	});
 
 	this.cursorMark		= '*';
-	this.shards			= !argv.keywords?[100]:argv.keywords.split(',');
+	this.shards			= !argv.shards?[100]:argv.shards.split(',');
 	this.keywords		= argv.keywords || "python";
 	this.arrDocs 	 	= [];
 
