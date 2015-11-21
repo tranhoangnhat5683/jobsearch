@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="col-profile-basic-info profile-usertitle">
-                                <div class="profile-usertitle-name"><?php echo $fullname ?></div>
+                                <div class="profile-usertitle-name">{{ isset($item['fullname']) ? $item['fullname'] : '' }}</div>
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">Mobile</div>
                                     <div class="col-md-6 text-left"><?php echo isset($mobile) ? $mobile : '123456789'; ?></div>
@@ -175,7 +175,7 @@
                                                         <div class="item-head">
                                                             <div class="item-details">
                                                                 <img class="item-pic" src="{{ isset($item['avatar']) ? $item['avatar'] : 'assets/admin/pages/media/profile/profile_user.jpg' }}">
-                                                                <a href="" class="item-name primary-link">{{ $item['fullname'] }}</a>
+                                                                <a href="" class="item-name primary-link">{{ isset($item['fullname']) ? $item['fullname'] : '' }}</a>
                                                                 <span class="item-label">{{ $item['created_at'] }}</span>
                                                             </div>
                                                         </div>
