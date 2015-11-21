@@ -1,7 +1,7 @@
 var solr 	= require('solr-client');
 var qs 		= require('querystring');
 
-var Script = function()
+var Script = function(argv)
 {
 	this.client 	= solr.createClient({
 		host : 'solr.cff',
@@ -19,9 +19,13 @@ var Script = function()
 
 	this.cursorMark		= '*';
 	this.shards			= [100];
-	this.keywords		= "python";
+	this.keywords		= argv.keywords || "python";
 	this.arrDocs 	 	= [];
 
+	if( !this.keywords )
+	{
+		throw new Error('Keyword khong ton tai');
+	}
 
 
 
@@ -249,7 +253,10 @@ Script.prototype.initTestData = function()
 	}];
 };
 
+var argv        = require('optimist')        
+    .alias('k', 'keywords')
+    .argv;
 
-var script = new Script();
+var script = new Script(argv);
 script.start();
 
