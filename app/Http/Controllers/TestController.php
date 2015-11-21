@@ -163,11 +163,16 @@ class TestController extends Controller {
     private function createCharacter() {
 //        DB::select('DROP CONSTRAINT ON (character:Character) ASSERT character.name IS UNIQUE');
         DB::select('CREATE CONSTRAINT ON (character:Character) ASSERT character.name IS UNIQUE');
-        Character::create(["name" => "Positive"]);
-        Character::create(["name" => "Teamwork"]);
-        Character::create(["name" => "Open"]);
-        Character::create(["name" => "Confident"]);
-        Character::create(["name" => "Sincere"]);
+//        Character::create(["name" => "Positive"]);
+//        Character::create(["name" => "Teamwork"]);
+//        Character::create(["name" => "Open"]);
+//        Character::create(["name" => "Confident"]);
+//        Character::create(["name" => "Sincere"]);
+        Character::create(["name" => "Optimism"]);
+        Character::create(["name" => "Active"]);
+        Character::create(["name" => "Confidence"]);
+        Character::create(["name" => "Communication"]);
+        Character::create(["name" => "Funny"]);
     }
 
     private function createSkill() {
