@@ -83,13 +83,14 @@ class User extends NeoEloquent {
 
     public static function get($identities = []) {
         $rowset = DB::select(implode(' ', [
-                    "MATCH (user:User) WHERE user.identity in [" . implode(',', $identities) . "]",
+                    "MATCH (user:User) WHERE user.identity in " . json_encode($identities),
                     "OPTIONAL MATCH (user)-[:At]->(location:Location)",
                     "OPTIONAL MATCH (user)-[:Own]->(skill:Skill)",
                     "OPTIONAL MATCH (user)-[has:Has]->(character:Character)",
                     "return user,skill,character,location,has"
         ]));
-        $result = null;
+
+        $result = [];
         $unique = [];
         foreach ($rowset as $row) {
             $id = $row['user']->getId();
@@ -124,6 +125,7 @@ class User extends NeoEloquent {
                 $result[$id]['location'] = $location;
             }
         }
+
         return $result;
     }
 
