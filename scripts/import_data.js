@@ -127,23 +127,42 @@ Script.prototype.onLoadData = function(solrErr, solrRes)
 		return;
 	}
 	this.loadDataRecv += docs.length;
-	var doc	  = null;
+	var doc	  		= null;
+	var id_social 	= null;
+	var id_parent 	= null;
+	var id_parent 	= null;
+	var attachment	= null;
 	for(var i = 0, n = docs.length; i < n; i++)
 	{
 		doc = docs[i];
 		if( !doc.search_text ){
 			doc.search_text = [];
 		}
-		if( [1, 2, 6, 12].indexOf(doc.id_table) === -1 )
-		{
+		if( [1, 2, 6, 12].indexOf(doc.id_table) === -1 ) {
 			continue;
 		}
-		if( !doc.identity || !doc.id_social  )
-		{
+		if( !doc.identity || !doc.id_source  ){
 			continue;
+		}
+		id_social 	= doc.id_social;
+		if( id_social.search('_') !== -1 ) {
+			id_social = id_social.split('_')[1];
+		}
+		id_parent	= null;
+		if( doc.id_table === 2 || doc.id_table === 12 ){
+			try {
+				attachment 	= JSON.parse(doc.attachment);
+				id_parent	= attachment.parent_info.id_social;
+				if( id_parent.search('_') !== -1 ){
+					id_parent = id_parent.split('_')[1];
+				}
+			} catch ( e ) {
+				console.log('Can not get id_parent | error: ', e);
+			}
 		}
 		this.arrDocs.push({
-			"id"				: doc.id_social,
+			"id"				: id_social,
+			"id_parent"			: id_parent,
 			"identity"			: doc.identity,
 			"id_source"			: doc.id_source,
 			"message"			: doc.search_text[0] || '',
