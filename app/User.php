@@ -1,5 +1,7 @@
 <?php
 
+//  encode query  $_user_query = preg_replace('/"([a-zA-Z_]+[a-zA-Z0-9_]*)":/','$1:',json_encode($user_query, JSON_FORCE_OBJECT));
+
 namespace App;
 
 use Vinelab\NeoEloquent\Eloquent\Model as NeoEloquent;
@@ -14,122 +16,106 @@ class User extends NeoEloquent {
         return $this->hasOne('Page');
     }
 
-    public static function search($location = 0, $skill_ids = [], $character_ids = []) {
-//        $_user_query = preg_replace('/"([a-zA-Z_]+[a-zA-Z0-9_]*)":/','$1:',json_encode($user_query, JSON_FORCE_OBJECT));
-        $location_query = '';
-        if ($location)
-        {
-            $location_query = "WHERE ID(location) = $location";
-        }
+    public static function search($options) {
+        $location_query = static::buildSearchLocation($options);
+        $skill_queries = static::buildSearchSkill($options);
+        $character_queries = static::buildSearchCharacter($options);
 
-        $skill_queries = [];
-        for ($i = 0; $i < count($skill_ids); $i++)
-        {
-            $skill_queries[] = "MATCH (user)-[:Own]->(s:Skill) WHERE ID(s)={$skill_ids[$i]}";
-        }
-
-        $character_queries = [];
-        for ($i = 0; $i < count($character_ids); $i++)
-        {
-            $character_queries[] = "MATCH (user)-[:Has]->(c:Character) WHERE ID(c)={$character_ids[$i]}";
-        }
         $rowset = DB::select(implode(' ', [
-                "MATCH (user:User)",
-                ($location ? '' : 'OPTIONAL') . " MATCH (user)-[:At]->(location:Location) $location_query",
-                "OPTIONAL MATCH (user)-[:Own]->(skill:Skill)",
-                "OPTIONAL MATCH (user)-[has:Has]->(character:Character)",
-                implode(' ', $skill_queries),
-                implode(' ', $character_queries),
-                "return user,skill,character,location,has"
-            ]));
-        $result = [];
-        foreach($rowset as $row)
-        {
+                    "MATCH (user:User)",
+                    $location_query,
+                    $skill_queries,
+                    $character_queries,
+                    "return ID(user) as id"
+        ]));
+        $ids = [];
+        foreach ($rowset as $row) {
+            $ids[] = $row['id'];
+        }
+
+        return static::get($ids);
+    }
+
+    private static function buildSearchLocation($options) {
+        if (isset($options['location'])) {
+            return "MATCH (user)-[:At]->(location:Location) WHERE ID(location) = " . $options['location'];
+        }
+
+        return '';
+    }
+
+    private static function buildSearchSkill($options) {
+        if (isset($options['skill'])) {
+            $skill_ids = $options['skill'];
+            $skill_queries = [];
+            for ($i = 0; $i < count($skill_ids); $i++) {
+                $skill_queries[] = "MATCH (user)-[:Own]->(s:Skill) WHERE ID(s)={$skill_ids[$i]}";
+            }
+
+            return implode(' ', $skill_queries);
+        }
+
+        return '';
+    }
+
+    private static function buildSearchCharacter($options) {
+        if (isset($options['character'])) {
+            $character_ids = $options['character'];
+            $character_queries = [];
+            for ($i = 0; $i < count($character_ids); $i++) {
+                $character_queries[] = "MATCH (user)-[:Has]->(c:Character) WHERE ID(c)={$character_ids[$i]}";
+            }
+
+            return implode(' ', $character_queries);
+        }
+
+        return '';
+    }
+
+    public static function get($ids = []) {
+        $rowset = DB::select(implode(' ', [
+                    "MATCH (user:User) WHERE ID(user) in [" . implode(',', $ids) . "]",
+                    "OPTIONAL MATCH (user)-[:At]->(location:Location)",
+                    "OPTIONAL MATCH (user)-[:Own]->(skill:Skill)",
+                    "OPTIONAL MATCH (user)-[has:Has]->(character:Character)",
+                    "return user,skill,character,location,has"
+        ]));
+        $result = null;
+        $unique = [];
+        foreach ($rowset as $row) {
             $id = $row['user']->getId();
-//            var_dump('----------------------------------', '<br />');
-//            var_dump('id', $id, '<br />');
-            if (!isset($result[$id]))
-            {
+            if (!isset($result[$id])) {
                 $user = $row['user']->getProperties();
                 $user['id'] = $id;
                 $user['skill'] = [];
                 $user['character'] = [];
                 $result[$id] = $user;
+                $unique[$id] = ['skill' => [], 'character' => []];
             }
 
-            if ($row['skill'])
-            {
+            if ($row['skill'] && !isset($unique[$id]['skill'][$row['skill']->getId()])) {
                 $skill = $row['skill']->getProperties();
+                $skill['id'] = $row['skill']->getId();
                 $skill['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
                 $skill['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
-                $skill['id'] = $row['skill']->getId();
-//                var_dump('skill', $skill['name'], '<br />');
                 $result[$id]['skill'][] = $skill;
+                $unique[$id]['skill'][$skill['id']] = true;
             }
 
-            if ($row['character'])
-            {
+            if ($row['character'] && !isset($unique[$id]['character'][$row['character']->getId()])) {
                 $character = $row['character']->getProperties();
                 $character['id'] = $row['character']->getId();
-//                var_dump('character', $character['name'], '<br />');
                 $result[$id]['character'][] = $character;
+                $unique[$id]['character'][$character['id']] = true;
             }
 
-            if ($row['location'])
-            {
+            if ($row['location']) {
                 $location = $row['location']->getProperties();
                 $location['id'] = $row['location']->getId();
-//                var_dump('character', $character['name'], '<br />');
                 $result[$id]['location'] = $location;
             }
         }
         return $result;
     }
-    public static function get($id = 0) {
-        $rowset = DB::select(implode(' ', [
-                "MATCH (user:User) WHERE ID(user) = $id",
-                "OPTIONAL MATCH (user)-[:At]->(location:Location)",
-                "OPTIONAL MATCH (user)-[:Own]->(skill:Skill)",
-                "OPTIONAL MATCH (user)-[has:Has]->(character:Character)",
-                "return user,skill,character,location,has"
-            ]));
-        $result = null;
-        foreach($rowset as $row)
-        {
-            if (!$result) {
-                $user = $row['user']->getProperties();
-                $user['id'] = $row['user']->getid();
-                $user['skill'] = [];
-                $user['character'] = [];
-                $result = $user;
-            }
 
-            if ($row['skill'])
-            {
-                $skill = $row['skill']->getProperties();
-                $skill['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
-                $skill['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
-                $skill['id'] = $row['skill']->getId();
-                $result['skill'][] = $skill;
-            }
-
-            if ($row['character'])
-            {
-                $character = $row['character']->getProperties();
-                $character['id'] = $row['character']->getId();
-                $result['character'][] = $character;
-            }
-
-            if ($row['location'])
-            {
-                $location = $row['location']->getProperties();
-                $location['id'] = $row['location']->getId();
-                $result['location'] = $location;
-            }
-        }
-        return $result;
-    }
-    private static function buildUser($row){
-        
-    }
 }
