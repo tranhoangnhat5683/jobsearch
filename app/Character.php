@@ -10,8 +10,8 @@ class Character extends NeoEloquent {
     protected $label = 'Character';
     protected $fillable = ['name'];
 
-    public static function search() {
-        $rowset = DB::select('MATCH (character:Character) RETURN character, ID(character) as id');
+    public static function search($name) {
+        $rowset = DB::select("MATCH (character:Character) WHERE character.name =~ '$name.*' RETURN character, ID(character) as id");
         $result = [];
         foreach ($rowset as $row) {
             $data = $row['character']->getProperties();
