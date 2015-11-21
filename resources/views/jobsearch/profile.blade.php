@@ -93,7 +93,7 @@
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Hobbies</h4>
                         <div class="primary-link">
-                            <?php echo isset($hobbies) ? $hobbies : "" ?>
+                            <?php echo isset($hobby_list) ? $hobby_list : "" ?>
                         </div>
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Page/Groups</h4>
