@@ -14,19 +14,12 @@
     <div class="page-content page-content-hack">
         <div class="job-conntent container">
             <div id="list-profile" class="dataTables_wrapper no-footer" ng-app="itemApp" ng-controller='itemsController'>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="col-md-5 col-sm-5">
-                            <div class="dataTables_info" id="sample_1_info" role="status" aria-live="polite">Showing 1 to 5 of 25 records</div>
-                        </div>
-                    </div>
-                </div>
                 <div class="list-profile">
                     <?php //if (empty($profiles)): ?>
                         <!-- Show empty data -->
                     <?php //else: ?>
                         <?php $item = $profiles[0]; ?>
-                            <div ng-repeat="profile in items" class="list-item col-sm-12">
+                            <div ng-repeat="profile in items" class="list-item col-sm-12 wow bounceInRight animated">
                                 <div class="item-content">
                                     <div class="col-sm-2 profile-userpic">
                                         <a class="cff-fullname" href="/profile?identity=<% profile['identity'] %>" target="_blank">
@@ -70,7 +63,7 @@
                             </div>
                 </div>
 
-                <button class="btn btn-success" ng-click="loadMore()">Load More</button>
+                <button class="btn btn-success" style="display: none" ng-click="loadMore()">Load More</button>
                 <!-- End Pagination -->
             </div>
         </div>
@@ -92,7 +85,7 @@ jQuery(document).ready(function() {
 <script>
     $(window).scroll(function() {
        if($(window).scrollTop() + $(window).height() == $(document).height()) {
-           console.log('bottom');
+           $(".btn.btn-success").click();
        }
     });
 </script>
