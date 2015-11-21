@@ -59,9 +59,27 @@ class HomeController extends Controller {
             $skill['name'] = $skill_name;
         }
 
-        $arrResult = User::search($user, $skill);
-        $data = array('profiles' => array_values($arrResult));
+        $data = array();
+        $arrResult = User::search();
 
+        if (!empty($arrResult)) {
+        	$arrResult = array_values($arrResult);
+        	return response()->json($arrResult);
+
+        	$data = $arrResult[0];
+
+        	if (!empty($data['skill'])) {
+        		$skill_list = array_column($data['skill'], 'name');
+        		$data['skill_list'] = implode(' , ', $skill_list);
+        	}
+
+        	$data = array('profiles' => array_values($arrResult));
+
+        }
+
+
+
+		// return response()->json($data);
 		return view('jobsearch/list', $data);
 	}
 
@@ -98,5 +116,9 @@ class HomeController extends Controller {
         	}
         }
 		return view('jobsearch/profile', $data);
+	}
+
+	private function buildProfileInfo($list){
+
 	}
 }

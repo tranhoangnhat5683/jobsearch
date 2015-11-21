@@ -127,4 +127,7 @@ class User extends NeoEloquent {
         return $result;
     }
 
+    private static function buildUser($row){
+
+    }
 }
