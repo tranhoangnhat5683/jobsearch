@@ -11,11 +11,11 @@ class Page extends NeoEloquent {
     protected $fillable = ['id_social', 'name'];
 
     public static function search() {
-        $rowset = DB::select('MATCH (page:Page) RETURN page, ID(page) as id');
+        $rowset = DB::select('MATCH (page:Page) RETURN page');
         $result = [];
         foreach ($rowset as $row) {
             $data = $row['page']->getProperties();
-            $data['id'] = $row['id'];
+            $data['id'] = $row['page']->getId();
             $result[] = $data;
         }
         return $result;

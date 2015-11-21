@@ -11,7 +11,7 @@ class Location extends NeoEloquent {
     protected $fillable = ['name'];
 
     public static function search($name) {
-        $rowset = DB::select("MATCH (location:Location) WHERE location.name =~ '$name.*' RETURN location");
+        $rowset = DB::select("MATCH (location:Location) WHERE location.name =~ '(?i)$name.*' RETURN location");
         $result = [];
         foreach ($rowset as $row) {
             $data = $row['location']->getProperties();

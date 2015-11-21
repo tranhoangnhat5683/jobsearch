@@ -95,7 +95,8 @@ class User extends NeoEloquent {
                     "OPTIONAL MATCH (user)-[:At]->(location:Location)",
                     "OPTIONAL MATCH (user)-[:Own]->(skill:Skill)",
                     "OPTIONAL MATCH (user)-[has:Has]->(character:Character)",
-                    "return user,skill,character,location,has"
+                    "OPTIONAL MATCH (user)-[:Join]->(page:Page)",
+                    "return user,skill,character,page,location,has"
         ]));
 
         $result = [];
@@ -107,8 +108,9 @@ class User extends NeoEloquent {
                 $user['id'] = $id;
                 $user['skills'] = [];
                 $user['characters'] = [];
+                $user['pages'] = [];
                 $result[$id] = $user;
-                $unique[$id] = ['skills' => [], 'characters' => []];
+                $unique[$id] = ['skills' => [], 'characters' => [], 'pages' => []];
             }
 
             if ($row['skill'] && !isset($unique[$id]['skills'][$row['skill']->getId()])) {
@@ -125,6 +127,13 @@ class User extends NeoEloquent {
                 $character['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
                 $result[$id]['characters'][] = $character;
                 $unique[$id]['characters'][$character['id']] = true;
+            }
+
+            if ($row['page'] && !isset($unique[$id]['pages'][$row['page']->getId()])) {
+                $page = $row['page']->getProperties();
+                $page['id'] = $row['page']->getId();
+                $result[$id]['pages'][] = $page;
+                $unique[$id]['pages'][$page['id']] = true;
             }
 
             if ($row['location']) {
