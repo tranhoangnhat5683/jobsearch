@@ -71,3 +71,10 @@ img.cff-avatar {
 .cff-button {
     margin-top: 10px;
 }
+.form-group.form-md-line-input {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    padding: 6px 5px;
+}

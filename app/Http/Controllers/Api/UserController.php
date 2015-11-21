@@ -9,21 +9,16 @@ use App\User;
 class UserController extends Controller {
 
     public function search(Request $request) {
-        $identity = $request->input('identity');
-        $skill_name = $request->input('skill');
+        $location = $request->input('location');
+        $skill_ids = array_filter(explode(',', $request->input('skill', '')));
+        $character_ids = array_filter(explode(',', $request->input('character', '')));
+        $gender = $request->input('gender', '');
 
-        $user = [];
-        if ($identity)
-        {
-            $user['identity'] = $identity;
-        }
-        $skill = [];
-        if ($skill_name)
-        {
-            $skill['name'] = $skill_name;
-        }
-
-        return User::search($user, $skill);
+        return User::search(['location' => $location, 'skill' => $skill_ids, 'character' => $character_ids, 'gender' => $gender]);
+    }
+    public function get(Request $request) {
+        $ids = $request->input('id');
+        return User::get(explode(',', $ids));
     }
 
 }

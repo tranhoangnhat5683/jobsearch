@@ -28,7 +28,8 @@
                                         <option value="15">15</option>
                                         <option value="20">20</option>
                                         <option value="-1">All</option>
-                                    </select> records</label>
+                                    </select> records
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -46,7 +47,7 @@
                                             <div class="row">
                                                 <div class="profile-usertitle-name">{{ $item['fullname'] }}</div>
                                                 <div class="profile-desc-text">Level: <span class="profile-usertitle-job">{{ isset($item['level']) ? $item['level'] : 'Senior' }}</span></div>
-                                                <div class="profile-desc-text">Location: <span class="profile-usertitle-job">{{ $item['current_city'] }}</span></div>
+                                                <div class="profile-desc-text">Location: <span class="profile-usertitle-job">{{ isset($item['location']['name']) ? $item['location']['name'] : 'HCM' }}</span></div>
                                                 <div class="profile-desc-text">Skill: <span class="profile-usertitle-job">{{ isset($item['skill_list']) ? $item['skill_list'] : '' }}</span></div>
                                                 <div class="cff-button">
                                                     <a href="<?php echo action('HomeController@profile', array('identity' => $item['identity'])); ?>" class="btn btn-xs green">
@@ -76,6 +77,7 @@
                                                     </div>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
+                                            <!-- Demo data -->
                                             <div class="row">
                                                 <div class="col-sm-3 caption-subject font-blue-madison bold">Positi</div>
                                                 <div class="portlet-body col-sm-6">
@@ -87,7 +89,7 @@
                                                     <span class="font-red-intense bold" id='abc'>777</span>/<span class="bold" id='xyz'>1000</span>
                                                 </div>
                                             </div>
-
+                                            <!-- End Demo data -->
                                         </div>
                                     </div>
                                 </div>

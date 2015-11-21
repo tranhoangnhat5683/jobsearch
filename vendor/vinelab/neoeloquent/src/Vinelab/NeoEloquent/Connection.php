@@ -67,7 +67,6 @@ class Connection extends IlluminateConnection {
     {
         $client = new NeoClient($this->getHost(), $this->getPort());
         $client->getTransport()->setAuth($this->getUsername(), $this->getPassword());
-        $client->getTransport()->useHttps(true);
         return $client;
     }
 

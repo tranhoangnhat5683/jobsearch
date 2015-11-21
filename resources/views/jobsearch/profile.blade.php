@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">Location</div>
-                                    <div class="col-md-6 text-left"><?php echo isset($current_city) ? $current_city : 'Ho Chi Minh'; ?></div>
+                                    <div class="col-md-6 text-left">{{ isset($item['location']['name']) ? $item['location']['name'] : 'HCM' }}</div>
                                 </div>
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">Level</div>

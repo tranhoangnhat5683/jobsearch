@@ -6,6 +6,7 @@ use App\User;
 use App\Page;
 use App\Character;
 use App\Skill;
+use App\Location;
 use DB;
 
 class TestController extends Controller {
@@ -26,9 +27,11 @@ class TestController extends Controller {
 //        $this->createUser();
 //        $this->createCharacter();
 //        $this->createSkill();
+//        $this->createLocation();
 //        $this->createUserPage();
 //        $this->createUserSkill();
 //        $this->createUserCharacter();
+//        $this->createUserLocation();
 //        return 'Success';
     }
 
@@ -60,7 +63,7 @@ class TestController extends Controller {
         User::create(["identity" => "100004227851982", "username" => "kenbihoang.vtv", "fullname" => "Hoàng Trung Hiếu", "gender" => "MALE"]);
         User::create(["identity" => "728839386", "username" => "long.huynh.16144", "fullname" => "Long Huynh", "gender" => "MALE", "current_city" => "Thành phố Hồ Chí Minh", "hometown" => "Ho Chi Minh City, Vietnam"]);
         User::create(["identity" => "100000315701660", "username" => "daudatchaybangpin", "fullname" => "Tan Nguyen Van", "gender" => "MALE", "current_city" => "Ho Chi Minh City, Vietnam"]);
-//        User::create(["identity" => "100000024527037", "username" => "giaplee", "fullname" => "Giap Le Van", "gender" => "MALE", "current_city" => "Hanoi, Vietnam"]);
+//        User::create(["identity" => "100000024527037", "username" => "giaplee", "fullname" => "Giap Le Van", "gender" => "MALE", "current_city" => "Hanoi, Vietnam", "Hobbies" => ["Swimming", "Reading Book", "Football"], "Job" => ["Front-end developer at Younetmedia From 2014 to now"], "email"=>"giaplee@gmail.com"]);
 //        User::create(["identity" => "100000366174004", "username" => "aaron.phucdang", "fullname" => "Phuc Dang", "gender" => "MALE", "birthday" => "1990", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
 //        User::create(["identity" => "100000271946723", "username" => "thunga.nguyen.75", "fullname" => "Thu Nga Nguyen", "gender" => "FEMALE", "current_city" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam"]);
 //        User::create(["identity" => "100003268127535", "username" => "Tom.va.rerry", "fullname" => "Đinh Hà", "gender" => "FEMALE", "current_city" => "Hanoi, Vietnam", "hometown" => "Hanoi, Vietnam"]);
@@ -177,6 +180,16 @@ class TestController extends Controller {
         Skill::create(["name" => "MySQL"]);
     }
 
+    private function createLocation() {
+//        DB::select('DROP CONSTRAINT ON (location:Location) ASSERT location.name IS UNIQUE');
+        DB::select('CREATE CONSTRAINT ON (location:Location) ASSERT location.name IS UNIQUE');
+        Location::create(["name" => "Ho Chi Minh"]);
+        Location::create(["name" => "Ha Noi"]);
+        Location::create(["name" => "Phu Yen"]);
+        Location::create(["name" => "Da Lat"]);
+        Location::create(["name" => "My Tho"]);
+    }
+
     private function createUserPage() {
         $users = $this->getAllUser();
         $pages = $this->getAllPage();
@@ -230,6 +243,23 @@ class TestController extends Controller {
         return $users;
     }
 
+    private function createUserLocation() {
+        $users = $this->getAllUser();
+        $locations = $this->getAllLocation();
+        for ($i = 0; $i < count($users); $i++)
+        {
+            $user = $users[$i];
+            $identity = $user['identity'];
+            $location = $locations[rand(0, count($locations) - 1)];
+            $name = $location['name'];
+            DB::select("MATCH (u:User {identity:'$identity'}), (l:Location {name:'$name'})
+                WHERE NOT u-[:At]->l
+                CREATE (u)-[:At]->(l)");
+        }
+
+        return $users;
+    }
+
     private function getAllUser() {
         $rowset = DB::select("MATCH (n:User) RETURN n");
         $result = [];
@@ -270,6 +300,14 @@ class TestController extends Controller {
         return $result;
     }
 
-
+    private function getAllLocation() {
+        $rowset = DB::select("MATCH (n:Location) RETURN n");
+        $result = [];
+        foreach($rowset as $row)
+        {
+            $result[] = $row['n']->getProperties();
+        }
+        return $result;
+    }
     
 }

@@ -18,7 +18,7 @@
 								</div> 
 								<div class="form-group col-md-6">
 									<label>Skill</label>
-									<input type="text" class="form-control input-lg" placeholder="Nhập tính cách cần tìm...">
+									<input type="text" class="form-control input-lg" id="input-skill" multiple="multiple" placeholder="Nhập tính cách cần tìm...">
 								</div> 
 								<!-- <div class="form-group col-md-12">
 									<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
@@ -34,7 +34,7 @@
 							<div class="row">
 								<div class="form-group col-md-6">
 									<label>Categories</label>
-									<select class="form-control js-example-basic-multiple" id="input-category" multiple="multiple">
+									<select class="form-control js-example-basic-multiple" id="input-category">
 										<option>Công Nghệ Thông tin</option>
 										<option>Accounting</option>
 										<option>Arts/Design</option>
@@ -43,7 +43,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label>Location</label>
-									<select class="form-control js-example-basic-multiple" multiple="multiple" id="input-location">
+									<select class="form-control js-example-basic-multiple" id="input-location">
 										<option>Hồ Chí Minh</option>
 										<option>Hà Nội</option>
 										<option>Phú Yên</option>
@@ -51,16 +51,15 @@
 										<option>Mỹ Tho</option>
 									</select>
 								</div>
-								
 
 							</div>
 							<div class="row">
 								<div class="form-group col-sm-6 form-md-line-input">
-									<label class=" control-label" for="form_control_1">Sex</label>
+									<label class=" control-label" for="form_control_1">Gender</label>
 									<div class="">
 										<div class="md-radio-inline">
 											<div class="md-radio">
-												<input type="radio" id="radio53" name="radio2" class="md-radiobtn" checked="">
+												<input type="radio" id="radio53" name="gender" class="md-radiobtn" checked="">
 												<label for="radio53">
 												<span class="inc"></span>
 												<span class="check"></span>
@@ -68,7 +67,7 @@
 												All </label>
 											</div>
 											<div class="md-radio">
-												<input type="radio" id="radio54" name="radio2" class="md-radiobtn" >
+												<input type="radio" id="radio54" name="gender" class="md-radiobtn" >
 												<label for="radio54">
 												<span></span>
 												<span class="check"></span>
@@ -76,7 +75,7 @@
 												Male </label>
 											</div>
 											<div class="md-radio">
-												<input type="radio" id="radio55" name="radio2" class="md-radiobtn">
+												<input type="radio" id="radio55" name="gender" class="md-radiobtn">
 												<label for="radio55">
 												<span></span>
 												<span class="check"></span>
@@ -87,58 +86,45 @@
 									</div>
 								</div>
 								<div class="form-group col-sm-6 form-md-line-input">
-									<label class=" control-label" for="form_control_1">Level</label>
+									<label class=" control-label" for="form_control_2">Level</label>
 									<div class="">
 										<div class="md-radio-inline">
 											<div class="md-radio">
-												<input type="radio" id="radio53" name="radio2" class="md-radiobtn" checked="">
-												<label for="radio53">
-												<span class="inc"></span>
+												<input type="radio" id="radio59" name="level" class="md-radiobtn">
+												<label for="radio59">
+												<span></span>
 												<span class="check"></span>
 												<span class="box"></span>
 												All </label>
 											</div>
 											<div class="md-radio">
-												<input type="radio" id="radio54" name="radio2" class="md-radiobtn" >
-												<label for="radio54">
-												<span></span>
+												<input type="radio" id="radio56" name="level" class="md-radiobtn" checked="">
+												<label for="radio56">
+												<span class="inc"></span>
 												<span class="check"></span>
 												<span class="box"></span>
-												Male </label>
+												Junior </label>
 											</div>
 											<div class="md-radio">
-												<input type="radio" id="radio55" name="radio2" class="md-radiobtn">
-												<label for="radio55">
+												<input type="radio" id="radio57" name="level" class="md-radiobtn" >
+												<label for="radio57">
 												<span></span>
 												<span class="check"></span>
 												<span class="box"></span>
-												Female </label>
+												Senior </label>
+											</div>
+											<div class="md-radio">
+												<input type="radio" id="radio58" name="level" class="md-radiobtn">
+												<label for="radio58">
+												<span></span>
+												<span class="check"></span>
+												<span class="box"></span>
+												Manager </label>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<!-- <div class="row">
-								<div class="form-group col-md-6">
-									<label>Level</label>
-									<select class="form-control" id="input-level" multiple="multiple">
-										<option>Junior</option>
-										<option>Sennior</option>
-										<option>Manager</option>
-									</select>
-								</div>
-								<div class="form-group col-md-6">
-									<label>Độ Tuổi</label>
-									<select class="form-control" id="input-old">
-										<option>18 - 24</option>
-										<option>25 - 30</option>
-										<option>31 - 40</option>
-										<option>41 - 50</option>
-										<option>Trên 50</option>
-									</select>
-								</div>
-							</div> -->
-							
+							</div>							
 							<div class="text-right">
 								<a href="javascript:;" class="btn btn-lg blue text-right">
 									Search <i class="fa fa-search"></i>
@@ -163,19 +149,18 @@
     });
 	$("#input-location").select2({
 		placeholder: "Select a location",
-		allowClear: true
+		allowClear: true,
+		maximumSelectionLength: 4
 	});
 	$("#input-category").select2({
 		placeholder: "All category",
-		allowClear: true
+		allowClear: true,
+		maximumSelectionLength: 3
 	});
-	$("#input-level").select2({
-		placeholder: "All level",
-		allowClear: true
-	});
-	$("#input-old").select2({
-		placeholder: "All old",
-		allowClear: true
+	$("#input-skill").select2({
+		placeholder: "Select a skill",
+		allowClear: true,
+		maximumSelectionLength: 4
 	});
 </script>
 @endsection
