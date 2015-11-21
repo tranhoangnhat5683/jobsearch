@@ -42,12 +42,19 @@ app.get('/stream', function(req, res) {
 			});
 			return;
 		}
+		var characteristics = null;
 		var docs 	= solrRes.response.docs;
 		var doc 	= null;
 		for(var i = 0; i < docs.length; i++)
 		{
-			doc		= docs[i];
-			doc.avatar = '//graph.facebook.com/'+doc.identity+'/picture?height=150&amp;width=150';
+			doc					= docs[i];
+			doc.avatar 			= '//graph.facebook.com/'+doc.identity+'/picture?height=150&amp;width=150';
+			characteristics 	= {};
+			for(var i = 0; doc.characteristics && i < doc.characteristics.length; i++)
+			{
+				characteristics[doc.characteristics[i]] = CHARACTERISTICS[doc.characteristics[i]];
+			}
+			doc.characteristics = characteristics;
 		}
 		res.json(docs);
 	});

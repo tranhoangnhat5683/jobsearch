@@ -182,11 +182,9 @@
                                                         </div>
                                                         <?php if (!empty($item['characteristics'])): ?>
                                                             <div class="item-footer btn-group-xs">
-                                                                <?php foreach ($item['characteristics'] as $tag) : ?>
+                                                                <?php foreach ($item['characteristics'] as $key => $tag) : ?>
                                                                     <button type="button" class="btn green">{{ $tag }}</button>
                                                                 <?php endforeach; ?>
-                                                                <button type="button" class="btn green">Teamwork</button>
-                                                                <button type="button" class="btn green">etc</button>
                                                             </div>
                                                         <?php endif; ?>
                                                     </div>
