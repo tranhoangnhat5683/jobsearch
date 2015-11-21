@@ -1,4 +1,5 @@
-var solr = require('solr-client');
+var solr 	= require('solr-client');
+var qs 		= require('querystring');
 
 var Script = function()
 {
@@ -90,7 +91,7 @@ Script.prototype.loadData = function()
 		.sort({
 			'id' : 'ASC'
 		})
-		.set(qs.querystring({
+		.set(qs.stringify({
 			'shards' 		: this.shards.join(','),
 			'cursorMark'	: this.cursorMark
 		}));
