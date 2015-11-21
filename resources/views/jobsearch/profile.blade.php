@@ -173,8 +173,8 @@
                                                         <div class="item-head">
                                                             <div class="item-details">
                                                                 <img class="item-pic" src="{{ isset($item['avatar']) ? $item['avatar'] : 'assets/admin/pages/media/profile/profile_user.jpg' }}">
-                                                                <a href="" class="item-name primary-link">{{ isset($item['fullname']) ? $item['fullname'] : '' }}</a>
-                                                                <span class="item-label">{{ $item['created_at'] }}</span>
+                                                                <a target="_blank" href="//www.facebook.com/{{$item['identity']}}" class="item-name primary-link">{{ isset($item['fullname']) ? $item['fullname'] : 'No name' }}</a>
+                                                                <a target="_blank" href="//www.facebook.com/{{$item['id']}}" class="item-label">{{ $item['created_at'] }}</a>
                                                             </div>
                                                         </div>
                                                         <div class="item-body">

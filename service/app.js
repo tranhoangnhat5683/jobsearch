@@ -12,6 +12,14 @@ var client 	= solr.createClient({
 	path : '/solr/jobsearch',
 });
 
+var CHARACTERISTICS =  {
+	'77' 	: 'optimism',
+	'78'	: 'active',
+	'79'	: 'confidence',
+	'80'	: 'communication',
+	'81'	: 'funny'
+};
+
 app.get('/stream', function(req, res) {
 	var identity = req.param('identity');
 	if( !identity )

@@ -54,7 +54,9 @@ class Curl extends BaseTransport
 			CURLOPT_CUSTOMREQUEST => self::GET,
 			CURLOPT_POST => false,
 			CURLOPT_POSTFIELDS => null,
-			CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4
+			CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+			CURLOPT_SSL_VERIFYHOST => 0,
+			CURLOPT_SSL_VERIFYPEER => 0
 		);
 
 		if ($this->username && $this->password) {

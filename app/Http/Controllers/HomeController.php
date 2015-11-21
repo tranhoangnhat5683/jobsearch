@@ -8,6 +8,7 @@ use App\Skill;
 use App\Location;
 use App\Character;
 use Vinelab\Http\Client as HttpClient;
+use \Config;
 
 class HomeController extends Controller {
 
@@ -103,7 +104,8 @@ class HomeController extends Controller {
         }
 
 		$client 			= new HttpClient;
-		$response 			= $client->get('http://localhost:3000/stream?identity=1791212982');
+		$url 				= Config::get('app.api');
+		$response 			= $client->get($url.'/stream?identity=1791212982');
 		$data['activities'] = $response->json(true);
 
 		return view('jobsearch/profile', $data);
