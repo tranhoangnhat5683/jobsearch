@@ -76,27 +76,14 @@ class HomeController extends Controller {
 	 */
 	public function profile(Request $request)
 	{
-		$identity = $request->input('identity');
-        $skill_name = $request->input('skill');
-
-        $user = [];
-        if ($identity)
-        {
-            $user['identity'] = $identity;
-        }
-        $skill = [];
-        if ($skill_name)
-        {
-            $skill['name'] = $skill_name;
-        }
-
-        $data = array();
-        $arrResult = User::search($user, $skill);
+		$data      = array();
+		$identity  = $request->input('identity');
+		$arrResult = User::get(array($identity));
         if (!empty($arrResult)) {
-        	$arrResult = array_values($arrResult);
-        	$arrResult = $this->buildProfileInfo($arrResult);
+        	//$arrResult = $this->buildProfileInfo(array_values($arrResult));
         	$data = $arrResult[0];
         }
+        return response()->json($arrResult);
 		return view('jobsearch/profile', $data);
 	}
 
