@@ -18,7 +18,7 @@
 								</div> 
 								
 							</div>
-							<!-- <div class="row">
+							<div class="row">
 								<div class="form-group col-md-6">
 									<label>Skill</label>
 									<input type="text" class="form-control input-lg" id="input-skill" multiple="multiple" placeholder="Nhập tính cách cần tìm...">
@@ -34,15 +34,9 @@
 									</select>
 								</div>
 
-<<<<<<< HEAD
-							</div> -->
-							<div class="text-center">
-								<a href="javascript:;" class="btn btn-lg blue text-right">
-=======
 							</div>
-							<div class="text-right">
+							<div class="text-center">
 								<a href="/list" class="btn btn-lg blue text-right">
->>>>>>> origin/master
 									Search <i class="fa fa-search"></i>
 								</a>
 							</div>
