@@ -121,15 +121,15 @@ Script.prototype.onLoadData = function(solrErr, solrRes)
 	for(var i = 0, n = docs.length; i < n; i++)
 	{
 		doc = docs[i];
-		if( !doc.seach_text ){
-			doc.seach_text = [];
+		if( !doc.search_text ){
+			doc.search_text = [];
 		}
 		this.arrDocs.push({
 			"id"				: doc.id_social,
 			"identity"			: doc.identity,
 			"id_source"			: doc.id_source,
-			"message"			: doc.seach_text[0] || '',
-			"description"		: doc.seach_text[1] || '',
+			"message"			: doc.search_text[0] || '',
+			"description"		: doc.search_text[1] || '',
 			"attachment"		: doc.attachment,
 			"created_at"		: doc.crated_date,
 			"updated_at"		: new Date().toISOString(),
