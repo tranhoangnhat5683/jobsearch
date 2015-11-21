@@ -9,7 +9,7 @@ client 	= solr.createClient({
 
 var query = client.createQuery();
 	query.q('*:*')
-	.matchFilter('id', '470356029755907')
+	.matchFilter('id', '(1082243668466327 )')
 	.sort({
 		'id' : 'ASC'
 	})
@@ -39,7 +39,7 @@ client.search(query, function(err, res){
 		upDocs.push({
 			'id' 				: doc.id,
 			'characteristics'	: {
-				set : [79]
+				add : [77, 81]
 			}
 		})
 	}

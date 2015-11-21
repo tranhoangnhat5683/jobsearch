@@ -18,7 +18,7 @@ module.exports = function() {
 
     // optimism
     keywords['77'] = [
-        'yêu đời', 'lạc quan', 'vui'
+        'yêu đời', 'lạc quan', 'vui', 'duoc ngay'
     ];
 
     // active
@@ -39,7 +39,7 @@ module.exports = function() {
 
     // funny
     keywords['81'] = [
-        'vui', 'ha ha', 'được đó', 'vãi', 'troll', ':D', ':v', '^_^', 'lol'
+        'vui', 'ha ha', 'được đó', 'vãi', 'troll', ':D', ':v', '^_^', 'lol', 'cool', 'nice'
     ];
 
     return keywords;

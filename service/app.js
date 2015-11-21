@@ -13,6 +13,11 @@ var client 	= solr.createClient({
 });
 
 var CHARACTERISTICS =  {
+	'62'	: 'positive',
+	'63'	: 'teamwork',
+	'64'	: 'open',
+	'65'	: 'confidence',
+	'66'	: 'sincere',
 	'77' 	: 'optimism',
 	'78'	: 'active',
 	'79'	: 'confidence',
@@ -33,6 +38,7 @@ app.get('/stream', function(req, res) {
 	var query = client.createQuery()
 		.q('*:*')
 		.matchFilter('identity', identity);
+
 	client.search(query, function(solrErr, solrRes){
 		if( solrErr )
 		{
@@ -50,10 +56,13 @@ app.get('/stream', function(req, res) {
 			doc					= docs[i];
 			doc.avatar 			= '//graph.facebook.com/'+doc.identity+'/picture?height=150&amp;width=150';
 			characteristics 	= {};
-			for(var i = 0; doc.characteristics && i < doc.characteristics.length; i++)
+			if( (doc.characteristics instanceof Array) && doc.characteristics.length )
 			{
-				if( CHARACTERISTICS[doc.characteristics[i]] ) {
-					characteristics[doc.characteristics[i]] = CHARACTERISTICS[doc.characteristics[i]];
+				for(var j = 0; j < doc.characteristics.length; j++)
+				{
+					if( CHARACTERISTICS[doc.characteristics[j]] ) {
+						characteristics[doc.characteristics[j]] = CHARACTERISTICS[doc.characteristics[j]];
+					}
 				}
 			}
 			doc.characteristics = characteristics;

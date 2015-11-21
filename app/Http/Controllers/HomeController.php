@@ -103,11 +103,14 @@ class HomeController extends Controller {
 
         }
 
-		$client 			= new HttpClient;
+        $client 			= new HttpClient;
 		$url 				= Config::get('app.api');
-		$response 			= $client->get($url.'/stream?identity=1791212982');
-		$data['activities'] = $response->json(true);
+		try {
+			$response 			= $client->get($url.'/stream?identity=1293279182');
+			$data['activities'] = $response->json(true);
+		} catch(Exeption $e) {
 
+		}
 		return view('jobsearch/profile', $data);
 	}
 
