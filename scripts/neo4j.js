@@ -16,9 +16,9 @@ module.exports = function() {
         return this.client;
     };
 
-    Model.prototype.getUsers = function(callback)
+    Model.prototype.getUsers = function(limit, callback)
     {
-        this.getClient().cypherQuery("MATCH (user:User) RETURN user", function(err, result) {
+        this.getClient().cypherQuery("MATCH (user:User) RETURN user SKIP " + limit[1] + " LIMIT " + limit[0], function(err, result) {
             if (err)
             {
                 callback(err);

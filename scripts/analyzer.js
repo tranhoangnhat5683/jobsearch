@@ -6,10 +6,12 @@ var Neo4j = require('./neo4j');
 var Script = function() {
     this.solr = new Solr();
     this.neo4j = new Neo4j();
+    this.limit = 100;
+    this.offset = 0;
 };
 
 Script.prototype.start = function() {
-    this.neo4j.getUsers(this.onGetUsers.bind(this));
+    this.neo4j.getUsers([this.limit, this.offset], this.onGetUsers.bind(this));
 };
 
 Script.prototype.onGetUsers = function(err, users) {
@@ -19,6 +21,13 @@ Script.prototype.onGetUsers = function(err, users) {
         return;
     }
 
+    if (!users.length)
+    {
+        console.log('DONE');
+        return;
+    }
+
+    this.offset += users.length;
     var flows = [];
     for (var i = 0; i < users.length; i++)
     {
@@ -72,7 +81,7 @@ Script.prototype.onUpdateUsersScore = function(err, res)
         return;
     }
 
-    console.log(res);
+    this.start();
 };
 
 var script = new Script();
