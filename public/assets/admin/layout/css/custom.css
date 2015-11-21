@@ -105,3 +105,6 @@ img.cff-avatar {
 .page-header.navbar .page-logo .logo-default {
     margin: 0;
 }
+.page-footer-inner {
+    width: 100%;
+}

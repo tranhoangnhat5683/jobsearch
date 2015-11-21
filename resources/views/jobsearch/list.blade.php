@@ -47,7 +47,7 @@
                                             <div class="profile-desc-text">Location: <span class="profile-usertitle-job">{{ isset($item['location']['name']) ? $item['location']['name'] : 'HCM' }}</span></div>
                                             <div class="profile-desc-text">Skill: <span class="profile-usertitle-job">{{ isset($item['skill_list']) ? $item['skill_list'] : '' }}</span></div>
                                             <div class="cff-button">
-                                                <a href="<?php echo action('HomeController@profile', array('identity' => $item['identity'])); ?>" class="btn btn-xs green">
+                                                <a href="<?php echo action('HomeController@profile', array('identity' => $item['identity'])); ?>" target="_blank" class="btn btn-xs green">
                                                     View <i class="fa fa-eye"></i>
                                                 </a>
                                                 <a href="mailto:{{ isset($item['email']) ? $item['email'] : '' }}" class="btn btn-xs green">Send Email <i class="fa fa-envelope"></i>
@@ -59,23 +59,23 @@
                                         Characteristics
                                     </div>
                                     <div class="col-sm-4 cff-character-col">
-                                        <?php if (!empty($characters)): ?>
-                                            <?php foreach ($characters as $item) : ?>
+                                        <?php if (!empty($item['characters'])): ?>
+                                            <?php foreach ($item['characters'] as $character) : ?>
                                                 <div class="row">
-                                                    <div class="col-sm-3 caption-subject font-blue-madison bold">{{ $item['name'] }}</div>
+                                                    <div class="col-sm-3 caption-subject font-blue-madison bold">{{ $character['name'] }}</div>
                                                     <div class="portlet-body col-sm-6">
-                                                        <progress max="{{ $item['max'] }}" value="{{ $item['current'] }}" class="html5">
+                                                        <progress max="{{ $character['max'] }}" value="{{ $character['current'] }}" class="html5">
                                                             <div class="progress-bar"></div>
                                                         </progress>
                                                     </div>
                                                     <div class="col-sm-3 text-right">
-                                                        <span class="font-red-intense bold" id='abc'>{{ $item['current'] }}</span>/<span class="bold" id='xyz'>{{ $item['max'] }}</span>
+                                                        <span class="font-red-intense bold" id='abc'>{{ $character['current'] }}</span>/<span class="bold" id='xyz'>{{ $character['max'] }}</span>
                                                     </div>
                                                 </div>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                         <!-- Demo data -->
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-sm-3 caption-subject font-blue-madison bold">Positi</div>
                                             <div class="portlet-body col-sm-6">
                                                 <progress max="100" value="80" class="html5">
@@ -85,7 +85,7 @@
                                             <div class="col-sm-3 text-right">
                                                 <span class="font-red-intense bold" id='abc'>777</span>/<span class="bold" id='xyz'>1000</span>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- End Demo data -->
                                     </div>
                                 </div>

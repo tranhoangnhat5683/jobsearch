@@ -62,10 +62,10 @@ class HomeController extends Controller {
         $data = [];
         if (!empty($arrResult)) {
         	$arrResult = $this->buildProfileInfo($arrResult);
-        	$data = array('profiles' => array_values($arrResult));
+        	$data = array('profiles' => $arrResult);
         }
-
 		// return response()->json($data);
+
 		return view('jobsearch/list', $data);
 	}
 
@@ -80,8 +80,8 @@ class HomeController extends Controller {
 		$identity  = $request->input('identity');
 		$arrResult = User::get(array($identity));
 
+        //return response()->json($arrResult);
         if (!empty($arrResult)) {
-        	// return response()->json($arrResult);
         	$arrResult = $this->buildProfileInfo($arrResult);
         	$data = $arrResult[0];
 

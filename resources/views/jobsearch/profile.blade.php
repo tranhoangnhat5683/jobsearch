@@ -115,7 +115,7 @@
                                     </div>
                                 </div>
                                 <?php if (!empty($characters)): ?>
-                                    <?php foreach ($characters as $key => $item) : ?>
+                                    <?php foreach ($characters as $item) : ?>
                                         <div class="row">
                                             <div class="col-sm-2 caption-subject font-blue-madison bold"><?php echo $item["name"]; ?></div>
                                             <div class="portlet-body col-sm-8">
