@@ -8,24 +8,42 @@
 		<div class="job-finder-box container" id="job-finder-box">
 			<div class="job-finder-content">
 				<div class="job-finder-form">
-					<h1 class="text-center">My Sologan <strong>GAY!</strong></h1>
+					<h1 class="text-center">Find Employee <strong>Human Up!</strong></h1>
 					<div class="form-content">
 						<form class="" action="" method="get" accept-charset="utf-8">
 							<div class="row">
-								<div class="form-group col-md-12">
-									<!-- <label>Characteristics</label> -->
-									<input type="text" class="form-control input-lg" id="input-character"  multiple="multiple" placeholder="Select character" autofocus>
+								<div class="form-group col-md-6">
+									<label>Characteristics</label>
+									<input type="text" class="form-control input-lg" placeholder="Nhập tính cách cần tìm...">
 								</div> 
+								<div class="form-group col-md-6">
+									<label>Skill</label>
+									<input type="text" class="form-control input-lg" id="input-skill" multiple="multiple" placeholder="Nhập tính cách cần tìm...">
+								</div> 
+								<!-- <div class="form-group col-md-12">
+									<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+										Careful </button>
+									<button type="button" class="btn btn-default active" data-toggle="button" aria-pressed="true">
+												Active </button>
+									<button type="button" class="btn red active" data-toggle="button" aria-pressed="true">
+												Open </button>
+									<button type="button" class="btn blue active" data-toggle="button" aria-pressed="true">
+												Teamwork </button>
+								</div> -->
 							</div>
 							<div class="row">
 								<div class="form-group col-md-6">
-									<!-- <label>Skill</label> -->
-									<input type="text" class="form-control input-lg" id="input-skill" multiple="multiple" placeholder="Nhập tính cách cần tìm...">
-								</div> 
+									<label>Categories</label>
+									<select class="form-control js-example-basic-multiple" id="input-category">
+										<option>Công Nghệ Thông tin</option>
+										<option>Accounting</option>
+										<option>Arts/Design</option>
+										<option>Architecture/Interior Design</option>
+									</select>
+								</div>
 								<div class="form-group col-md-6">
-									<!-- <label>Location</label> -->
-									<select class="form-control js-example-basic-multiple" multiple="multiple" id="input-location">
-										<option></option>
+									<label>Location</label>
+									<select class="form-control js-example-basic-multiple" id="input-location">
 										<option>Hồ Chí Minh</option>
 										<option>Hà Nội</option>
 										<option>Phú Yên</option>
@@ -33,8 +51,9 @@
 										<option>Mỹ Tho</option>
 									</select>
 								</div>
+
 							</div>
-							<!-- <div class="row">
+							<div class="row">
 								<div class="form-group col-sm-6 form-md-line-input">
 									<label class=" control-label" for="form_control_1">Gender</label>
 									<div class="">
@@ -105,9 +124,9 @@
 										</div>
 									</div>
 								</div>
-							</div>		 -->					
-							<div class="text-center">
-								<a href="javascript:;" class="btn btn-lg blue">
+							</div>							
+							<div class="text-right">
+								<a href="javascript:;" class="btn btn-lg blue text-right">
 									Search <i class="fa fa-search"></i>
 								</a>
 							</div>
@@ -116,8 +135,6 @@
 				</div>
 			</div>
 		</div>
-		<div class='rabbit'></div>
-		<div class='clouds'></div>
 		<!-- END PAGE CONTENT-->
 	</div>
 </div>
@@ -135,11 +152,11 @@
 		allowClear: true,
 		maximumSelectionLength: 4
 	});
-	// $("#input-character").select2({
-	// 	placeholder: "All Character",
-	// 	allowClear: true,
-	// 	maximumSelectionLength: 5
-	// });
+	$("#input-category").select2({
+		placeholder: "All category",
+		allowClear: true,
+		maximumSelectionLength: 3
+	});
 	$("#input-skill").select2({
 		placeholder: "Select a skill",
 		allowClear: true,
