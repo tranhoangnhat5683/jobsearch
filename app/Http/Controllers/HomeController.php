@@ -18,6 +18,8 @@ class HomeController extends Controller {
 	|
 	*/
 
+	protected $params;
+
 	/**
 	 * Create a new controller instance.
 	 *
@@ -26,6 +28,15 @@ class HomeController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('guest');
+	}
+
+	private function _buildParams(Request $request) {
+		return [
+			'location'  => $request->input('location'),
+			'skill'     => array_filter($request->input('skill', array())),
+			'character' => array_filter($request->input('character', array())),
+			'gender'    => $request->input('gender', ''),
+        ];
 	}
 
 	/**
@@ -45,39 +56,14 @@ class HomeController extends Controller {
 	 */
 	public function search(Request $request)
 	{
-		$identity = $request->input('identity');
-        $skill_name = $request->input('skill');
+        $parms = $this->_buildParams($request);
+        $arrResult = User::search($parms);
 
-		$user = [];
-        if ($identity)
-        {
-            $user['identity'] = $identity;
-        }
-        $skill = [];
-        if ($skill_name)
-        {
-            $skill['name'] = $skill_name;
-        }
-
-        $data = array();
-        $arrResult = User::search();
-
+        $data = [];
         if (!empty($arrResult)) {
-        	$arrResult = array_values($arrResult);
-        	return response()->json($arrResult);
-
-        	$data = $arrResult[0];
-
-        	if (!empty($data['skill'])) {
-        		$skill_list = array_column($data['skill'], 'name');
-        		$data['skill_list'] = implode(' , ', $skill_list);
-        	}
-
+        	$arrResult = $this->buildProfileInfo($arrResult);
         	$data = array('profiles' => array_values($arrResult));
-
         }
-
-
 
 		// return response()->json($data);
 		return view('jobsearch/list', $data);
@@ -108,17 +94,20 @@ class HomeController extends Controller {
         $arrResult = User::search($user, $skill);
         if (!empty($arrResult)) {
         	$arrResult = array_values($arrResult);
+        	$arrResult = $this->buildProfileInfo($arrResult);
         	$data = $arrResult[0];
-
-        	if (!empty($data['skill'])) {
-        		$skill_list = array_column($data['skill'], 'name');
-        		$data['skill_list'] = implode(' , ', $skill_list);
-        	}
         }
 		return view('jobsearch/profile', $data);
 	}
 
 	private function buildProfileInfo($list){
-
+		$result = empty($list) ? array() : $list;
+		foreach ($result as &$profile) {
+			if (!empty($profile['skill'])) {
+        		$skill_list = array_column($profile['skill'], 'name');
+        		$profile['skill_list'] = implode(' , ', $skill_list);
+        	}
+		}
+		return $result;
 	}
 }

@@ -21,7 +21,13 @@ class User extends NeoEloquent {
         $location_query = static::buildSearchLocation($options);
         $skill_query = static::buildSearchSkill($options);
         $character_query = static::buildSearchCharacter($options);
-
+var_dump(implode(' ', [
+                    $user_query,
+                    $location_query,
+                    $skill_query,
+                    $character_query,
+                    "return ID(user) as id"
+        ])); die;
         $rowset = DB::select(implode(' ', [
                     $user_query,
                     $location_query,
