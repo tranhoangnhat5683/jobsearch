@@ -30,11 +30,9 @@
 								<div class="form-group col-md-6">
 									<label>Location</label>
 									<select class="form-control js-example-basic-multiple" id="input-location" multiple="multiple">
-										<option>Hồ Chí Minh</option>
-										<option>Hà Nội</option>
-										<option>Phú Yên</option>
-										<option>Đà Lạt</option>
-										<option>Mỹ Tho</option>
+										@foreach ($locations as $key => $location)
+											<option value="{{ $key }}">{{ $location }}</option>
+										@endforeach
 									</select>
 								</div>
 
