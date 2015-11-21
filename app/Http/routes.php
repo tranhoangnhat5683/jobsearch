@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/list', 'HomeController@search');
 Route::get('/profile', 'HomeController@profile');
 Route::get('/api/user/search', 'Api\UserController@search');
+Route::get('/api/user/get', 'Api\UserController@get');
 //Route::get('/api/page/search', 'Api\PageController@search');
 Route::get('/api/skill/search', 'Api\SkillController@search');
 Route::get('/api/character/search', 'Api\CharacterController@search');

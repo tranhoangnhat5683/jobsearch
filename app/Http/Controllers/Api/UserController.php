@@ -15,5 +15,9 @@ class UserController extends Controller {
 
         return User::search($location, $skill_ids, $character_ids);
     }
+    public function get(Request $request) {
+        $id = $request->input('id');
+        return User::get($id);
+    }
 
 }

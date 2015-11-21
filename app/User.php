@@ -85,4 +85,51 @@ class User extends NeoEloquent {
         }
         return $result;
     }
+    public static function get($id = 0) {
+        $rowset = DB::select(implode(' ', [
+                "MATCH (user:User) WHERE ID(user) = $id",
+                "OPTIONAL MATCH (user)-[:At]->(location:Location)",
+                "OPTIONAL MATCH (user)-[:Own]->(skill:Skill)",
+                "OPTIONAL MATCH (user)-[has:Has]->(character:Character)",
+                "return user,skill,character,location,has"
+            ]));
+        $result = null;
+        foreach($rowset as $row)
+        {
+            if (!$result) {
+                $user = $row['user']->getProperties();
+                $user['id'] = $row['user']->getid();
+                $user['skill'] = [];
+                $user['character'] = [];
+                $result = $user;
+            }
+
+            if ($row['skill'])
+            {
+                $skill = $row['skill']->getProperties();
+                $skill['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
+                $skill['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
+                $skill['id'] = $row['skill']->getId();
+                $result['skill'][] = $skill;
+            }
+
+            if ($row['character'])
+            {
+                $character = $row['character']->getProperties();
+                $character['id'] = $row['character']->getId();
+                $result['character'][] = $character;
+            }
+
+            if ($row['location'])
+            {
+                $location = $row['location']->getProperties();
+                $location['id'] = $row['location']->getId();
+                $result['location'] = $location;
+            }
+        }
+        return $result;
+    }
+    private static function buildUser($row){
+        
+    }
 }
