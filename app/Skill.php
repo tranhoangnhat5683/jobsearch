@@ -10,7 +10,7 @@ class Skill extends NeoEloquent {
     protected $label = 'Skill';
     protected $fillable = ['name'];
 
-    public static function search($name) {
+    public static function search($name = '') {
         $rowset = DB::select("MATCH (skill:Skill) WHERE skill.name =~ '(?i)$name.*' RETURN skill");
         $result = [];
         foreach ($rowset as $row) {

@@ -14,15 +14,19 @@
 							<div class="row">
 								<div class="form-group col-md-12">
 									<!-- <label>Characteristics</label> -->
-									<input type="text" class="form-control input-lg" placeholder="..." autofocus>
-								</div> 
-								
+									<input type="text" class="form-control input-lg" id="input-character" placeholder="..." autofocus>
+								</div>
 							</div>
 							<div class="row">
 								<div class="form-group col-md-6">
 									<label>Skill</label>
-									<input type="text" class="form-control input-lg" id="input-skill" multiple="multiple" placeholder="Nhập tính cách cần tìm...">
-								</div> 
+									<!-- <input type="text" class="form-control input-lg" id="input-skill" multiple="multiple" placeholder="Nhập tính cách cần tìm..."> -->
+									<select class="form-control js-example-basic-multiple" id="input-skill" multiple="multiple">
+										@foreach ($skills as $key => $skill)
+											<option value="{{ $key }}">{{ $skill }}</option>
+										@endforeach
+									</select>
+								</div>
 								<div class="form-group col-md-6">
 									<label>Location</label>
 									<select class="form-control js-example-basic-multiple" id="input-location" multiple="multiple">
@@ -36,7 +40,7 @@
 
 							</div>
 							<div class="text-center">
-								<a href="/list" class="btn btn-lg blue text-right">
+								<a href="javascript:void()" id="btn-search" class="btn btn-lg blue text-right">
 									Search <i class="fa fa-search"></i>
 								</a>
 							</div>
@@ -72,5 +76,23 @@
 		allowClear: true,
 		maximumSelectionLength: 4
 	});
+
+	$("#btn-search").on("click", function(e) {
+        $.ajax({
+            method      : "POST",
+            url         : "<?php echo url('/api/characteristic') ?>",
+            data        : {
+                _token      : "{{ csrf_token() }}",
+                view_mode   : $(e.target).val()
+            }
+        })
+        .done(function( response ) {
+            alert( "Data Saved: " + response );
+        })
+        .fail(function( jqXHR, textStatus ) {
+            alert( "Request failed: " + textStatus );
+        });
+    });
+
 </script>
 @endsection

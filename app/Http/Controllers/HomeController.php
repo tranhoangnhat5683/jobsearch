@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Utils\Common;
+use App\Skill;
 
 class HomeController extends Controller {
 
@@ -44,9 +45,14 @@ class HomeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		return view('jobsearch/index');
+		$data = [];
+
+		$skills = Skill::search();
+		$data['skills'] = array_column($skills, 'name', 'id');
+
+		return view('jobsearch/index', $data);
 	}
 
 	/**
