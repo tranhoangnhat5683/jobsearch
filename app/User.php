@@ -57,12 +57,7 @@ class User extends NeoEloquent {
     private static function buildSearchSkill($options) {
         if (isset($options['skill']) && $options['skill']) {
             $skill_ids = $options['skill'];
-            $skill_queries = [];
-            for ($i = 0; $i < count($skill_ids); $i++) {
-                $skill_queries[] = "MATCH (user)-[:Own]->(s:Skill) WHERE ID(s)={$skill_ids[$i]}";
-            }
-
-            return implode(' ', $skill_queries);
+            return "MATCH (user)-[:Own]->(s:Skill) WHERE ID(s) in [" . implode(',', $skill_ids) . "]";
         }
 
         return '';
@@ -73,7 +68,7 @@ class User extends NeoEloquent {
             $character_ids = $options['character'];
             $character_queries = [];
             for ($i = 0; $i < count($character_ids); $i++) {
-                $character_queries[] = "MATCH (user)-[:Has]->(c:Character) WHERE ID(c)={$character_ids[$i]}";
+                $character_queries[] = "MATCH (user)-[:Has]->(c$i:Character) WHERE ID(c$i)={$character_ids[$i]}";
             }
 
             return implode(' ', $character_queries);
