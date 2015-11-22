@@ -28,8 +28,8 @@ var CHARACTERISTICS =  {
 
 app.get('/stream', function(req, res) {
 	var identity 	= req.param('identity');
-	var limit 		= req.param('limit', 5);
-	var offset 		= req.param('limit', 200);
+	var limit 		= req.param('limit', 200);
+	var offset 		= req.param('limit', 0);
 	if( !identity )
 	{
 		res.status(400).json({
