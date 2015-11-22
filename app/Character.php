@@ -21,4 +21,14 @@ class Character extends NeoEloquent {
         return $result;
     }
 
+    public static function getMaxScore() {
+        $rowset = DB::select("MATCH (:User)-[has:Has]->(character:Character) RETURN character, max(has.score) as score");
+
+        $result = [];
+        foreach ($rowset as $row) {
+            $result[$row["character"]->getId()] = $row['score'];
+        }
+        return $result;
+    }
+
 }

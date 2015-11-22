@@ -5,6 +5,7 @@
 namespace App;
 
 use Vinelab\NeoEloquent\Eloquent\Model as NeoEloquent;
+use App\Character;
 use DB;
 
 class User extends NeoEloquent {
@@ -104,6 +105,7 @@ class User extends NeoEloquent {
     }
 
     public static function get($identities = []) {
+        $maxScore = Character::getMaxScore();
         $rowset = DB::select(implode(' ', [
                     "MATCH (user:User) WHERE user.identity in " . json_encode($identities),
                     "OPTIONAL MATCH (user)-[:At]->(location:Location)",
@@ -138,7 +140,7 @@ class User extends NeoEloquent {
                 $character = $row['character']->getProperties();
                 $character['id'] = $row['character']->getId();
                 $character['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
-                $character['max'] = $row['has'] ? $row['has']->getProperties()['score'] + 20 : 0;
+                $character['max'] = $maxScore[$character['id']];
                 $result[$identity]['characters'][] = $character;
                 $unique[$identity]['characters'][$character['id']] = true;
             }
