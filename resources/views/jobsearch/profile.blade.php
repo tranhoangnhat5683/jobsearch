@@ -46,7 +46,11 @@
                         </div>
                         <div class="col-md-7">
                             <div class="col-profile-basic-info">
-                                <div class="col-md-12 profile-usertitle-name text-left">{{ isset($fullname) ? $fullname : '' }}</div>
+                                <div class="col-md-12 profile-usertitle-name text-left">{{ isset($fullname) ? $fullname : '' }}
+                                    <a target="_blank" href="//www.facebook.com/{{$identity}}" class="item-label fb-link">
+                                        <i class="fa fa-facebook-square fa-2x"></i>
+                                    </a>
+                                </div>
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">Mobile</div>
                                     <div class="col-md-6 text-left"><?php echo isset($mobile) ? $mobile : '123456789'; ?></div>
@@ -66,15 +70,6 @@
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">Location</div>
                                     <div class="col-md-6 text-left">{{ isset($location['name']) ? $location['name'] : 'Ho Chi Minh City' }}</div>
-                                </div>
-                                <div class="profile-desc-text">
-                                    <div class="col-md-6 text-left">
-                                        <a target="_blank" href="//www.facebook.com/{{$identity}}" class="item-label fb-link">
-                                            <i class="fa fa-facebook-square fa-2x"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                    </div>
                                 </div>
                             </div>
                         </div>
