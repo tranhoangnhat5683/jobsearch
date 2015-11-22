@@ -1,6 +1,6 @@
 ## About
 
-This is EQ Job Search App which build in JOB INSEARCH INNOVATION HACKATHON hosted by TechLooper and Vietnamworks
+This is EQ Job Search App which build in [JOB INSEARCH INNOVATION HACKATHON](http://hackathon.techlooper.com/) hosted by [TechLooper](http://www.techlooper.com/) and [Vietnamworks](http://www.vietnamworks.com/)
 
 ## Requirement
 1. [Laravel Framework](http://laravel.com/docs)
