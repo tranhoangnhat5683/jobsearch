@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">
-                                        <a target="_blank" href="//www.facebook.com/{{$identity}}" class="item-label">
+                                        <a target="_blank" href="//www.facebook.com/{{$identity}}" class="item-label fb-link">
                                             <i class="fa fa-facebook-square fa-2x"></i>
                                         </a>
                                     </div>

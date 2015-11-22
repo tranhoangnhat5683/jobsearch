@@ -119,3 +119,9 @@ a.cff-fullname {
 #characters-portlet {
     padding-top: 0;
 }
+
+.fb-link {
+    color: #337AB7;
+}
+.fb-link .fa-2x {
+    font-size: 1.3em;
