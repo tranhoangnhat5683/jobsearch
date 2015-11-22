@@ -45,7 +45,7 @@ class HomeController extends Controller {
             '79' => 'red',
             '80' => 'red',
             '81' => 'purple',
-            '82' => 'yellow',
+            '123' => 'yellow',
         ];
 	}
 

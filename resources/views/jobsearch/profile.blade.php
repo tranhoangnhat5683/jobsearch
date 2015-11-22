@@ -182,7 +182,7 @@
                                                         <?php if (!empty($item['characteristics'])): ?>
                                                             <div class="item-footer btn-group-xs">
                                                                 <?php foreach ($item['characteristics'] as $key => $tag) : ?>
-                                                                    <button type="button" class="btn {{ $characters_colors[$key] }}">{{ $tag }}</button>
+                                                                    <button type="button" class="btn {{ isset($characters_colors[$key]) ? $characters_colors[$key] : '' }}">{{ $tag }}</button>
                                                                 <?php endforeach; ?>
                                                             </div>
                                                         <?php endif; ?>
