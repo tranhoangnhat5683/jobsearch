@@ -40,6 +40,16 @@ jobSearchApp.controller('homeController', function($scope, $http) {
         $scope.searchParam.nextpage += 1;
     };
 
+    $scope.getJob = function(user) {
+        if (user.jobs)
+        {
+            return user.jobs[0];
+        }
+        else
+        {
+            return '';
+        }
+    };
     $scope.getSkills = function(user) {
         var text = [];
         for (var i = 0; i < user.skills.length; i++)

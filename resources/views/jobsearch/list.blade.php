@@ -25,7 +25,7 @@
                                 <div class="profile-usertitle-name">
                                     <a class="cff-fullname" target="_blank" href="/profile?identity=<% profile['identity'] %>"><% profile['fullname'] %></a>
                                 </div>
-                                <div class="profile-desc-text">Level: <span class="profile-usertitle-job"><% profile['level'] || 'Senior' %></span></div>
+                                <div class="profile-desc-text">Job: <span class="profile-usertitle-job"><% getJob(profile) %></span></div>
                                 <div class="profile-desc-text">Location: <span class="profile-usertitle-job"><% profile['location']['name'] || 'HCM' %></span></div>
                                 <div class="profile-desc-text">Skill: <span class="profile-usertitle-job"><% getSkills(profile) %></span></div>
                                 <div class="cff-button">
