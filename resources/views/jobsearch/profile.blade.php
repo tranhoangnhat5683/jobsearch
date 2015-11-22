@@ -67,10 +67,7 @@
                                     <div class="col-md-6 text-left">Location</div>
                                     <div class="col-md-6 text-left">{{ isset($item['location']['name']) ? $item['location']['name'] : 'HCM' }}</div>
                                 </div>
-                                <div class="profile-desc-text">
-                                    <div class="col-md-6 text-left">Level</div>
-                                    <div class="col-md-6 text-left profile-usertitle-job"><?php echo isset($level) ? $level : 'Senior'; ?></div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
