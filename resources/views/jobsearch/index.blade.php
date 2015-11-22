@@ -78,6 +78,6 @@
         allowClear: true,
         maximumSelectionLength: 5
     });
-    $("#input-character").select2("open");
+    // $("#input-character").select2("open");
 </script>
 @endsection
