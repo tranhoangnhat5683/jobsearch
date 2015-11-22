@@ -9,7 +9,7 @@
                     <div class="form-content">
                         <form class="" action="" method="get" accept-charset="utf-8">
                             <div class="row">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-12 cff-select-custom">
                                     <!-- <label>Characteristics</label> -->
                                     <!-- <input type="text" class="form-control input-lg" id="input-character" placeholder="..." autofocus> -->
                                     <select class="form-control js-example-basic-multiple" id="input-character" multiple="multiple">

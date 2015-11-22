@@ -126,7 +126,9 @@ a.cff-fullname {
     
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
+.cff-select-custom .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #f3565d !important;
+    border-color: #f13e46;
     border-radius: 2px;
     border-width: 0 !important;
     font-size: 12px;
@@ -135,14 +137,26 @@ a.cff-fullname {
     padding: 9px 14px 8px;
     position: relative;
     text-transform: uppercase;
-    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    background-color: #f3565d !important;
-    border-color: #f13e46;
     color: #fff;
+    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #26a69a !important;
+    border-color: #219187;
+    border-radius: 2px;
+    border-width: 0 !important;
+    font-size: 12px;
+    font-weight: 600;
+    overflow: hidden;
+    padding: 9px 14px 8px;
+    position: relative;
+    text-transform: uppercase;
+    color: #fff;
+    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 .select2-selection__choice__remove {
     color: #fff !important;
 }
-.select2-selection__rendered {
+.cff-select-custom .select2-selection__rendered {
     padding: 10px !important;
 }
