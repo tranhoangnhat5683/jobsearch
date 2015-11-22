@@ -8,8 +8,10 @@ client 	= solr.createClient({
 });
 //http://www.facebook.com/
 var query = client.createQuery();
-	query.q('*:*')
-	.matchFilter('identity', '(552626673)')
+	query
+	.q('"đọc" "sư phụ" "tham gia lớp" "học" "đi học" "chỉ mình với" "chỉ dùm" "theo học"')
+	//.q('*:*')
+	//.matchFilter('identity', '(552626673)')
 	.fl('id')
 	.rows(1000)
 	.sort({
@@ -39,14 +41,14 @@ client.search(query, function(err, res){
 	{
 		doc 	= docs[i];
 		upDocs.push({
-			'id' 				: doc.id,
-			/*'characteristics'	: {
-				add : [79]
-				//,remove: [78]
-			},*/
-			'skills'	: {
-				add : [0]
+			'id' 				: doc.id
+			,'characteristics'	: {
+				add : [123]
+				,remove: [82]
 			}
+			/*,'skills'	: {
+				remove : [0]
+			}*/
 		})
 	}
 	client.update(upDocs, function(upErr, upRes){

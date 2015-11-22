@@ -22,7 +22,8 @@ var CHARACTERISTICS =  {
 	'78'	: 'active',
 	'79'	: 'confidence',
 	'80'	: 'communication',
-	'81'	: 'funny'
+	'81'	: 'funny',
+	'123'	: 'studiousness'
 };
 
 app.get('/stream', function(req, res) {

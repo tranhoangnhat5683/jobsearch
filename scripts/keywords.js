@@ -43,7 +43,7 @@ module.exports = function() {
     ];
 
     // studiousness
-    keywords['82'] = [
+    keywords['123'] = [
         'đọc', 'sư phụ', 'tham gia lớp', 'học', 'đi học' , 'chỉ mình với', 'chỉ dùm', 'theo học'
     ];
 
