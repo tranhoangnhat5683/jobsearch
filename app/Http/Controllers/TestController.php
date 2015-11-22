@@ -63,11 +63,11 @@ class TestController extends Controller {
 //        User::create(["identity" => "100004227851982", "username" => "kenbihoang.vtv", "fullname" => "Hoàng Trung Hiếu", "gender" => "MALE", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
 //        User::create(["identity" => "728839386", "username" => "long.huynh.16144", "fullname" => "Long Huynh", "gender" => "MALE", "location" => "Thành phố Hồ Chí Minh", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
 //        User::create(["identity" => "100000315701660", "username" => "daudatchaybangpin", "fullname" => "Tan Nguyen Van", "gender" => "MALE", "location" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
-        User::create(["identity" => "1791212982", "username" => "lekhoiphong", "fullname" => "Lê Khôi Phong", "gender" => "MALE", "location" => "HCM", "hometown" => "Biên Hòa", "hobbies" => $this->getHobbies(), 'jobs' => ['Công ty TNHH Tin Học Công Nghệ Đại Nam', 'FPT Software HCM']]);
-        User::create(["identity" => "1824644119", "username" => "vinh.bachsy", "fullname" => "Vinh Bachsy", "gender" => "MALE", "birthday" => "1990", "location" => "Singapore", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => ['Software Developer at ThoughtWorks Inc.', 'Silicon Straits Saigon', 'Silicon Straits']]);
-        User::create(["identity" => "1293279182", "username" => "vpm.hieu", "fullname" => "Hieu Vo", "gender" => "MALE", "location" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => ['Senior Software Engineer at Lazada', 'Software Engineer at Rocket Internet', 'Defide Saigon', 'Blueway']]);
-        User::create(["identity" => "552626673", "username" => "khanhhua", "fullname" => "Khanh Hua", "gender" => "MALE", "location" => "Ho Chi Minh City, Vietnam", "hometown" => "Can Tho", "hobbies" => $this->getHobbies(), 'jobs' => ['Works at Glandore Systems', 'Works at PYCO Digital Vietnam']]);
-        User::create(["identity" => "622449342", "username" => "ngonpham", "fullname" => "Ngon Pham", "gender" => "MALE", "location" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => ['Former Lead Engineer at Caterva Inc', 'SkyDoor']]);
+ //        User::create(["identity" => "1791212982", "username" => "lekhoiphong", "fullname" => "Lê Khôi Phong", "gender" => "MALE", "location" => "HCM", "hometown" => "Biên Hòa", "hobbies" => $this->getHobbies(), 'jobs' => ['Công ty TNHH Tin Học Công Nghệ Đại Nam', 'FPT Software HCM']]);
+ //        User::create(["identity" => "1824644119", "username" => "vinh.bachsy", "fullname" => "Vinh Bachsy", "gender" => "MALE", "birthday" => "1990", "location" => "Singapore", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => ['Software Developer at ThoughtWorks Inc.', 'Silicon Straits Saigon', 'Silicon Straits']]);
+ //        User::create(["identity" => "1293279182", "username" => "vpm.hieu", "fullname" => "Hieu Vo", "gender" => "MALE", "location" => "Ho Chi Minh City, Vietnam", "hometown" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => ['Senior Software Engineer at Lazada', 'Software Engineer at Rocket Internet', 'Defide Saigon', 'Blueway']]);
+ //        User::create(["identity" => "552626673", "username" => "khanhhua", "fullname" => "Khanh Hua", "gender" => "MALE", "location" => "Ho Chi Minh City, Vietnam", "hometown" => "Can Tho", "hobbies" => $this->getHobbies(), 'jobs' => ['Works at Glandore Systems', 'Works at PYCO Digital Vietnam']]);
+ //        User::create(["identity" => "622449342", "username" => "ngonpham", "fullname" => "Ngon Pham", "gender" => "MALE", "location" => "Ho Chi Minh City, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => ['Former Lead Engineer at Caterva Inc', 'SkyDoor']]);
 //        User::create(["identity" => "1243468108", "username" => "nguyen.n.duy.14", "fullname" => "Nguyen Ngoc Duy", "gender" => "MALE", "birthday" => "1984", "location" => "Ho Chi Minh City, Vietnam", "hometown" => "Phan Thiet", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
 //        User::create(["identity" => "1580406014", "username" => "sonoko.truong", "fullname" => "Sonoko Trương", "gender" => "FEMALE", "location" => "Ho Chi Minh City, Vietnam", "hometown" => "Da Lat", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
 //        User::create(["identity" => "100005098691694", "username" => "yumi0185", "fullname" => "Yumi Vu", "gender" => "FEMALE", "birthday" => "1984", "location" => "Ho Chi Minh City, Vietnam", "hometown" => "Binh Dinh, Nghia Binh, Vietnam", "hobbies" => $this->getHobbies(), 'jobs' => $this->getJobs()]);
@@ -163,16 +163,17 @@ class TestController extends Controller {
     private function createCharacter() {
 //        DB::select('DROP CONSTRAINT ON (character:Character) ASSERT character.name IS UNIQUE');
         DB::select('CREATE CONSTRAINT ON (character:Character) ASSERT character.name IS UNIQUE');
-//        Character::create(["name" => "Positive"]);
-//        Character::create(["name" => "Teamwork"]);
-//        Character::create(["name" => "Open"]);
-//        Character::create(["name" => "Confident"]);
-//        Character::create(["name" => "Sincere"]);
+        Character::create(["name" => "Positive"]);
+        Character::create(["name" => "Teamwork"]);
+        Character::create(["name" => "Open"]);
+        Character::create(["name" => "Confident"]);
+        Character::create(["name" => "Sincere"]);
         Character::create(["name" => "Optimism"]);
         Character::create(["name" => "Active"]);
         Character::create(["name" => "Confidence"]);
         Character::create(["name" => "Communication"]);
         Character::create(["name" => "Funny"]);
+        Character::create(["name" => "Studiousness"]);
     }
 
     private function createSkill() {
