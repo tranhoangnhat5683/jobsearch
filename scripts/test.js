@@ -9,9 +9,9 @@ client 	= solr.createClient({
 //http://www.facebook.com/
 var query = client.createQuery();
 	query
-	.q('"đọc" "sư phụ" "tham gia lớp" "học" "đi học" "chỉ mình với" "chỉ dùm" "theo học"')
-	//.q('*:*')
-	//.matchFilter('identity', '(552626673)')
+	//.q('"yêu đời" "lạc quan" "vui" "duoc ngay" "dao nay thich" "chia se"')
+	.q('*:*')
+	.matchFilter('id', '(10203757816625614)')
 	.fl('id')
 	.rows(1000)
 	.sort({
@@ -43,8 +43,8 @@ client.search(query, function(err, res){
 		upDocs.push({
 			'id' 				: doc.id
 			,'characteristics'	: {
-				add : [123]
-				,remove: [82]
+				//add : [64]
+				remove: [81]
 			}
 			/*,'skills'	: {
 				remove : [0]

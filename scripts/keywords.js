@@ -18,7 +18,7 @@ module.exports = function() {
 
     // optimism
     keywords['77'] = [
-        'yêu đời', 'lạc quan', 'vui', 'duoc ngay', 'dao nay thich'
+        'yêu đời', 'lạc quan', 'vui', 'duoc ngay', 'dao nay thich', 'chia se'
     ];
 
     // active
