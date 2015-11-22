@@ -49,9 +49,9 @@ app.get('/stream', function(req, res) {
 	client.search(query, function(solrErr, solrRes){
 		if( solrErr )
 		{
-			res.status(400).json({
-				'code'		: 400,
-				'message'	: 'Invalid param identity'
+			res.status(500).json({
+				'code'		: 500,
+				'message'	: solrErr.message
 			});
 			return;
 		}
