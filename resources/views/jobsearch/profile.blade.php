@@ -114,7 +114,7 @@
                                 <div class="portlet-title">
                                     <div class="caption caption-md">
                                         <i class="icon-bar-chart theme-font hide"></i>
-                                        <span class="caption-subject font-blue-madison bold uppercase">Characteristics</span>
+                                        <span class="caption-subject font-blue-madison bold uppercase">Characters</span>
                                     </div>
                                 </div>
                                 @if (!empty($characters))
