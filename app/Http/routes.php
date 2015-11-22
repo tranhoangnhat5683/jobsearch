@@ -11,7 +11,7 @@
   |
  */
 //Danh sach cac Router chinh ve UI
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@home');
 Route::get('/list', 'HomeController@search');
 Route::get('/profile', 'HomeController@profile');
 Route::get('/api/user/search', 'Api\UserController@search');
