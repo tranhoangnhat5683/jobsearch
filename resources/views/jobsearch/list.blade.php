@@ -30,9 +30,10 @@
                                 <div class="profile-desc-text">Skill: <span class="profile-usertitle-job"><% getSkills(profile) %></span></div>
                                 <div class="cff-button">
                                     <a href="/profile?identity=<% profile['identity'] %>" target="_blank" class="btn btn-xs green">
-                                        View <i class="fa fa-eye"></i>
+                                        View Profile <i class="fa fa-eye"></i>
                                     </a>
-                                    <a href="mailto:<% profile['email'] || '' %>" class="btn btn-xs green">Send Email <i class="fa fa-envelope"></i>
+                                    <a href="http://facebook.com/<% profile['identity'] %>" target="_blank" class="btn btn-xs green">
+                                        Facebook Profile <i class="fa fa-facebook-square"></i>
                                     </a>
                                 </div>
                             </div>
