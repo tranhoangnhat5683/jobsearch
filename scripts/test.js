@@ -9,7 +9,9 @@ client 	= solr.createClient({
 //http://www.facebook.com/
 var query = client.createQuery();
 	query.q('*:*')
-	.matchFilter('id', '(470356029755907)')
+	.matchFilter('identity', '(552626673)')
+	.fl('id')
+	.rows(1000)
 	.sort({
 		'id' : 'ASC'
 	})
@@ -38,13 +40,13 @@ client.search(query, function(err, res){
 		doc 	= docs[i];
 		upDocs.push({
 			'id' 				: doc.id,
-			'characteristics'	: {
+			/*'characteristics'	: {
 				add : [79]
 				//,remove: [78]
-			},
-			/*'skills'	: {
-				add : [1]
-			}*/
+			},*/
+			'skills'	: {
+				add : [0]
+			}
 		})
 	}
 	client.update(upDocs, function(upErr, upRes){
