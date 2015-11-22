@@ -38,12 +38,12 @@ class HomeController extends Controller {
             '62' => 'green',
             '63' => 'blue',
             '​64' => 'yellow',
-            '65' => 'organ',
+            '65' => 'red',
             '66' => 'purple',
             '77' => 'green',
             '78' => 'blue',
-            '79' => 'organ',
-            '80' => 'organ',
+            '79' => 'red',
+            '80' => 'red',
             '81' => 'purple',
             '82' => 'yellow',
         ];
@@ -141,7 +141,7 @@ class HomeController extends Controller {
         }
         $data['characters_colors'] = $this->colors;
 
-        return response()->json($data);
+        // return response()->json($data);
 
 		return view('jobsearch/profile', $data);
 	}

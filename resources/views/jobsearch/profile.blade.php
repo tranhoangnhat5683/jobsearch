@@ -78,7 +78,13 @@
                     <div class="portlet light col-sm-12">
                         <h4 class="profile-desc-title">Current Job</h4>
                         <div class="primary-link">
-                            <?php echo isset($current_job) ? htmlentities($current_job) : ''; ?>
+                            @if (isset($jobs))
+                                <ul class="profile-job-list">
+                                @foreach ($jobs as $job)
+                                    <li class="profile-job-item">{{ htmlentities($job) }}</li>
+                                @endforeach
+                                </ul>
+                            @endif
                         </div>
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Skills</h4>
