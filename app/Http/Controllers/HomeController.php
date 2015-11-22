@@ -106,7 +106,7 @@ class HomeController extends Controller {
         $client 			= new HttpClient;
 		$url 				= Config::get('app.api');
 		try {
-			$response 			= $client->get($url.'/stream?identity=1293279182');
+			$response 			= $client->get($url.'/stream?identity='.$identity);
 			$data['activities'] = $response->json(true);
 		} catch(Exeption $e) {
 
