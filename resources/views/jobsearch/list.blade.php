@@ -35,7 +35,7 @@
                                             View <i class="fa fa-eye"></i>
                                         </a>
                                         <a href="mailto:<% profile['email'] || '' %>" class="btn btn-xs green">Send Email <i class="fa fa-envelope"></i>
-                                            </a>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
