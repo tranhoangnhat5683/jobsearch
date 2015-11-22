@@ -111,3 +111,11 @@ img.cff-avatar {
 a.cff-fullname {
     color: #5a7391;
 }
+
+.portlet-right {
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1)
+}
+
+#characters-portlet {
+    padding-top: 0;
+}

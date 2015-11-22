@@ -24,6 +24,7 @@ class HomeController extends Controller {
 	*/
 
 	protected $params;
+    protected $colors;
 
 	/**
 	 * Create a new controller instance.
@@ -33,6 +34,18 @@ class HomeController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('guest');
+        $this->colors = [
+            '62' => 'green',
+            '63' => 'blue',
+            '​64' => 'yellow',
+            '65' => 'organ',
+            '66' => 'purple',
+            '77' => 'green',
+            '78' => 'blue',
+            '79' => 'yellow',
+            '80' => 'organ',
+            '81' => 'purple',
+        ];
 	}
 
 	private function _buildParams(Request $request) {
@@ -96,7 +109,7 @@ class HomeController extends Controller {
         	$arrResult = $this->buildProfileInfo($arrResult);
         	$data = array('profiles' => $arrResult);
         }
-		// return response()->json($data);
+		return response()->json($data);
 
 		return view('jobsearch/list', $data);
 	}
@@ -112,21 +125,21 @@ class HomeController extends Controller {
 		$identity  = $request->input('identity');
 		$arrResult = User::get(array($identity));
 
-        //return response()->json($arrResult);
         if (!empty($arrResult)) {
-        	$arrResult = $this->buildProfileInfo($arrResult);
-        	$data = $arrResult[0];
-
+            $arrResult = $this->buildProfileInfo($arrResult);
+            $data = $arrResult[0];
         }
 
-        $client 			= new HttpClient;
-		$url 				= Config::get('app.api');
-		try {
-			$response 			= $client->get($url.'/stream?identity='.$identity);
-			$data['activities'] = $response->json(true);
-		} catch(Exeption $e) {
+        $client = new HttpClient;
+        $url    = Config::get('app.api');
+        try {
+            $response           = $client->get($url.'/stream?identity='.$identity);
+            $data['activities'] = $response->json(true);
+        } catch(Exeption $e) {
 
-		}
+        }
+        $data['characters_colors'] = $this->colors;
+
 		return view('jobsearch/profile', $data);
 	}
 

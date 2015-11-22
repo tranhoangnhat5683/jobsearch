@@ -45,8 +45,8 @@
                             </div>
                         </div>
                         <div class="col-md-7">
-                            <div class="col-profile-basic-info profile-usertitle">
-                                <div class="profile-usertitle-name">{{ isset($item['fullname']) ? $item['fullname'] : '' }}</div>
+                            <div class="col-profile-basic-info">
+                                <div class="col-md-12 profile-usertitle-name text-left">{{ isset($fullname) ? $fullname : '' }}</div>
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">Mobile</div>
                                     <div class="col-md-6 text-left"><?php echo isset($mobile) ? $mobile : '123456789'; ?></div>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">Level</div>
-                                    <div class="col-md-6 text-left profile-usertitle-job"><?php echo isset($level) ? $level : 'Sennior'; ?></div>
+                                    <div class="col-md-6 text-left profile-usertitle-job"><?php echo isset($level) ? $level : 'Senior'; ?></div>
                                 </div>
                             </div>
                         </div>
@@ -79,9 +79,6 @@
                         <h4 class="profile-desc-title">Current Job</h4>
                         <div class="primary-link">
                             <?php echo isset($current_job) ? htmlentities($current_job) : ''; ?>
-                            Front-end developer at Younetmedia
-                            <br>
-                            From 2014 to now
                         </div>
                         <!-- END STAT -->
                         <h4 class="profile-desc-title">Skills</h4>
@@ -107,39 +104,30 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- BEGIN PORTLET -->
-                            <div class="portlet light">
+                            <div class="portlet light portlet-right" id="characters-portlet">
                                 <div class="portlet-title">
                                     <div class="caption caption-md">
                                         <i class="icon-bar-chart theme-font hide"></i>
                                         <span class="caption-subject font-blue-madison bold uppercase">Characteristics</span>
                                     </div>
                                 </div>
-                                <?php if (!empty($characters)): ?>
-                                    <?php foreach ($characters as $item) : ?>
-                                        <div class="row">
-                                            <div class="col-sm-2 caption-subject font-blue-madison bold"><?php echo $item["name"]; ?></div>
-                                            <div class="portlet-body col-sm-8">
-                                                <progress max="<?php echo $item["max"]; ?>" value="<?php echo $item["current"]; ?>" class="html5">
-                                                    <div class="progress-bar"></div>
-                                                </progress>
+                                @if (!empty($characters))
+                                    @foreach ($characters as $item)
+                                        @if ($item["current"] > 0)
+                                            <div class="row">
+                                                <div class="col-sm-2 caption-subject font-blue-madison bold"><?php echo $item["name"]; ?></div>
+                                                <div class="portlet-body col-sm-8">
+                                                    <progress max="<?php echo $item["max"]; ?>" value="<?php echo $item["current"]; ?>" class="html5">
+                                                        <div class="progress-bar"></div>
+                                                    </progress>
+                                                </div>
+                                                <div class="col-sm-2 text-right tooltip" title="{{ $item['current'] }} scores/ {{ $item['max'] }} max scores">
+                                                    <span class="font-red-intense bold" ><?php echo $item["current"]; ?></span>/<span class="bold"><?php echo $item["max"]; ?></span>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-2 text-right">
-                                                <span class="font-red-intense bold" id='abc'><?php echo $item["current"]; ?></span>/<span class="bold"><?php echo $item["max"]; ?></span>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                                <!-- <div class="row">
-                                    <div class="col-sm-2 caption-subject font-blue-madison bold">Teamwork</div>
-                                    <div class="portlet-body col-sm-8">
-                                        <progress max="100" value="0" class="html5">
-                                            <div class="progress-bar"></div>
-                                        </progress>
-                                    </div>
-                                    <div class="col-sm-2 text-right">
-                                        <span class="font-red-intense bold" id='abc'>0</span>/<span class="bold" id='xyz'>1000</span>
-                                    </div>
-                                </div> -->
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                             <!-- END PORTLET -->
                         </div>
@@ -147,20 +135,20 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- BEGIN PORTLET -->
-                            <div class="portlet light">
-                                <div class="portlet-title row">
+                            <div class="portlet light portlet-right" id="active-stream-portlet">
+                                <div class="portlet-title">
                                     <div class="caption caption-md col-md-9">
                                         <span class="caption-subject font-blue-madison bold uppercase">Active Stream</span>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-3">
-                                            <form method="post" action="#">
+                                            <!-- <form method="post" action="#">
                                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                                                 <select id="activity-view-mode" class="form-control">
                                                     <option value="0">Last Activity</option>
                                                     <option value="1">Most related mentions</option>
                                                 </select>
-                                            </form>
+                                            </form> -->
                                         </div>
                                     </div>
                                 </div>
@@ -172,9 +160,9 @@
                                                     <div class="item">
                                                         <div class="item-head">
                                                             <div class="item-details">
-                                                                <img class="item-pic" src="{{ isset($item['avatar']) ? $item['avatar'] : 'assets/admin/pages/media/profile/profile_user.jpg' }}">
-                                                                <a target="_blank" href="//www.facebook.com/{{$item['identity']}}" class="item-name primary-link">{{ isset($item['fullname']) ? $item['fullname'] : 'No name' }}</a>
-                                                                <a target="_blank" href="//www.facebook.com/{{$item['id']}}" class="item-label">{{ $item['created_at'] }}</a>
+                                                                <!-- <a target="_blank" href="//www.facebook.com/{{$item['identity']}}" class="item-name primary-link">{{ isset($item['fullname']) ? $item['fullname'] : 'No name' }}</a> -->
+                                                                Posted at
+                                                                <a target="_blank" href="//www.facebook.com/{{$item['id']}}" class="item-label">{{ date('Y-m-d H:i:s', strtotime($item['created_at'])) }}</a>
                                                             </div>
                                                         </div>
                                                         <div class="item-body">
@@ -183,7 +171,7 @@
                                                         <?php if (!empty($item['characteristics'])): ?>
                                                             <div class="item-footer btn-group-xs">
                                                                 <?php foreach ($item['characteristics'] as $key => $tag) : ?>
-                                                                    <button type="button" class="btn green">{{ $tag }}</button>
+                                                                    <button type="button" class="btn {{ $characters_colors[$key] }}">{{ $tag }}</button>
                                                                 <?php endforeach; ?>
                                                             </div>
                                                         <?php endif; ?>
@@ -214,7 +202,10 @@ $(document).ready(function() {
     Metronic.init(); // init metronic core components
     Layout.init(); // init current layout
     Profile.init(); // init page demo
-    $("#activity-view-mode").on("change", function(e) {
+
+    $('.tooltip').tooltip();
+
+    /*$("#activity-view-mode").on("change", function(e) {
         $.ajax({
             method      : "POST",
             url         : "<?php echo url('/api/characteristic') ?>",
@@ -229,7 +220,7 @@ $(document).ready(function() {
         .fail(function( jqXHR, textStatus ) {
             alert( "Request failed: " + textStatus );
         });
-    });
+    });*/
 });
 </script>
 @endsection
