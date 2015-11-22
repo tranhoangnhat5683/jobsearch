@@ -52,7 +52,8 @@ class User extends NeoEloquent {
 
     private static function buildSearchLocation($options) {
         if (isset($options['location']) && $options['location']) {
-            return "MATCH (user)-[:At]->(location:Location) WHERE ID(location) = " . $options['location'];
+            $location_ids = $options['location'];
+            return "MATCH (user)-[:At]->(location:Location) WHERE ID(location) in [" . implode(',', $location_ids) . "]";
         }
 
         return '';
