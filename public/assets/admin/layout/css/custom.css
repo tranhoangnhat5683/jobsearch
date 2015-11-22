@@ -86,8 +86,8 @@ img.cff-avatar {
     padding: 6px 5px;
 }
 .page-header.navbar .page-logo {
-    /*margin: 0 auto;*/
-    /*float: none;*/
+    margin: 0 auto;
+    float: none;
     z-index: 999;
     position: relative;
 }
@@ -97,6 +97,7 @@ img.cff-avatar {
 
 .page-header.navbar .page-logo .logo-default {
     height: 100%;
+    margin: 0 auto;
 }
 
 .page-header.navbar .page-logo img{

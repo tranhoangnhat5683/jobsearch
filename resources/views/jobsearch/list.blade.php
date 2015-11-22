@@ -13,7 +13,7 @@
     <div class="job-conntent container">
         <div id="list-profile" class="dataTables_wrapper no-footer clearfix">
             <div class="list-profile">
-                <div ng-repeat="profile in profiles" class="list-item col-sm-12 wow bounceInRight animated">
+                <div ng-repeat="profile in profiles" class="list-item col-sm-12 ">
                     <div class="item-content">
                         <div class="col-sm-2 profile-userpic">
                             <a class="cff-fullname" href="/profile?identity=<% profile['identity'] %>" target="_blank">
