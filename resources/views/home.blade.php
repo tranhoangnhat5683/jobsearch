@@ -14,10 +14,14 @@
 
 <!-- BEGIN CONTAINER -->
 <div class="page-container" ng-app="jobSearchApp" ng-controller='homeController'>
-    <!-- BEGIN CONTENT -->
-    @yield('content_index')
-    @yield('content_list')
-    <!-- END CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content page-content-hack">
+            <!-- BEGIN CONTENT -->
+            @yield('content_index')
+            @yield('content_list')
+            <!-- END CONTENT -->
+        </div>
+    </div>
 </div>
 <!-- END CONTAINER -->
 
