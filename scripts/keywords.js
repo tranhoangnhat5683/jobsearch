@@ -10,7 +10,7 @@ module.exports = function() {
     // Open
     keywords['64'] = [];
 
-    // Confident
+    // Confident => Nen bo vi trung
     keywords['65'] = [];
 
     // Sincere

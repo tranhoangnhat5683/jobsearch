@@ -179,7 +179,8 @@ Script.prototype.onLoadData = function(solrErr, solrRes)
 			"shares"			: doc.shares || 0,
 			"with_identity"		: null,
 			"with_name"			: null,
-			"type"				: null
+			"type"				: null,
+			"_version_"			: -1
 		});
 	}
 };
@@ -201,15 +202,15 @@ Script.prototype.importData = function()
 {
 	if( !this.canImportData() )
 	{
-		setTimeout(this.importData.bind(this), 1000);
+		setTimeout(this.importData.bind(this), 100);
 		return false;
 	}
-	var docs = this.arrDocs.splice(0, 100);
+	var docs = this.arrDocs.splice(0, 1);
 
 	this.importDataReq++;
 	this.client.add(docs, this.onImportData.bind(this, docs));
 
-	setTimeout(this.importData.bind(this), 1000);
+	setTimeout(this.importData.bind(this), 100);
 };
 
 Script.prototype.onImportData = function(docs, solrErr, solrRes)
