@@ -4,30 +4,38 @@ var jobSearchApp = angular.module('jobSearchApp', ['angular-loading-bar'], funct
 });
 
 jobSearchApp.controller('homeController', function($scope, $http) {
-    $scope.items = [];
-    $scope.lastpage = 0;
+    var limit = 4;
+    this.searchFlag = false;
+    $scope.profiles = [];
+    $scope.searchParam = {
+        character: '',
+        skill: '',
+        location: '',
+        offset: 0
+    };
 
-    $scope.init = function() {
-        $scope.lastpage = 1;
-        $http({
-            url: '/api/user/search',
-            method: "GET",
-            params: {limit: 4, offset: 0}
-        }).success(function(data, status, headers, config) {
-            $scope.items = data;
-        });
-    };
     $scope.loadMore = function() {
-        $scope.lastpage += 1;
+        if (!this.searchFlag)
+        {
+            return;
+        }
+
         $http({
             url: '/api/user/search',
             method: "GET",
-            params: {limit: 4, offset: $scope.lastpage * 4}
+            params: {
+                character: $scope.searchParam.character,
+                skill: $scope.searchParam.skill,
+                location: $scope.searchParam.location,
+                limit: limit,
+                offset: $scope.searchParam.nextpage * limit
+            }
         }).success(function(data, status, headers, config) {
-            Array.prototype.push.apply($scope.items, data);
-            console.log($scope.items);
+            Array.prototype.push.apply($scope.profiles, data);
         });
+        $scope.searchParam.nextpage += 1;
     };
+
     $scope.getSkills = function(user) {
         var text = [];
         for (var i = 0; i < user.skills.length; i++)
@@ -36,6 +44,7 @@ jobSearchApp.controller('homeController', function($scope, $http) {
         }
         return text.join(', ');
     };
+
     $scope.getCharacters = function(user) {
         var characters = [];
         var character = null;
@@ -51,5 +60,16 @@ jobSearchApp.controller('homeController', function($scope, $http) {
         return characters;
     };
 
-    $scope.init();
+    $scope.search = function() {
+        this.searchFlag = true;
+        $scope.profiles = [];
+        $scope.searchParam = {
+            character: $("#input-character").val(),
+            skill: $("#input-skill").val(),
+            location: $("#input-location").val(),
+            nextpage: 0
+        };
+        $scope.loadMore();
+        $('html, body').animate({scrollTop: '+=550px'}, 800);
+    };
 });

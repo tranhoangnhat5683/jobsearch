@@ -40,7 +40,7 @@
 
                             </div>
                             <div class="text-center">
-                                <a href="javascript:void(0)" id="btn-search" class="btn btn-lg blue text-right">
+                                <a href="#" id="btn-search" class="btn btn-lg blue text-right" ng-click='search()'>
                                     Search <i class="fa fa-search"></i>
                                 </a>
                             </div>
@@ -80,34 +80,5 @@
         maximumSelectionLength: 5
     });
     $("#input-character").select2("open");
-
-    $("#btn-search").on("click", function(e) {
-        var params = {
-            _token: "{{ csrf_token() }}",
-            character: $("#input-character").val(),
-            skill: $("#input-skill").val(),
-            location: $("#input-location").val()
-        };
-        var url = "{{ url('/list') }}?" + $.param(params);
-        location.href = url;
-        // console.log(url);
-        /*$.ajax({
-         method      : "POST",
-         url         : "<?php echo url('/list') ?>",
-         data        : {
-         _token    : "{{ csrf_token() }}",
-         character : $("#input-character").val(),
-         skill     : $("#input-skill").val(),
-         location  : $("#input-location").val(),
-         }
-         })
-         .done(function( response ) {
-         console.log(response);
-         //alert( "Data Saved: " + response );
-         })
-         .fail(function( jqXHR, textStatus ) {
-         alert( "Request failed: " + textStatus );
-         });*/
-    });
 </script>
 @endsection

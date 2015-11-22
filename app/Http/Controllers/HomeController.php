@@ -76,7 +76,7 @@ class HomeController extends Controller {
         $characters = Character::search();
         $data['characters'] = array_column($characters, 'name', 'id');
 
-		return view('jobsearch/index', $data);
+		return view('jobsearch/index_1', $data);
 	}
 
 	public function home(Request $request)
@@ -112,7 +112,7 @@ class HomeController extends Controller {
         }
 		return response()->json($data);
 
-		return view('jobsearch/list', $data);
+		return view('jobsearch/list_1', $data);
 	}
 
 	/**
