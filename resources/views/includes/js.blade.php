@@ -13,5 +13,7 @@
 <script src="assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="assets/admin/pages/scripts/profile.js" type="text/javascript"></script>
 
+<script src="assets/global/js/init.js" type="text/javascript"></script>
+<script src="assets/global/js/angular.js" type="text/javascript"></script>
 
 <!--Tu trang list -->

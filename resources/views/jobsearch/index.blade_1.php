@@ -1,4 +1,7 @@
-@section('content_index')
+@extends('layouts.master')
+
+
+@section('content')
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
 	<div class="page-content page-content-hack">
@@ -55,59 +58,63 @@
 <!-- END CONTENT -->
 @endsection
 
-@section('script_index')
+@section('script')
 <script>
-	
-$("#input-location").select2({
-    placeholder: "All locations",
-    allowClear: true,
-    maximumSelectionLength: 4
-});
-$("#input-category").select2({
-    placeholder: "All categories",
-    allowClear: true,
-    maximumSelectionLength: 3
-});
-$("#input-skill").select2({
-    placeholder: "All skills",
-    allowClear: true,
-    maximumSelectionLength: 4
-});
+	jQuery(document).ready(function() {
+        Metronic.init(); // init metronic core components
+		Layout.init(); // init current layout
+    });
+	$("#input-location").select2({
+		placeholder: "All locations",
+		allowClear: true,
+		maximumSelectionLength: 4
+	});
+	$("#input-category").select2({
+		placeholder: "All categories",
+		allowClear: true,
+		maximumSelectionLength: 3
+	});
+	$("#input-skill").select2({
+		placeholder: "All skills",
+		allowClear: true,
+		maximumSelectionLength: 4
+	});
 
-$("#input-character").select2({
-    placeholder: "Enter characters",
-    allowClear: true,
-    maximumSelectionLength: 5
-});
-$("#input-character").select2("open");
+	$("#input-character").select2({
+		placeholder: "Enter characters",
+		allowClear: true,
+		maximumSelectionLength: 5
+	});
+	$("#input-character").select2("open");
 
-$("#btn-search").on("click", function(e) {
-    var params = {
-        _token: "{{ csrf_token() }}",
-        character: $("#input-character").val(),
-        skill: $("#input-skill").val(),
-        location: $("#input-location").val()
-    };
-    var url = "{{ url('/list') }}?" + $.param(params);
-    location.href = url;
-    // console.log(url);
-    /*$.ajax({
-     method      : "POST",
-     url         : "<?php echo url('/list') ?>",
-     data        : {
-     _token    : "{{ csrf_token() }}",
-     character : $("#input-character").val(),
-     skill     : $("#input-skill").val(),
-     location  : $("#input-location").val(),
-     }
-     })
-     .done(function( response ) {
-     console.log(response);
-     //alert( "Data Saved: " + response );
-     })
-     .fail(function( jqXHR, textStatus ) {
-     alert( "Request failed: " + textStatus );
-     });*/
-});
+	$("#btn-search").on("click", function(e) {
+		var params = {
+			_token    : "{{ csrf_token() }}",
+			character : $("#input-character").val(),
+			skill     : $("#input-skill").val(),
+			location  : $("#input-location").val()
+		};
+		var url = "{{ url('/list') }}?" + $.param(params);
+		location.href = url;
+		// console.log(url);
+        /*$.ajax({
+            method      : "POST",
+            url         : "<?php echo url('/list') ?>",
+            data        : {
+				_token    : "{{ csrf_token() }}",
+				character : $("#input-character").val(),
+				skill     : $("#input-skill").val(),
+				location  : $("#input-location").val(),
+            }
+        })
+        .done(function( response ) {
+        	console.log(response);
+            //alert( "Data Saved: " + response );
+        })
+        .fail(function( jqXHR, textStatus ) {
+            alert( "Request failed: " + textStatus );
+        });*/
+    });
+
 </script>
 @endsection
