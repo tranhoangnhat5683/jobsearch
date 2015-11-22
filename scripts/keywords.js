@@ -42,5 +42,11 @@ module.exports = function() {
         'vui', 'ha ha', 'được đó', 'vãi', 'troll', ':D', ':v', '^_^', 'lol', 'cool', 'nice', '=))'
     ];
 
+    // studious
+    keywords['82'] = [
+        'đọc', 'sư phụ', 'tham gia lớp', 'học', 'đi học' , 'chỉ mình với', 'chỉ dùm', 'theo học'
+    ];
+
+
     return keywords;
 }();
