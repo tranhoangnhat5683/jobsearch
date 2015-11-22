@@ -72,7 +72,7 @@ class User extends NeoEloquent {
             $character_ids = $options['character'];
             $character_queries = [];
             for ($i = 0; $i < count($character_ids); $i++) {
-                $character_queries[] = "MATCH (user)-[h$i:Has]->(c$i:Character) WHERE ID(c$i)={$character_ids[$i]}";
+                $character_queries[] = "MATCH (user)-[h$i:Has]->(c$i:Character) WHERE ID(c$i)={$character_ids[$i]} AND h$i.score > 0";
             }
 
             return implode(' ', $character_queries);
@@ -137,12 +137,15 @@ class User extends NeoEloquent {
             }
 
             if ($row['character'] && !isset($unique[$identity]['characters'][$row['character']->getId()])) {
-                $character = $row['character']->getProperties();
-                $character['id'] = $row['character']->getId();
-                $character['current'] = $row['has'] ? $row['has']->getProperties()['score'] : 0;
-                $character['max'] = $maxScore[$character['id']];
-                $result[$identity]['characters'][] = $character;
-                $unique[$identity]['characters'][$character['id']] = true;
+                if ($row['has']->getProperties()['score'])
+                {
+                    $character = $row['character']->getProperties();
+                    $character['id'] = $row['character']->getId();
+                    $character['current'] = $row['has']->getProperties()['score'];
+                    $character['max'] = $maxScore[$character['id']];
+                    $result[$identity]['characters'][] = $character;
+                    $unique[$identity]['characters'][$character['id']] = true;
+                }
             }
 
             if ($row['page'] && !isset($unique[$identity]['pages'][$row['page']->getId()])) {

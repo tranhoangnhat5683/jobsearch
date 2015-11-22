@@ -24,8 +24,8 @@ jobSearchApp.controller('homeController', function($scope, $http) {
             url: '/api/user/search',
             method: "GET",
             params: {
-                character: $scope.searchParam.character,
-                skill: $scope.searchParam.skill,
+                'character[]': $scope.searchParam.character,
+                'skill[]': $scope.searchParam.skill,
                 location: $scope.searchParam.location,
                 limit: limit,
                 offset: $scope.searchParam.nextpage * limit
