@@ -2,7 +2,7 @@
 .page-content-wrapper .page-content{
     margin-left: 0;
 }
-.page-content-wrapper .page-content-hack {
+.page-content-hack {
     margin-left: 0 !important;
     /*background: blue url("../../../../images/teambuilding3.jpg") no-repeat fixed center; */
     background-size: cover;
@@ -119,9 +119,9 @@ a.cff-fullname {
 #characters-portlet {
     padding-top: 0;
 }
-
 .fb-link {
     color: #337AB7;
 }
 .fb-link .fa-2x {
     font-size: 1.3em;
+}

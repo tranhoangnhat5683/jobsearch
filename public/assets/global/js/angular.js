@@ -74,6 +74,7 @@ jobSearchApp.controller('homeController', function($scope, $http) {
             nextpage: 0
         };
         $scope.loadMore(function() {
+            $('.job-conntent').css("padding-bottom", "50px");
             $('html, body').animate({scrollTop: '+=550px'}, 800);
         });
     };
