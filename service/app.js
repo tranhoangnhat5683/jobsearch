@@ -38,9 +38,12 @@ app.get('/stream', function(req, res) {
 		return;
 	}
 	var query = client.createQuery()
-		.q('*:*')
+		.q('characteristics:[* TO *]')
 		.rows(limit)
 		.start(offset)
+		.sort({
+			'created_at' : 'DESC'
+		})
 		.matchFilter('identity', identity);
 
 	client.search(query, function(solrErr, solrRes){
