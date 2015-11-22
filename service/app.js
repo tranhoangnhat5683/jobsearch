@@ -26,7 +26,9 @@ var CHARACTERISTICS =  {
 };
 
 app.get('/stream', function(req, res) {
-	var identity = req.param('identity');
+	var identity 	= req.param('identity');
+	var limit 		= req.param('limit', 5);
+	var offset 		= req.param('limit', 0);
 	if( !identity )
 	{
 		res.status(400).json({
@@ -37,6 +39,8 @@ app.get('/stream', function(req, res) {
 	}
 	var query = client.createQuery()
 		.q('*:*')
+		.rows(limit)
+		.start(offset)
 		.matchFilter('identity', identity);
 
 	client.search(query, function(solrErr, solrRes){
