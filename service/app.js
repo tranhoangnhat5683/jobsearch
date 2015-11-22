@@ -38,7 +38,7 @@ app.get('/stream', function(req, res) {
 		return;
 	}
 	var query = client.createQuery()
-		.q('characteristics:[* TO *]')
+		.q('characteristics:[* TO *] OR skills:[* TO *]')
 		.rows(limit)
 		.start(offset)
 		.sort({

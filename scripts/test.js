@@ -6,10 +6,10 @@ client 	= solr.createClient({
 	port : '8983',
 	path : '/solr/jobsearch',
 });
-
+//http://www.facebook.com/
 var query = client.createQuery();
 	query.q('*:*')
-	.matchFilter('id', '(1057167327661065 )')
+	.matchFilter('id', '(1124731394264415)')
 	.sort({
 		'id' : 'ASC'
 	})
@@ -39,8 +39,12 @@ client.search(query, function(err, res){
 		upDocs.push({
 			'id' 				: doc.id,
 			'characteristics'	: {
-				add : [79, 81]
-			}
+				add : [81]
+				//,remove: [78]
+			},
+			/*'skills'	: {
+				add : [1]
+			}*/
 		})
 	}
 	client.update(upDocs, function(upErr, upRes){
