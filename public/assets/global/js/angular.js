@@ -14,7 +14,7 @@ jobSearchApp.controller('homeController', function($scope, $http) {
         offset: 0
     };
 
-    $scope.loadMore = function() {
+    $scope.loadMore = function(callback) {
         if (!this.searchFlag)
         {
             return;
@@ -32,6 +32,10 @@ jobSearchApp.controller('homeController', function($scope, $http) {
             }
         }).success(function(data, status, headers, config) {
             Array.prototype.push.apply($scope.profiles, data);
+            if (callback instanceof Function)
+            {
+                callback();
+            }
         });
         $scope.searchParam.nextpage += 1;
     };
@@ -69,7 +73,8 @@ jobSearchApp.controller('homeController', function($scope, $http) {
             location: $("#input-location").val(),
             nextpage: 0
         };
-        $scope.loadMore();
-        $('html, body').animate({scrollTop: '+=550px'}, 800);
+        $scope.loadMore(function() {
+            $('html, body').animate({scrollTop: '+=550px'}, 800);
+        });
     };
 });
