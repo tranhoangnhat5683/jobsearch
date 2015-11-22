@@ -65,6 +65,22 @@ class HomeController extends Controller {
 		return view('jobsearch/index', $data);
 	}
 
+	public function home(Request $request)
+	{
+		$data = [];
+
+		$skills = Skill::search();
+		$data['skills'] = array_column($skills, 'name', 'id');
+
+        $locations = Location::search();
+        $data['locations'] = array_column($locations, 'name', 'id');
+
+        $characters = Character::search();
+        $data['characters'] = array_column($characters, 'name', 'id');
+
+		return view('home', $data);
+	}
+
 	/**
 	 * Show the application dashboard to the user.
 	 *

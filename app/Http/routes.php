@@ -20,13 +20,15 @@ Route::get('/api/user/get', 'Api\UserController@get');
 Route::get('/api/skill/search', 'Api\SkillController@search');
 Route::get('/api/character/search', 'Api\CharacterController@search');
 Route::get('/api/location/search', 'Api\LocationController@search');
+
+// 
+Route::get('/home', 'HomeController@home');
 //Danh sach ve API o day
 //Route::controller('api', 'ApiController');
 //Test va thu nghiem nen dc remove
 Route::get('angular','TestController@angular');
 Route::get('neo','TestController@neo');
 Route::get('cypher','TestController@cypher');
-
 
 //@Phu note: Bo may cai nay di, sao viet nhieu router vay?
 //Route::get('api/user/search','Api\UserController@search');
