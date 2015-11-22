@@ -50,7 +50,8 @@ jobSearchApp.controller('homeController', function($scope, $http) {
     };
 
     $scope.getCharacters = function(user) {
-        var characters = [];
+        var mapper = {};
+        var order = JSON.parse(JSON.stringify($scope.searchParam.character));
         var character = null;
         for (var i = 0; i < user.characters.length; i++)
         {
@@ -59,8 +60,19 @@ jobSearchApp.controller('homeController', function($scope, $http) {
             {
                 continue;
             }
-            characters.push(character);
+            mapper[character.id] = character;
+            if (order.indexOf(character.id + '') < 0)
+            {
+                order.push(character.id + '');
+            }
         }
+
+        var characters = [];
+        for (var i = 0; i < order.length; i++)
+        {
+            characters.push(mapper[order[i]]);
+        }
+
         return characters;
     };
 
