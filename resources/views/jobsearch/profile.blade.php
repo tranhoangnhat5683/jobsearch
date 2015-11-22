@@ -132,8 +132,8 @@
                                                         <div class="progress-bar"></div>
                                                     </progress>
                                                 </div>
-                                                <div class="col-sm-2 text-right tooltip" title="{{ $item['current'] }} scores/ {{ $item['max'] }} max scores">
-                                                    <span class="font-red-intense bold" ><?php echo $item["current"]; ?></span>/<span class="bold"><?php echo $item["max"]; ?></span>
+                                                <div class="col-sm-2 text-right" data-toggle="tooltip" data-placement="top" title="{{ $item['current'] }} scores/ {{ $item['max'] }} max scores">
+                                                    <span class="font-red-intense bold" title="{{ $item['current'] }} scores/ {{ $item['max'] }} max scores">{{ $item['current'] }}</span>/<span class="bold" title="{{ $item['current'] }} scores/ {{ $item['max'] }} max scores">{{ $item['max'] }}</span>
                                                 </div>
                                             </div>
                                         @endif
@@ -214,8 +214,7 @@ $(document).ready(function() {
     Layout.init(); // init current layout
     Profile.init(); // init page demo
 
-    $('.tooltip').tooltip();
-
+    $('[data-toggle="tooltip"]').tooltip();
     /*$("#activity-view-mode").on("change", function(e) {
         $.ajax({
             method      : "POST",
