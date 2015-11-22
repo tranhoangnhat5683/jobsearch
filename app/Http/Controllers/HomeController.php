@@ -110,7 +110,7 @@ class HomeController extends Controller {
         	$arrResult = $this->buildProfileInfo($arrResult);
         	$data = array('profiles' => $arrResult);
         }
-		return response()->json($data);
+		// return response()->json($data);
 
 		return view('jobsearch/list_1', $data);
 	}
