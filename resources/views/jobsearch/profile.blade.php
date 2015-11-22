@@ -65,15 +65,23 @@
                                 </div>
                                 <div class="profile-desc-text">
                                     <div class="col-md-6 text-left">Location</div>
-                                    <div class="col-md-6 text-left">{{ isset($item['location']['name']) ? $item['location']['name'] : 'HCM' }}</div>
+                                    <div class="col-md-6 text-left">{{ isset($location['name']) ? $location['name'] : 'Ho Chi Minh City' }}</div>
                                 </div>
-
+                                <div class="profile-desc-text">
+                                    <div class="col-md-6 text-left">
+                                        <a target="_blank" href="//www.facebook.com/{{$identity}}" class="item-label">
+                                            <i class="fa fa-facebook-square fa-2x"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- PORTLET MAIN -->
                     <div class="portlet light col-sm-12">
-                        <h4 class="profile-desc-title">Current Job</h4>
+                        <h4 class="profile-desc-title">Jobs</h4>
                         <div class="primary-link">
                             @if (isset($jobs))
                                 <ul class="profile-job-list">
