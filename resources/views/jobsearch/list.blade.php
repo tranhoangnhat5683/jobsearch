@@ -3,7 +3,9 @@
 @section('stylesheet')
 <link href="assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css" />
 <link href="assets/global/css/progress-bar.css" rel="stylesheet" type="text/css" />
+<link href="assets/global/css/loading-bar.min.css" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+<script src="assets/global/scripts/loading-bar.min.js" type="text/javascript"></script>
 @endsection
 
 @section('content')
@@ -90,7 +92,7 @@ jQuery(document).ready(function() {
     });
 </script>
 <script>
-    var itemApp = angular.module('itemApp', [], function($interpolateProvider) {
+    var itemApp = angular.module('itemApp', ['angular-loading-bar'], function($interpolateProvider) {
         $interpolateProvider.startSymbol('<%');
         $interpolateProvider.endSymbol('%>');
     });
